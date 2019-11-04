@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="header">
+
+    </div>
+
+    <div class="mobile-menu">
+        <b>youit</b>
+    </div>
+
+    <div class="wrapper">
+        <div class="box top-menu">
+
+            <div class="nav">
+
+                <div class="logo">youIT</div>
+                <div class="menu">
+                    @await Component.InvokeAsync("TopMenu")
+                </div>
+                <div class="search">
+
+                    <div class="desktop">
+
+                        <div class="wrap">
+                            <div class="search">
+                                <div style="margin-top:3px; margin-right:32px;"><a href="#">логин</a></div>
+
+                                <input type="text" class="searchTerm" placeholder="Что ищем?">
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a href="#" class="mobile-menu-button" onclick="toogleSodeMenu()">menu</a>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="box sidebar">side menu</div>
+
+        @RenderBody()
+
+        <div class="box footer">
+            <div class="social-icons-wrapper">
+                social icons
+            </div>
+            @*https://www.orbitmedia.com/blog/website-footer-design-best-practices/*@
+            <a href="#">О проекте youIT</a>
+            <span>|</span>
+            <a href="#">Контакты</a>
+            <span>|</span>
+            <a href="#">Конфиденциальность</a>
+            <span>|</span>
+            <a href="#">Условия использования</a>
+            <div class="copyright">
+                ©2019 youit.co. Все права защищены. Полное или частичное копирование материалов сайта без согласования с редакцией запрещено.
+            </div>
+        </div>
+
+        <script>
+            toogleSodeMenu = () => {
+                $('.mobile-menu').toggle();
+            }
+        </script>
+    </div>
+</body>
+</html>

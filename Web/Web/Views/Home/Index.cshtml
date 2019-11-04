@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Services.PostPreviewDto>
+
+@foreach (var post in Model)
+{
+    <div class="box content">
+        @{ 
+            string url = $"/Home/GetPost/{post.Url}";
+            string imagePath = $"https://storage.cloud.google.com/youit/{post.Url}/thumbnail.png";
+        }
+        <a asp-controller="Home" asp-action="GetPost" asp-route-url="@post.Url">
+            <img src="@imagePath" style="max-width:100%" />
+            <div class="post-button-wrapper">
+                <div>like</div>
+                <div>disl</div>
+                <div>comm</div>
+                <div>views</div>
+            </div>
+            <h3>@post.Title</h3>
+        </a>
+    </div>
+}
+
+<div class="box more-posts-button"><a href="#">больше постов</a></div>
