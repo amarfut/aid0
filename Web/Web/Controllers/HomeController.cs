@@ -24,6 +24,10 @@ namespace Web.Controllers
             return View(await service.GetPost(url));
         }
 
+        public IActionResult Search(string term)
+        {
+            return View((object)term);
+        }
 
         public IActionResult Privacy()
         {

@@ -1,6 +1,6 @@
 ﻿a {
-    text-decoration: none !important;
-    color: #000 !important;
+    text-decoration: none;
+    color: #000;
     font-weight: 100;
     font-family: Helvetica, Arial, sans-serif
 }
@@ -113,6 +113,7 @@ body {
 
 .full-post {
     grid-column: 1 / 3;
+    min-height:1000px;
 }
 
 .sidebar {
@@ -135,6 +136,7 @@ body {
     grid-column: 1 / 4;
     text-align: center;
     padding: 15px;
+    font-weight:bold;
 }
 
 .footer {
@@ -171,33 +173,17 @@ body {
     .content {
     }
 
-    .content h3 {
-        color: #808080;
-        font-size: 26px;
-        font-weight: normal;
-    }
+        .content h3 {
+            color: #3d3d3d;
+            font-size: 24px;
+            font-weight: normal;
+        }
 
     .content img {
         border-radius: 4px;
         width: 100%;
     }
 
-
-.has-search .form-control {
-    padding-left: 2.375rem;
-}
-
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-}
 
 
 
@@ -226,7 +212,7 @@ body {
 
 
 div.menu {
-    font-size: 16px !important;
+    font-size: 17px;
     font-weight:100;
     padding-top:4px;
 }
@@ -254,7 +240,6 @@ div.menu ul {
 
 div.menu a {
     display: block;
-    color: #FFF;
     padding-right: 10px;
     text-decoration: none;
 }
@@ -289,7 +274,6 @@ div.menu ul li:hover > ul {
 
 
 @media all and (max-width : 600px) {
-
     div.menu ul li {
         display: block;
         width: 94%;
@@ -297,43 +281,17 @@ div.menu ul li:hover > ul {
 }
 
 
-
-
-
-
-
-
-/*searh bar*/
-
-.search {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
 .searchTerm {
-    width: 100%;
-    border: 1px solid #d5d5d5;
-    border-right: none;
-    padding: 2px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: #d5d5d5;
+    width: 60%;
+    padding: 4px 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
 }
 
-    .searchTerm:focus {
-        color: #d5d5d5;
-    }
 
-.searchButton {
-    width: 36px;
-    height: 26px;
-    border: 1px solid #d5d5d5;
-    background: #d5d5d5;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 3px 3px 0;
-    cursor: pointer;
-    font-size: 20px;
-}
+
+
+
+
