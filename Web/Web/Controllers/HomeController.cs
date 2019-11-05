@@ -11,12 +11,17 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
+        private PostService _postService = new PostService();
+        
         public async Task<IActionResult> Index()
         {
-            var service = new PostService();
-            return View(await service.GetPostPreviews(0, 10));
+            return View(await _postService.GetPostPreviews(skip: 0));
         }
 
+        public async Task<IEnumerable<PostPreviewDto>> LoadPosts(int skip)
+        {
+            return await _postService.GetPostPreviews(skip);
+        }
 
         public async Task<IActionResult> GetPost(string url)
         {
@@ -28,6 +33,12 @@ namespace Web.Controllers
         {
             return View((object)term);
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {

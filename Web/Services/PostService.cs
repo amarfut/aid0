@@ -11,16 +11,16 @@ namespace Services
     {
         private PostRepositoryRead _postRepositoryRead { get; } = new PostRepositoryRead();
 
-        public async Task<IEnumerable<PostPreviewDto>> GetPostPreviews(int skip, int limit)
+        public async Task<IEnumerable<PostPreviewDto>> GetPostPreviews(int skip)
         {
-            var posts = await _postRepositoryRead.GetPostPreviews(skip, limit);
-            return posts.Select(x => new PostPreviewDto(x.title, x.url));
+            var posts = await _postRepositoryRead.GetPostPreviews(skip, 9);
+            return posts.Select(x => new PostPreviewDto(x.title, x.url, 1, 2, 3, 4));
         }
 
         public async Task<IEnumerable<PostPreviewDto>> GetRandomPostPreviews(PostType type, int number)
         {
             var posts = await _postRepositoryRead.GetRandomPostPreviews((int)type, number);
-            return posts.Select(x => new PostPreviewDto(x.title, x.url));
+            return posts.Select(x => new PostPreviewDto(x.title, x.url, 0, 0, 0, 0));
         }
 
         public async Task<PostDto> GetPost(string url)

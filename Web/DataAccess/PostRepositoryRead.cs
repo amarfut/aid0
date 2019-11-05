@@ -16,7 +16,6 @@ namespace DataAccess
             _context = new DatabaseContext();
         }
 
-        //db.getCollection('posts').find().sort({id:-1}).skip(1).limit(1)
         public async Task<IEnumerable<Post>> GetPostPreviews(int skip, int limit)
         {
             return await _context.Posts.AsQueryable()

@@ -5,14 +5,14 @@
         <label for="drop-1" class="toggle">Карьера в IT</label>
         <a href="#" class="top-link">Карьера в IT</a>
         <input type="checkbox" id="drop-1" />
-
+        @*<a asp-controller="Home" asp-action="GetPost" asp-route-url="@post.Url">*@
         <ul>
             @foreach (var career in Model.CareerPosts)
             {
                 <li>
                     @{string imagePath = $"https://storage.cloud.google.com/youit/{career.Url}/mini.png"; }
                     <img src="@imagePath" />
-                    <a href="#">@career.Title</a>
+                    <a asp-controller="Home" asp-action="GetPost" asp-route-url="@career.Url">@career.Title</a>
                     <div style="clear: left;"></div>
                 </li>
             }
@@ -24,12 +24,12 @@
         <a href="#" class="top-link">Программирование</a>
         <input type="checkbox" id="drop-2" />
         <ul>
-            @foreach (var career in Model.ProgrammingPosts)
+            @foreach (var programmingPost in Model.ProgrammingPosts)
             {
                 <li>
-                    @{string imagePath = $"https://storage.cloud.google.com/youit/{career.Url}/mini.png"; }
+                    @{string imagePath = $"https://storage.cloud.google.com/youit/{programmingPost.Url}/mini.png"; }
                     <img src="@imagePath" />
-                    <a href="#">@career.Title</a>
+                    <a asp-controller="Home" asp-action="GetPost" asp-route-url="@programmingPost.Url">@programmingPost.Title</a>
                     <div style="clear: left;"></div>
                 </li>
             }
@@ -41,14 +41,14 @@
         <a href="#" class="top-link">Секреты IT</a>
         <input type="checkbox" id="drop-3" />
         <ul>
-            @foreach (var career in Model.JuniorPosts)
+            @foreach (var juniorPost in Model.JuniorPosts)
             {
-                <li>
-                    @{string imagePath = $"https://storage.cloud.google.com/youit/{career.Url}/mini.png"; }
-                    <img src="@imagePath" />
-                    <a href="#">@career.Title</a>
-                    <div style="clear: left;"></div>
-                </li>
+            <li>
+                @{string imagePath = $"https://storage.cloud.google.com/youit/{juniorPost.Url}/mini.png"; }
+                <img src="@imagePath" />
+                <a asp-controller="Home" asp-action="GetPost" asp-route-url="@juniorPost.Url">@juniorPost.Title</a>
+                <div style="clear: left;"></div>
+            </li>
             }
         </ul>
     </li>

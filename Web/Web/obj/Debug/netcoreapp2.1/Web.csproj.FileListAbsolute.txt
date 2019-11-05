@@ -39,3 +39,5 @@ C:\Users\omarf\Desktop\site\Web\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\C
 C:\Users\omarf\Desktop\site\Web\Web\bin\Debug\netcoreapp2.1\Domain.dll
 C:\Users\omarf\Desktop\site\Web\Web\bin\Debug\netcoreapp2.1\Domain.pdb
 C:\Users\omarf\Desktop\site\Web\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Search.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\MobileMenu\Default.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.g.cshtml.cs

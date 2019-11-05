@@ -3,21 +3,83 @@
 @foreach (var post in Model)
 {
     <div class="box content">
-        @{ 
+        @{
             string url = $"/Home/GetPost/{post.Url}";
             string imagePath = $"https://storage.cloud.google.com/youit/{post.Url}/thumbnail.png";
         }
+
+        <img src="@imagePath" style="max-width:100%" />
+        <div class="post-button-wrapper">
+            <div>v: @post.LikesCount</div>
+            <div>c: @post.DislikesCount</div>
+            <div>l: @post.CommentsCount</div>
+            <div>d: @post.ViewsCount</div>
+        </div>
         <a asp-controller="Home" asp-action="GetPost" asp-route-url="@post.Url">
-            <img src="@imagePath" style="max-width:100%" />
-            <div class="post-button-wrapper">
-                <div>like</div>
-                <div>disl</div>
-                <div>comm</div>
-                <div>views</div>
-            </div>
             <h3>@post.Title</h3>
         </a>
     </div>
 }
 
-<div class="box more-posts-button"><a href="#"><u>загрузить больше постов</u></a></div>
+<!-- ko foreach: posts -->
+<div class="box content">
+    <img style="max-width:100%" data-bind="attr: { src: imageUrl }" />
+    <div class="post-button-wrapper">
+        <div>v: <span data-bind="text: viewsCount"></span></div>
+        <div>c: <span data-bind="text: commentsCount"></span></div>
+        <div>l: <span data-bind="text: likesCount"></span></div>
+        <div>d: <span data-bind="text: dislikesCount"></span></div>
+    </div>
+    <a data-bind="attr: { href: postUrl }">
+        <h3 data-bind="text: title"></h3>
+    </a>
+</div>
+<!-- /ko -->
+
+<div class="box more-posts-button" >
+    <a href="#" data-bind="click: addPosts, visible: morePostsButtonVisible"><u>загрузить больше постов</u></a>
+    <h3 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h3>
+</div>
+
+<script>
+
+    class Post {
+        constructor(title, imageUrl, postUrl, viewsCount, commentsCount, likesCount, dislikesCount) {
+            this.title = title;
+            this.viewsCount = viewsCount;
+            this.commentsCount = commentsCount;
+            this.likesCount = likesCount;
+            this.dislikesCount = dislikesCount;
+            this.imageUrl = imageUrl;
+            this.postUrl = postUrl;
+        }
+    }
+
+    function AppViewModel() {
+        let self = this;
+        self.posts = ko.observableArray([]);
+        self.morePostsButtonVisible = ko.observable(true);
+        self.endPostsTextVisible = ko.observable(false);
+        const initialPostsCount = 9; 
+
+        self.addPosts = function () {
+            let skip = initialPostsCount + self.posts().length;
+            $.get('https://localhost:5001/home/loadposts?skip=' + skip, function (posts) {
+                if (!posts || posts.length === 0) {
+                    self.morePostsButtonVisible(false);
+                    self.endPostsTextVisible(true);
+                    return;
+                }
+
+                for (let post of posts) {
+                    let imageUrl = 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png';
+                    let postUrl = 'https://localhost:5001/home/getpost?url=' + post.url;
+                    self.posts.push(new Post(post.title, imageUrl, postUrl, post.viewsCount, post.commentsCount, post.likesCount, post.dislikesCount));
+                }
+            });
+        };
+    }
+
+    ko.applyBindings(new AppViewModel());
+
+</script>

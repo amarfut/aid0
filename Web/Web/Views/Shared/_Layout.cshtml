@@ -3,54 +3,47 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Web</title>
+    <title>youIT - программирование и карьера в IT</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
 </head>
 <body>
 
-    <div class="header">
-
-    </div>
+    <div class="header"> </div>
 
     <div class="mobile-menu">
-        <a href="/Home/Index"><b>youit</b></a>
+        @await Component.InvokeAsync("MobileMenu")
     </div>
 
     <div class="wrapper">
         <div class="box top-menu">
-
             <div class="nav">
-
-                <div class="logo"> <a href="/Home/Index">youIT</a></div>
+                <div class="logo">
+                    <a href="#" class="mobile-menu-button" onclick="toogleSodeMenu()">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <a href="/Home/Index">youIT</a>
+                </div>
                 <div class="menu">
                     @await Component.InvokeAsync("TopMenu")
                 </div>
                 <div class="search">
+                    <form id="searchForm" method="post" asp-action="Search" class="desktop">
+                        <div style="position: relative;">
+                            <span style="margin-right:20px;">
+                                <a asp-controller="Home" asp-action="Login" style="color:#868686;font-size:15px;">логин</a>
+                            </span>
 
-                    <div class="desktop">
-                        <div style="position:relative;">
-
-                            <form id="searchForm" method="post" asp-action="Search">
-                                <div style="position: relative;">
-                                    <span style="margin-right:20px;"><a href="#" style="color:#868686;font-size:15px;">логин</a></span>
-
-                                    <input type="text" class="searchTerm" name="term" placeholder="Что ищем?">
-                                    <a href="#" onclick="document.getElementById('searchForm').submit();">
-                                        <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:3px;"></i>
-                                    </a>
-                                </div>
-                            </form>
+                            <input type="text" class="searchTerm" name="term" placeholder="Что ищем?">
+                            <a href="#" onclick="document.getElementById('searchForm').submit();">
+                                <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:3px;"></i>
+                            </a>
                         </div>
-
-                    </div>
-                    <a href="#" class="mobile-menu-button" onclick="toogleSodeMenu()">menu</a>
-
+                    </form>
                 </div>
-
             </div>
-
         </div>
         <div class="box sidebar">side menu</div>
 
@@ -60,10 +53,12 @@
             <div class="social-icons-wrapper">
                 social icons
             </div>
-            @*https://www.orbitmedia.com/blog/website-footer-design-best-practices/*@
+
             <a href="#">О проекте youIT</a>
             <span>|</span>
             <a href="#">Контакты</a>
+            <span>|</span>
+            <a href="#">Cookies</a>
             <span>|</span>
             <a href="#">Конфиденциальность</a>
             <span>|</span>

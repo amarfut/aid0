@@ -29,7 +29,7 @@ body {
 
     .sidebar,
     div.menu,
-    .search div.desktop {
+    #searchForm {
         display: none !important;
     }
 
@@ -51,7 +51,7 @@ body {
 .mobile-menu {
     display: none;
     height: 100%;
-    width: 200px;
+    width: 90%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -190,6 +190,7 @@ body {
 
 .search {
     text-align: right;
+    position:relative;
 }
 
 
