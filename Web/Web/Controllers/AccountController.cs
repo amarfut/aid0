@@ -32,7 +32,8 @@ namespace Web.Controllers
 
         public async Task<IActionResult> LoginCallback()
         {
-            var authenticateResult = await HttpContext.AuthenticateAsync(HttpContext.User.Identity.AuthenticationType);
+            var type = HttpContext.User.Identity.AuthenticationType;
+            var authenticateResult = await HttpContext.AuthenticateAsync(type);
 
             if (!authenticateResult.Succeeded)
                 return BadRequest(); // TODO: Handle this better.
@@ -44,13 +45,12 @@ namespace Web.Controllers
             claimsIdentity.AddClaim(nameIdentifier);
             claimsIdentity.AddClaim(name);
 
-            await _userService.CreateUserAsync(nameIdentifier.Value, name.Value);
+            await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claimsIdentity));
 
             return Redirect("/Account/Profile");
         }
-
 
         public IActionResult Profile()
         {

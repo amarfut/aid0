@@ -10,9 +10,9 @@ namespace Services
     {
         private UserRepositoryWrite _userRepositoryWrite { get; } = new UserRepositoryWrite();
 
-        public async Task CreateUserAsync(string externalId, string name)
+        public async Task CreateUserAsync(string externalId, string name, string provider)
         {
-            await _userRepositoryWrite.CreateUserAsync(externalId, name);
+            await _userRepositoryWrite.CreateUserAsync(externalId, name, provider);
         }
     }
 }

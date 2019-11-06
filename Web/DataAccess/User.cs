@@ -14,5 +14,7 @@ namespace DataAccess
         public string ExternalId { get; set; }
 
         public string Name { get; set; }
+
+        public string Provider { get; set; }
     }
 }

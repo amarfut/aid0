@@ -17,12 +17,17 @@ namespace DataAccess
             _context = new DatabaseContext();
         }
 
-        public async Task CreateUserAsync(string externalId, string name)
+        public async Task CreateUserAsync(string externalId, string name, string provider)
         {
             var exists = await _context.Users.AsQueryable().Where(u => u.ExternalId == externalId).AnyAsync();
-            if (!exists)
+            if (exists)
             {
-                await _context.Users.InsertOneAsync(new User { ExternalId = externalId, Name = name });
+                var nameUpdateDefinition = Builders<User>.Update.Set("Name", name);
+                await _context.Users.UpdateOneAsync(u => u.ExternalId == externalId, nameUpdateDefinition);
+            }
+            else
+            {
+                await _context.Users.InsertOneAsync(new User { ExternalId = externalId, Name = name, Provider = provider });
             }
         }
 
