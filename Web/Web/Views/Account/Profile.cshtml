@@ -7,9 +7,12 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <p>
-            ваш аккаунт тут
-        </p>
+        <div class="account-menu-wrapper">
+            <a href="#"><div>Ваши комментарии</div></a>
+            <a href="#"><div>Архив записей</div></a>
+            <a href="#"><div>Лайкнутые записи</div></a>
+            <a href="#"><div>Профиль</div></a>
+        </div>
     }
     else
     {
