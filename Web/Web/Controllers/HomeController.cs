@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Web.Models;
@@ -12,7 +15,7 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         private PostService _postService = new PostService();
-        
+
         public async Task<IActionResult> Index()
         {
             return View(await _postService.GetPostPreviews(skip: 0));
@@ -34,6 +37,7 @@ namespace Web.Controllers
             return View((object)term);
         }
 
+       
         public IActionResult Login()
         {
             return View();
@@ -45,5 +49,7 @@ namespace Web.Controllers
             return View();
         }
 
+      
+       
     }
 }

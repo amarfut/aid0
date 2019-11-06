@@ -5,7 +5,7 @@
     <div class="box content">
         @{
             string url = $"/Home/GetPost/{post.Url}";
-            string imagePath = $"https://storage.cloud.google.com/youit/{post.Url}/thumbnail.png";
+            string imagePath = $"https://storage.googleapis.com/youit/{post.Url}/thumbnail.png";
         }
 
         <img src="@imagePath" style="max-width:100%" />

@@ -10,7 +10,7 @@
             @foreach (var career in Model.CareerPosts)
             {
                 <li>
-                    @{string imagePath = $"https://storage.cloud.google.com/youit/{career.Url}/mini.png"; }
+                    @{string imagePath = $"https://storage.googleapis.com/youit/{career.Url}/mini.png"; }
                     <img src="@imagePath" />
                     <a asp-controller="Home" asp-action="GetPost" asp-route-url="@career.Url">@career.Title</a>
                     <div style="clear: left;"></div>
@@ -27,7 +27,7 @@
             @foreach (var programmingPost in Model.ProgrammingPosts)
             {
                 <li>
-                    @{string imagePath = $"https://storage.cloud.google.com/youit/{programmingPost.Url}/mini.png"; }
+                    @{string imagePath = $"https://storage.googleapis.com/youit/{programmingPost.Url}/mini.png"; }
                     <img src="@imagePath" />
                     <a asp-controller="Home" asp-action="GetPost" asp-route-url="@programmingPost.Url">@programmingPost.Title</a>
                     <div style="clear: left;"></div>
@@ -44,7 +44,7 @@
             @foreach (var juniorPost in Model.JuniorPosts)
             {
             <li>
-                @{string imagePath = $"https://storage.cloud.google.com/youit/{juniorPost.Url}/mini.png"; }
+                @{string imagePath = $"https://storage.googleapis.com/youit/{juniorPost.Url}/mini.png"; }
                 <img src="@imagePath" />
                 <a asp-controller="Home" asp-action="GetPost" asp-route-url="@juniorPost.Url">@juniorPost.Title</a>
                 <div style="clear: left;"></div>

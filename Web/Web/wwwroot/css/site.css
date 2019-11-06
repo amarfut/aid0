@@ -190,7 +190,6 @@ body {
 
 .search {
     text-align: right;
-    position:relative;
 }
 
 
@@ -199,11 +198,18 @@ body {
     
 }
 
+.login-bar {
+    text-align: right;
+    padding-top: 5px;
+    color: #868686;
+    font-size: 15px;
+}
+
 
 /*Menu*/
 .nav {
     display: grid;
-    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-columns: 1fr 4fr 1fr 2fr;
 }
 
 .toggle,
