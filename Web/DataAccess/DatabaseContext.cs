@@ -23,5 +23,7 @@ namespace DataAccess
                 return _database.GetCollection<Post>("posts");
             }
         }
+
+        public IMongoCollection<User> Users => _database.GetCollection<User>("users");
     }
 }

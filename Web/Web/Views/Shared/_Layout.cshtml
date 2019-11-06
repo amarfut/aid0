@@ -32,12 +32,12 @@
                 <div class="login-bar">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="Account" asp-action="Profile">@User.Identity.Name</a>
+                        <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
                         <a asp-controller="Account" asp-action="SignOut">(Выйти)</a>
                     }
                     else
                     {
-                        <a asp-controller="Home" asp-action="Login">логин</a>
+                        <a asp-controller="Account" asp-action="Profile">логин</a>
                     }
                 </div>
                 <div class="search">

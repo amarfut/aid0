@@ -38,18 +38,9 @@ namespace Web.Controllers
         }
 
        
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-
         public IActionResult Privacy()
         {
             return View();
         }
-
-      
-       
     }
 }

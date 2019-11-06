@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="full-post">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            ваш аккаунт тут
+        </p>
+    }
+    else
+    {
+        <p>
+            Авторизируйтесь на <b>youIT</b> с помощью популярный социальных сетей всего в один клик
+        </p>
+
+        <a asp-action="SignInExternal" asp-route-externalProvider="Google">
+            Авторизироваться через Google
+        </a> <br />
+
+        <a asp-action="SignInExternal" asp-route-externalProvider="Facebook">
+            Авторизироваться через Facebook
+        </a> <br />
+
+        <a asp-action="SignInExternal" asp-route-externalProvider="VK">
+            Авторизироваться через VK
+        </a>
+
+        <p>
+            Авторизированные пользователи получают следующие возможности:
+            <ul>
+                <li>Участие в дискуссиях под каждым постом</li>
+                <li>Сохранение любимых постов в список избранных записей</li>
+                <li>...</li>
+            </ul>
+        </p>
+    }
+
+
+
+</div>

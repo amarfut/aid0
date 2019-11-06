@@ -7,32 +7,22 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace Web.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult SignInGoogle()
+        private UserService _userService = new UserService();
+
+        public IActionResult SignInExternal(string externalProvider)
         {
             return Challenge(new AuthenticationProperties()
             {
                 RedirectUri = Url.Action(nameof(LoginCallback))
-                
             },
-            "Google");
+            externalProvider);
         }
-
-        //[Authorize(AuthenticationSchemes = "Github")]
-        public IActionResult SignInGithub()
-        {
-            return Challenge(new AuthenticationProperties()
-            {
-                RedirectUri = Url.Action(nameof(LoginCallback))
-
-            },
-            "Github");
-        }
-
 
         public async Task<IActionResult> SignOut()
         {
@@ -40,25 +30,31 @@ namespace Web.Controllers
             return Redirect("/Home/Index");
         }
 
-        public async Task<IActionResult> LoginCallback(object c)
+        public async Task<IActionResult> LoginCallback()
         {
-            var type = HttpContext.User.Identity.AuthenticationType;
-
-            var authenticateResult = await HttpContext.AuthenticateAsync(type);
-
-            
+            var authenticateResult = await HttpContext.AuthenticateAsync(HttpContext.User.Identity.AuthenticationType);
 
             if (!authenticateResult.Succeeded)
                 return BadRequest(); // TODO: Handle this better.
 
-            var claimsIdentity = new ClaimsIdentity("Application");
+            Claim nameIdentifier = authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier);
+            Claim name = authenticateResult.Principal.FindFirst(ClaimTypes.Name);
 
-            claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier));
-            claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.Email));
+            var claimsIdentity = new ClaimsIdentity("Application");
+            claimsIdentity.AddClaim(nameIdentifier);
+            claimsIdentity.AddClaim(name);
+
+            await _userService.CreateUserAsync(nameIdentifier.Value, name.Value);
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claimsIdentity));
 
-            return Redirect("/");
+            return Redirect("/Account/Profile");
+        }
+
+
+        public IActionResult Profile()
+        {
+            return View();
         }
     }
 }

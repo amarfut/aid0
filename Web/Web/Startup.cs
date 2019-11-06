@@ -52,7 +52,12 @@ namespace Web
                 .AddGoogle("Google", options => {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }).AddOAuth("Github", options => {
+                })
+                .AddFacebook("Facebook", options => {
+                    options.ClientId = Configuration["Authentication:Facebook:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Facebook:ClientSecret"];
+                })
+                .AddOAuth("Github", options => {
                     options.ClientId = Configuration["Authentication:Github:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Github:ClientSecret"];
                     options.CallbackPath = "/signin-github";
