@@ -1,0 +1,77 @@
+﻿@model Services.PostDto
+
+@{
+    ViewData["Title"] = "GetPost";
+}
+
+<div class="box full-post">
+
+    <h1>@Model.Title</h1>
+    <div class="social-links-wrapper">
+        <a href="#">
+            <div class="li">
+                Поделиться в LinkedIn
+            </div>
+        </a>
+        <a href="#">
+            <div class="fb">
+                Поделиться Вконтакте
+            </div>
+        </a>
+        <a href="#">
+            <div class="vk">
+                Поделиться в Фейсбук
+            </div>
+        </a>
+    </div>
+
+    @Html.Raw(Model.Text)
+
+
+    <div class="comments-wrapper">
+        <input id="post-id-hidden" type="hidden" value="@Model.Id" />
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
+            <button onclick="addComment()">Комментировать</button>
+
+            @foreach (var comment in Model.Comments)
+            {
+                <h3>@comment.UserName</h3> <span>@comment.Created</span>
+                <p>
+                    @comment.Text
+                </p>
+            }
+
+        }
+        else
+        {
+            <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
+        }
+    </div>
+
+    <script>
+        addComment = () => {
+            const text = $('#comment-box').val();
+            const postId = $('#post-id-hidden').val();
+
+            $.ajax({
+                url: '/comment/addcomment',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    Text: text,
+                    PostId: postId
+                }),
+                success: (data) => {
+                    console.log(data);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+
+</div>
