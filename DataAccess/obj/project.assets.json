@@ -1616,6 +1616,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Threading.ThreadPool.dll": {}
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "MongoDB.Driver.Core": "2.9.2"
+        },
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -5626,10 +5639,16 @@
         "system.threading.threadpool.4.3.0.nupkg.sha512",
         "system.threading.threadpool.nuspec"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Domain >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0",
       "MongoDB.Driver >= 2.9.2"
     ]
@@ -5641,11 +5660,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5663,7 +5682,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

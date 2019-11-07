@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using Services.AppServices;
+using Services.DTOs;
 using Services.Utils;
 
 namespace Web.Controllers
@@ -46,9 +48,9 @@ namespace Web.Controllers
             claimsIdentity.AddClaim(nameIdentifier);
             claimsIdentity.AddClaim(name);
 
-            Result<string> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
+            Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
 
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value));
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claimsIdentity));
 

@@ -1,8 +1,6 @@
-﻿@model Services.PostDto
+﻿@model Services.DTOs.PostDto
 
-@{
-    ViewData["Title"] = "GetPost";
-}
+
 
 <div class="box full-post">
 
@@ -28,28 +26,29 @@
     @Html.Raw(Model.Text)
 
 
-    <div class="comments-wrapper">
-        <input id="post-id-hidden" type="hidden" value="@Model.Id" />
+<div class="comments-wrapper">
+    <input id="post-id-hidden" type="hidden" value="@Model.Id" />
 
-        @if (User.Identity.IsAuthenticated)
-        {
-            <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
-            <button onclick="addComment()">Комментировать</button>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
+        <button onclick="addComment()">Комментировать</button>
+    }
+    else
+    {
+        <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
+    }
 
-            @foreach (var comment in Model.Comments)
-            {
-                <h3>@comment.UserName</h3> <span>@comment.Created</span>
-                <p>
-                    @comment.Text
-                </p>
-            }
 
-        }
-        else
-        {
-            <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
-        }
-    </div>
+    @foreach (var comment in Model.Comments)
+    {
+        <h3>@comment.UserName</h3> <span>@comment.Created</span>
+        <p>
+            @comment.Text
+        </p>
+    }
+
+</div>
 
     <script>
         addComment = () => {

@@ -4995,6 +4995,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Domain": "1.0.0",
           "MongoDB.Driver": "2.9.2"
         },
         "compile": {
@@ -5007,6 +5008,9 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "MongoDB.Driver.Core": "2.9.2"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
@@ -13567,11 +13571,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Web\\Web.csproj",
+      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Web\\Web.csproj",
+      "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Web\\Web.csproj",
       "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Web\\obj\\",
+      "outputPath": "C:\\Users\\omarf\\Desktop\\site\\Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13590,8 +13594,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj"
+            "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj"
             }
           }
         }

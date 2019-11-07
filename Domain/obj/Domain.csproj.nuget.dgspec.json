@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj": {}
+    "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj": {
+    "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "MongoDB.Driver.Core": {
+              "target": "Package",
+              "version": "[2.9.2, )"
             }
           },
           "imports": [

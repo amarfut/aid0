@@ -4,13 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess
+namespace Domain.Entities
 {
-    public class User
+    public class User : Entity
     {
-        [BsonId]
-        public ObjectId InternalId { get; set; }
-
         public string ExternalId { get; set; }
 
         public string Name { get; set; }

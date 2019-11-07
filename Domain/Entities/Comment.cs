@@ -4,13 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess
+namespace Domain.Entities
 {
-    public class Comment
+    public class Comment : Entity
     {
-        [BsonId]
-        public ObjectId InternalId { get; set; }
-
         public string Text { get; set; }
 
         public DateTime Created { get; set; }

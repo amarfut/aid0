@@ -1,17 +1,77 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj": {}
+    "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\omarf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,7 +107,7 @@
               "version": "[2.1.0, )",
               "autoReferenced": true
             },
-            "MongoDB.Driver": {
+            "MongoDB.Driver.Core": {
               "target": "Package",
               "version": "[2.9.2, )"
             }
@@ -60,66 +120,14 @@
         }
       }
     },
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj": {
+    "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj",
-        "projectName": "Domain",
-        "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\omarf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp2.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp2.1": {
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp2.1": {
-          "dependencies": {
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.1.0, )",
-              "autoReferenced": true
-            }
-          },
-          "imports": [
-            "net461"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
-        }
-      }
-    },
-    "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj",
+        "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\obj\\",
+        "outputPath": "C:\\Users\\omarf\\Desktop\\site\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -138,11 +146,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj"
+              "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj"
               }
             }
           }

@@ -1,24 +1,24 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services
+namespace Services.DTOs
 {
     public class PostPreviewDto
     {
-        public PostPreviewDto(string title, string url, int v, int c, int l, int d)
+        public PostPreviewDto(Post post)
         {
-            Title = title;
-            Url = url;
-            ViewsCount = v;
-            CommentsCount = c;
-            LikesCount = l;
-            DislikesCount = d;
+            Title = post.Title;
+            Url = post.Url;
+            ViewsCount = 1;
+            CommentsCount = post.CommentsCount;
+            LikesCount = 1;
+            DislikesCount = 1;
         }
 
         public string Title { get; set; }
         public string Url { get; set; }
-
         public int ViewsCount { get; set; }
         public int CommentsCount { get; set; }
         public int LikesCount { get; set; }

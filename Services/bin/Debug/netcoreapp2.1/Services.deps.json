@@ -1021,6 +1021,7 @@
       },
       "DataAccess/1.0.0": {
         "dependencies": {
+          "Domain": "1.0.0",
           "MongoDB.Driver": "2.9.2"
         },
         "runtime": {
@@ -1028,6 +1029,9 @@
         }
       },
       "Domain/1.0.0": {
+        "dependencies": {
+          "MongoDB.Driver.Core": "2.9.2"
+        },
         "runtime": {
           "Domain.dll": {}
         }

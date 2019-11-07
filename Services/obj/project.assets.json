@@ -1621,6 +1621,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Domain": "1.0.0",
           "MongoDB.Driver": "2.9.2"
         },
         "compile": {
@@ -1633,6 +1634,9 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "MongoDB.Driver.Core": "2.9.2"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
@@ -5675,11 +5679,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\Services.csproj",
+      "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\omarf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Services\\obj\\",
+      "outputPath": "C:\\Users\\omarf\\Desktop\\site\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5698,11 +5702,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\omarf\\Desktop\\site\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\omarf\\Desktop\\youit-master\\Web\\Domain\\Domain.csproj"
+            "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\omarf\\Desktop\\site\\Domain\\Domain.csproj"
             }
           }
         }

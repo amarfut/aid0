@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using Services.AppServices;
+using Services.DTOs;
 using Web.Models;
 
 namespace Web.Controllers
