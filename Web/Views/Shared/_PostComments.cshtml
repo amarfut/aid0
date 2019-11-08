@@ -16,23 +16,27 @@
     <p></p>
     <!-- ko foreach: comments -->
     @*<div class="single-comment-wrapper">
-        <div>
-            <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
-        </div>
-        <div>
-            <span class="username" data-bind="text: name"></span>&nbsp;
-            <span class="comment-created" data-bind="text: created"></span><br />
-            <div class="comment-text" data-bind="text: text"></div>
-            <span data-bind="text: likes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
-            <span data-bind="text: dislikes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>
-        </div>
-    </div>*@
+            <div>
+                <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
+            </div>
+            <div>
+                <span class="username" data-bind="text: name"></span>&nbsp;
+                <span class="comment-created" data-bind="text: created"></span><br />
+                <div class="comment-text" data-bind="text: text"></div>
+                <span data-bind="text: likes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
+                <span data-bind="text: dislikes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>
+            </div>
+        </div>*@
 
     <!-- /ko -->
+    @if (Model.Comments.Count == 0)
+    {
+        <h3>Оставьте комментарий первым!</h3>
+    }
 
     @foreach (var comment in Model.Comments)
     {
-        <div class="single-comment-wrapper" style="position:relative;">
+        <div class="single-comment-wrapper" style="position:relative;" id="@comment.Id-comment-wrapper">
             <div style="position:absolute;right:0;top:0; font-size:10px; color:#808080;">
                 <b>...</b>
             </div>
@@ -44,16 +48,17 @@
                 <span class="comment-created">@comment.Created</span><br />
                 <div class="comment-text">@comment.Text</div>
                 <span style="color:#797979; font-size:11px;">
-                    @comment.Likes <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
-                    @comment.Dislikes <a href="#"><i class="fas fa-thumbs-up"></i> </a>
+                    <span class="comment-likes">@comment.Likes</span>
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id-comment-wrapper', '@comment.UserReaction', 'Like') }">Like </a>&nbsp;
+
+                    <span class="comment-dislikes">@comment.Dislikes</span>
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id-comment-wrapper', '@comment.UserReaction', 'Dislike') }">Dislike </a>
                     &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id') }"><b>Ответить</b></a>
                 </span>
             </div>
         </div>
 
         <div style="margin-left:65px;">
-
-
             <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
                 <textarea style="width:100%;"></textarea>
                 <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
@@ -73,9 +78,8 @@
                         <span class="comment-created">@answer.Created</span><br />
                         <div class="comment-text">@answer.Text</div>
                         <span style="color:#797979; font-size:11px;">
-                            @comment.Likes <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
-                            @comment.Dislikes <a href="#"><i class="fas fa-thumbs-up"></i> </a>
-                            &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id') }"><b>Ответить</b></a>
+                            @answer.Likes <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
+                            @answer.Dislikes <a href="#"><i class="fas fa-thumbs-up"></i> </a>
                         </span>
                     </div>
                 </div>
@@ -103,6 +107,18 @@
         self.displayAnswerCommentBox = function (commentId) {
             $('.asnwer-comment-box').hide();
             $('#' + commentId + '-asnwer-comment-box').show();
+        }
+
+        self.setReaction = function (commentId, initReaction, currentReaction) {
+
+            const likesBox = $('#' + commentId + ' .comment-likes');
+            const dislikesBox = $('#' + commentId + ' .comment-dislikes');
+
+            let likes = +likesBox.text();
+            let dislikes = +dislikesBox.text();
+
+            likesBox.text(likes);
+            dislikesBox.text(dislikes);
         }
 
         self.answerToComment = function (commentId) {
@@ -152,3 +168,59 @@
     ko.applyBindings(new AppCommentModel());
 
 </script>
+
+
+
+    @*class ReactionResult {
+        constructor(like, dislike) {
+            this.like;
+            this.dislike;
+        }
+    }
+
+
+    class Context {
+        constructor(state) {
+            this.state = state;
+        }
+    }
+
+
+    class ReactionState {
+        do = (action) => { }
+    }
+
+    class NoneReactionState extends ReactionState {
+        do = (action) => {
+            if (action === 'like') {
+                return new ReactionResult(1, 0);
+            }
+            else if (action === 'dislike') {
+                return new ReactionResult(0, 1);
+            }
+        }
+    }
+
+    class LikedReactionState extends ReactionState {
+        do = (action) => {
+            if (action === 'like') {
+                return new ReactionResult(-1, 0);
+            }
+            else if (action === 'dislike') {
+                return new ReactionResult(-1, 1);
+            }
+        }
+    }
+
+    class DislikedReactionState extends ReactionState {
+        do = (action) => {
+            if (action === 'like') {
+                return new ReactionResult(1, -1);
+            }
+            else if (action === 'dislike') {
+                 return new ReactionResult(0, -1);
+            }
+        }
+    }
+
+    let context = new CurrentState();*@

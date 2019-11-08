@@ -87,11 +87,12 @@ body {
     .single-comment-wrapper .username {
         font-weight: bold;
         color: #466eb7;
+        font-size:13px;
     }
 
     .single-comment-wrapper .comment-created {
         color: #aaa;
-        font-size: 11px;
+        font-size: 13px;
     }
 
     .single-comment-wrapper a {

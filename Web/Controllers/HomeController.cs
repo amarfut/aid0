@@ -31,7 +31,34 @@ namespace Web.Controllers
         public async Task<IActionResult> Post(string url)
         {
             var service = new PostService();
-            return View(await service.GetPost(url));
+            var post = await service.GetPost(url);
+
+            //TODO: introduce UI services layer and move it to there and refactor
+
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                string userId = UserId;
+
+                foreach (var comment in post.Comments)
+                {
+                    if (comment.WhoLiked.Contains(userId))
+                        comment.UserReaction = UserReaction.Liked;
+                    else if (comment.WhoDisliked.Contains(userId))
+                        comment.UserReaction = UserReaction.Disliked;
+                    else comment.UserReaction = UserReaction.None;
+
+                    foreach (var answer in comment.Answers)
+                    {
+                        if (answer.WhoLiked.Contains(userId))
+                            answer.UserReaction = UserReaction.Liked;
+                        else if (answer.WhoDisliked.Contains(userId))
+                            answer.UserReaction = UserReaction.Disliked;
+                        else answer.UserReaction = UserReaction.None;
+                    }
+                }
+            }
+
+            return View(post);
         }
 
         public IActionResult Search(string term)

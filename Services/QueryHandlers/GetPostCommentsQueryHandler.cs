@@ -19,8 +19,7 @@ namespace Services.QueryHandlers
         public async Task<List<Comment>> HandleAsync(GetPostCommentsQuery query)
         {
             return await _db.Comments.AsQueryable()
-                      .Where(c => c.PostId == query.PostId)
-                      .OrderByDescending(c => c.Likes).ToListAsync();
+                      .Where(c => c.PostId == query.PostId).ToListAsync();
         }
     }
 }
