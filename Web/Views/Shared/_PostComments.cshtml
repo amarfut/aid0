@@ -5,54 +5,150 @@
 
     @if (User.Identity.IsAuthenticated)
     {
+        <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
         <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
-        <button onclick="addComment()">Комментировать</button>
+        <button data-bind="click: addComment">Комментировать</button>
     }
     else
     {
         <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
     }
+    <p></p>
+    <!-- ko foreach: comments -->
+    @*<div class="single-comment-wrapper">
+        <div>
+            <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
+        </div>
+        <div>
+            <span class="username" data-bind="text: name"></span>&nbsp;
+            <span class="comment-created" data-bind="text: created"></span><br />
+            <div class="comment-text" data-bind="text: text"></div>
+            <span data-bind="text: likes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
+            <span data-bind="text: dislikes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>
+        </div>
+    </div>*@
+
+    <!-- /ko -->
 
     @foreach (var comment in Model.Comments)
     {
-        <div class="single-comment-wrapper">
+        <div class="single-comment-wrapper" style="position:relative;">
+            <div style="position:absolute;right:0;top:0; font-size:10px; color:#808080;">
+                <b>...</b>
+            </div>
             <div>
-                <img src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
+                <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
             </div>
             <div>
                 <span class="username">@comment.UserName</span>&nbsp;
                 <span class="comment-created">@comment.Created</span><br />
                 <div class="comment-text">@comment.Text</div>
-                @comment.Likes <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>&nbsp;
-                @comment.Dislikes <a href="#"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-                &nbsp;&nbsp;<a href="#"><b>Ответить</b></a>
-                <div style="padding-top:5px;"><span class="glyphicon glyphicon-chevron-down"></span> <a href="#">Показать 2 ответа</a></div>
-
+                <span style="color:#797979; font-size:11px;">
+                    @comment.Likes <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
+                    @comment.Dislikes <a href="#"><i class="fas fa-thumbs-up"></i> </a>
+                    &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id') }"><b>Ответить</b></a>
+                </span>
             </div>
         </div>
-    }
 
+        <div style="margin-left:65px;">
+
+
+            <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
+                <textarea style="width:100%;"></textarea>
+                <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
+            </div>
+
+            @foreach (var answer in comment.Answers)
+            {
+                <div class="single-comment-wrapper" style="position:relative;">
+                    <div style="position:absolute;right:0;top:0; font-size:10px; color:#808080;">
+                        <b>...</b>
+                    </div>
+                    <div>
+                        <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
+                    </div>
+                    <div>
+                        <span class="username">@answer.UserName</span>&nbsp;
+                        <span class="comment-created">@answer.Created</span><br />
+                        <div class="comment-text">@answer.Text</div>
+                        <span style="color:#797979; font-size:11px;">
+                            @comment.Likes <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
+                            @comment.Dislikes <a href="#"><i class="fas fa-thumbs-up"></i> </a>
+                            &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id') }"><b>Ответить</b></a>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 </div>
 
 <script>
-    addComment = () => {
-        const text = $('#comment-box').val();
-        const postId = $('#post-id-hidden').val();
-
-        $.ajax({
-            url: '/comment/addcomment',
-            type: 'POST',
-            contentType: "application/json",
-            data: JSON.stringify({
-                Text: text,
-                PostId: postId
-            }),
-            success: (data) => {
-                console.log(data);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
+    class Comment {
+        constructor(name, text) {
+            this.name = name;
+            this.created = 'секунду назад';
+            this.text = text;
+            this.likes = 0;
+            this.dislikes = 0;
+        }
     }
+
+    function AppCommentModel() {
+        let self = this;
+        self.comments = ko.observableArray([]);
+        self.answerBoxVisibe = ko.observable(false);
+
+        self.displayAnswerCommentBox = function (commentId) {
+            $('.asnwer-comment-box').hide();
+            $('#' + commentId + '-asnwer-comment-box').show();
+        }
+
+        self.answerToComment = function (commentId) {
+            const text = $('#' + commentId + '-asnwer-comment-box textarea').val();
+            $.ajax({
+                url: '/comment/answercomment',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    ParentCommentId: commentId,
+                    Text: text
+                }),
+                success: (data) => {
+                    //self.comments.push(new Comment($('#username-hidden').val(), text));
+                    $('.answer-box').hide();
+
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+
+        self.addComment = function () {
+            const text = $('#comment-box').val();
+            $('#comment-box').val('');
+            const postId = $('#post-id-hidden').val();
+
+            $.ajax({
+                url: '/comment/addcomment',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    Text: text,
+                    PostId: postId
+                }),
+                success: (data) => {
+                    self.comments.push(new Comment($('#username-hidden').val(), text));
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    }
+
+    ko.applyBindings(new AppCommentModel());
+
 </script>

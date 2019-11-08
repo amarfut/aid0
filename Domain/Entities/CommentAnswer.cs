@@ -1,18 +1,16 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Entities
 {
-    public class Comment : Entity
+    public class CommentAnswer : Entity
     {
+        public string ParentCommentId { get; set; }
+
         public string Text { get; set; }
 
         public DateTime Created { get; set; }
-
-        public string PostId { get; set; }
 
         public string UserId { get; set; }
 
@@ -21,8 +19,5 @@ namespace Domain.Entities
         public int Likes { get; set; }
 
         public int Dislikes { get; set; }
-
-        [BsonIgnoreIfDefault]
-        public CommentAnswer[] Answers { get; set; } = new CommentAnswer[0];
     }
 }

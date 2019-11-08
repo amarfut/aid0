@@ -14,6 +14,9 @@ namespace Services.AppServices
     {
         private AddCommentHandler _addCommentHandler = new AddCommentHandler();
 
+        private AnswerCommentHandler _answerCommentHandler = new AnswerCommentHandler();
+
+
         public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName)
         {
             //todo: validate command
@@ -27,6 +30,16 @@ namespace Services.AppServices
                 Text = dto.Text
             });
         }
+
+        public async Task<Result> AnswerCommentAsync(AnswerCommentDto dto, string userId, string userName)
+        {
+            return await _answerCommentHandler.HandleAsync(
+                new AnswerCommentCommand(dto.ParentCommentId, dto.Text, userId, userName, DateTime.UtcNow)
+            );
+        }
+
+
+
 
         public async Task<Result> DeleteCommentAsync()
         {

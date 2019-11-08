@@ -21,5 +21,12 @@ namespace Web.Controllers
             Result result = await _commentService.AddCommentAsync(dto, UserId, UserName);
             return FromResult(result);
         }
+
+        public async Task<IActionResult> AnswerComment([FromBody]AnswerCommentDto dto)
+        {
+            Result result = await _commentService.AnswerCommentAsync(dto, UserId, UserName);
+            return FromResult(result);
+        }
+
     }
 }

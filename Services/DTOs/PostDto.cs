@@ -16,9 +16,9 @@ namespace Services.DTOs
             Text = post.Text;
             CommentsCount = post.CommentsCount;
 
-            foreach (var c in comments)
+            foreach (var comment in comments)
             {
-                Comments.Add(new CommentDto(c.Id, c.UserName, c.Text, c.Likes, c.Dislikes, c.Created));
+                Comments.Add(new CommentDto(comment));
             }
         }
 
