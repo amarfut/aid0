@@ -4,7 +4,7 @@
 {
     <div class="box content">
         @{
-            string url = $"/Home/GetPost/{post.Url}";
+            string url = $"/Home/Post/{post.Url}";
             string imagePath = $"https://storage.googleapis.com/youit/{post.Url}/thumbnail.png";
         }
 
@@ -15,7 +15,7 @@
             <div>l: @post.CommentsCount</div>
             <div>d: @post.ViewsCount</div>
         </div>
-        <a asp-controller="Home" asp-action="GetPost" asp-route-url="@post.Url">
+        <a asp-controller="Home" asp-action="Post" asp-route-url="@post.Url">
             <h3>@post.Title</h3>
         </a>
     </div>
@@ -73,7 +73,7 @@
 
                 for (let post of posts) {
                     let imageUrl = 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png';
-                    let postUrl = 'https://localhost:5001/home/getpost?url=' + post.url;
+                    let postUrl = 'https://localhost:5001/home/post?url=' + post.url;
                     self.posts.push(new Post(post.title, imageUrl, postUrl, post.viewsCount, post.commentsCount, post.likesCount, post.dislikesCount));
                 }
             });

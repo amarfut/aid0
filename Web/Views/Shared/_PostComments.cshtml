@@ -1,0 +1,58 @@
+﻿@model Services.DTOs.PostDto
+
+<div class="comments-wrapper">
+    <input id="post-id-hidden" type="hidden" value="@Model.Id" />
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
+        <button onclick="addComment()">Комментировать</button>
+    }
+    else
+    {
+        <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
+    }
+
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="single-comment-wrapper">
+            <div>
+                <img src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
+            </div>
+            <div>
+                <span class="username">@comment.UserName</span>&nbsp;
+                <span class="comment-created">@comment.Created</span><br />
+                <div class="comment-text">@comment.Text</div>
+                @comment.Likes <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>&nbsp;
+                @comment.Dislikes <a href="#"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                &nbsp;&nbsp;<a href="#"><b>Ответить</b></a>
+                <div style="padding-top:5px;"><span class="glyphicon glyphicon-chevron-down"></span> <a href="#">Показать 2 ответа</a></div>
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<script>
+    addComment = () => {
+        const text = $('#comment-box').val();
+        const postId = $('#post-id-hidden').val();
+
+        $.ajax({
+            url: '/comment/addcomment',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({
+                Text: text,
+                PostId: postId
+            }),
+            success: (data) => {
+                console.log(data);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+</script>

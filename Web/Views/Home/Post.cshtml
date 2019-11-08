@@ -1,0 +1,29 @@
+﻿@model Services.DTOs.PostDto
+
+<div class="box full-post">
+
+    <h1>@Model.Title</h1>
+
+    <div class="social-links-wrapper">
+        <a href="#">
+            <div class="li">
+                Поделиться в LinkedIn
+            </div>
+        </a>
+        <a href="#">
+            <div class="fb">
+                Поделиться Вконтакте
+            </div>
+        </a>
+        <a href="#">
+            <div class="vk">
+                Поделиться в Фейсбук
+            </div>
+        </a>
+    </div>
+
+    @Html.Raw(Model.Text)
+
+    @await Html.PartialAsync("_PostComments", Model)
+
+</div>

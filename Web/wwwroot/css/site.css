@@ -10,9 +10,9 @@
     }
 
 body {
-    margin-left:10px;
-    margin-right:10px;
-    margin-bottom:0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
     padding: 0;
     font-family: Helvetica;
     font-weight: normal;
@@ -57,10 +57,10 @@ body {
     top: 0;
     left: 0;
     background-color: #FFF;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     overflow-x: hidden;
     padding-top: 20px;
-    padding-left:5px;
+    padding-left: 5px;
 }
 
 
@@ -73,21 +73,50 @@ body {
     margin: auto;
 }
 
-.account-menu-wrapper {
+.single-comment-wrapper {
+    padding-top: 20px;
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-content: center;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 10fr;
     margin: auto;
+    font-size: 13px;
+    font-family: Verdana;
 }
 
-.account-menu-wrapper div {
-    text-align: center;
-    background-color:#faf1de;
-    padding:5px;
-    border-radius:3px;
-    font-size:14px;
-}
+    .single-comment-wrapper .username {
+        font-weight: bold;
+        color:#2f4e86;
+    }
+
+    .single-comment-wrapper .comment-created {
+        color: #aaa;
+        font-size:11px;
+    }
+
+    .single-comment-wrapper a {
+        color:#000;
+    }
+
+    .single-comment-wrapper .comment-text {
+       padding-top:5px;
+       padding-bottom:5px;
+    }
+
+    .account-menu-wrapper {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .account-menu-wrapper div {
+        text-align: center;
+        background-color: #faf1de;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
 
 .social-links-wrapper {
     display: grid;
@@ -103,10 +132,10 @@ body {
 .li,
 .fb,
 .vk {
-    background-color:#694c0f;
-    padding:10px;
-    border-radius:5px;
-    color:#FFF;
+    background-color: #694c0f;
+    padding: 10px;
+    border-radius: 5px;
+    color: #FFF;
 }
 
 
@@ -129,7 +158,7 @@ body {
 
 .full-post {
     grid-column: 1 / 3;
-    min-height:1000px;
+    min-height: 1000px;
 }
 
 .sidebar {
@@ -152,7 +181,7 @@ body {
     grid-column: 1 / 4;
     text-align: center;
     padding: 15px;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .footer {
@@ -167,33 +196,33 @@ body {
 }
 
     .footer a {
-        color:#FFF !important;
+        color: #FFF !important;
     }
 
     .footer .copyright {
         color: #b9b9b9;
-        margin-top:5px;
+        margin-top: 5px;
     }
 
     .footer span {
-        color:#9d9d9d;
+        color: #9d9d9d;
     }
 
     .footer .social-icons-wrapper {
-        position:absolute;
-        top:3px;
-        left:3px;
-        color:#FFF;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        color: #FFF;
     }
 
-    .content {
-    }
+.content {
+}
 
-        .content h3 {
-            color: #3d3d3d;
-            font-size: 24px;
-            font-weight: normal;
-        }
+    .content h3 {
+        color: #3d3d3d;
+        font-size: 24px;
+        font-weight: normal;
+    }
 
     .content img {
         border-radius: 4px;
@@ -210,8 +239,7 @@ body {
 
 
 .logo {
-    font-size:22px;
-    
+    font-size: 22px;
 }
 
 .login-bar {
@@ -236,22 +264,21 @@ body {
 
 div.menu {
     font-size: 17px;
-    font-weight:100;
-    padding-top:4px;
+    font-weight: 100;
+    padding-top: 4px;
 }
 
-div.menu ul {
-    padding: 0;
-    margin:0;
-    list-style: none;
-    position: relative;
-  
-}
+    div.menu ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        position: relative;
+    }
 
     div.menu img {
         float: left;
-        border-radius:4px;
-        margin-right:10px;
+        border-radius: 4px;
+        margin-right: 10px;
     }
 
     div.menu ul li {
@@ -261,18 +288,18 @@ div.menu ul {
         background-color: #FFF;
     }
 
-div.menu a {
-    display: block;
-    padding-right: 10px;
-    text-decoration: none;
-}
-
-    div.menu a.top-link:after {
-        content: "\25BC";
-        font-size:10px;
-        opacity:0.3;
-        padding-left:2px;
+    div.menu a {
+        display: block;
+        padding-right: 10px;
+        text-decoration: none;
     }
+
+        div.menu a.top-link:after {
+            content: "\25BC";
+            font-size: 10px;
+            opacity: 0.3;
+            padding-left: 2px;
+        }
 
 
     div.menu ul ul {
@@ -283,9 +310,9 @@ div.menu a {
         box-shadow: 1px 1px 1px 1px #fbf6db;
     }
 
-div.menu ul li:hover > ul {
-    display: inherit;
-}
+    div.menu ul li:hover > ul {
+        display: inherit;
+    }
 
     div.menu ul ul li {
         width: 320px;
@@ -312,9 +339,3 @@ div.menu ul li:hover > ul {
     border-radius: 6px;
     box-sizing: border-box;
 }
-
-
-
-
-
-

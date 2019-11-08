@@ -28,7 +28,7 @@ namespace Web.Controllers
             return await _postService.GetPostPreviews(skip);
         }
 
-        public async Task<IActionResult> GetPost(string url)
+        public async Task<IActionResult> Post(string url)
         {
             var service = new PostService();
             return View(await service.GetPost(url));

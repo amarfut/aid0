@@ -110,7 +110,6 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.TagHelpers.input.cac
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.TagHelpers.output.cache
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.RazorCoreGenerate.cache
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Account\Profile.g.cshtml.cs
-C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\GetPost.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Search.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\MobileMenu\Default.g.cshtml.cs
@@ -127,3 +126,5 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.Views.pdb
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.csproj.CopyComplete
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.dll
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.pdb
+C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Post.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_PostComments.g.cshtml.cs
