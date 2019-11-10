@@ -28,5 +28,12 @@ namespace Web.Controllers
             return FromResult(result);
         }
 
+        public async Task<IActionResult> SetCommentReaction([FromBody]CommentReactionDto dto)
+        {
+            Result<ReactionDto> result = await _commentService.SetCommentReactionAsync(dto, UserId);
+            return FromResult(result);
+        }
+
+
     }
 }

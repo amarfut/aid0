@@ -16,6 +16,9 @@ namespace Services.AppServices
 
         private AnswerCommentHandler _answerCommentHandler = new AnswerCommentHandler();
 
+        private SetCommentReactionHandler _setCommentReactionHandler = new SetCommentReactionHandler();
+
+        
 
         public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName)
         {
@@ -38,6 +41,10 @@ namespace Services.AppServices
             );
         }
 
+        public async Task<Result<ReactionDto>> SetCommentReactionAsync(CommentReactionDto dto, string userId)
+        {
+            return await _setCommentReactionHandler.HandleAsync(new SetCommentReactionCommand(dto.CommentId, dto.Liked, userId));
+        }
 
 
 

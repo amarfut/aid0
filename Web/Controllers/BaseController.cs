@@ -35,7 +35,12 @@ namespace Web.Controllers
 
         protected IActionResult FromResult(Result result)
         {
-            return result.Success ? (IActionResult)Ok() : BadRequest(result.Error);
+            return result.Success ? (IActionResult)Ok(result) : BadRequest(result.Error);
+        }
+
+        protected IActionResult FromResult<T>(Result<T> result)
+        {
+            return result.Success ? (IActionResult)Ok(result.Value) : BadRequest(result.Error);
         }
     }
 }

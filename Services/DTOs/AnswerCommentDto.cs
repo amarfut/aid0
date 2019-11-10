@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Services.DTOs
 {
-    public class AnswerCommentDto
+    public class CommentReactionDto
     {
-        public string Text { get; set; }
+        public string CommentId { get; set; }
 
-        public string ParentCommentId { get; set; }
+        public bool Liked { get; set; }
     }
 }

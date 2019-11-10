@@ -49,11 +49,11 @@
                 <div class="comment-text">@comment.Text</div>
                 <span style="color:#797979; font-size:11px;">
                     <span class="comment-likes">@comment.Likes</span>
-                    <a href="#" data-bind="click: function() { setReaction('@comment.Id-comment-wrapper', '@comment.UserReaction', 'Like') }">Like </a>&nbsp;
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id', true) }">Like </a>&nbsp;
 
                     <span class="comment-dislikes">@comment.Dislikes</span>
-                    <a href="#" data-bind="click: function() { setReaction('@comment.Id-comment-wrapper', '@comment.UserReaction', 'Dislike') }">Dislike </a>
-                    &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id') }"><b>Ответить</b></a>
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id', false) }">Dislike </a>
+                    &nbsp;&nbsp;<a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id', true) }"><b>Ответить</b></a>
                 </span>
             </div>
         </div>
@@ -62,6 +62,8 @@
             <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
                 <textarea style="width:100%;"></textarea>
                 <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
+                <button data-bind="click: function() { displayAnswerCommentBox('@comment.Id', false) }">Отмена</button>
+
             </div>
 
             @foreach (var answer in comment.Answers)
@@ -104,22 +106,34 @@
         self.comments = ko.observableArray([]);
         self.answerBoxVisibe = ko.observable(false);
 
-        self.displayAnswerCommentBox = function (commentId) {
+        self.displayAnswerCommentBox = function (commentId, isVisible) {
             $('.asnwer-comment-box').hide();
-            $('#' + commentId + '-asnwer-comment-box').show();
+            const answerComment = $('#' + commentId + '-asnwer-comment-box');
+            isVisible ? answerComment.show() : answerComment.hide();
         }
 
-        self.setReaction = function (commentId, initReaction, currentReaction) {
+        self.setReaction = function (commentId, currentReaction) {
 
-            const likesBox = $('#' + commentId + ' .comment-likes');
-            const dislikesBox = $('#' + commentId + ' .comment-dislikes');
-
-            let likes = +likesBox.text();
-            let dislikes = +dislikesBox.text();
-
-            likesBox.text(likes);
-            dislikesBox.text(dislikes);
+            //-comment-wrapper
+             $.ajax({
+                url: '/comment/setcommentreaction',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    CommentId: commentId,
+                    Liked: currentReaction
+                }),
+                 success: (data) => {
+                     $('#' + commentId + '-comment-wrapper .comment-likes').text(data.likes);
+                     $('#' + commentId + '-comment-wrapper .comment-dislikes').text(data.dislikes);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
         }
+
+        
 
         self.answerToComment = function (commentId) {
             const text = $('#' + commentId + '-asnwer-comment-box textarea').val();
@@ -132,6 +146,7 @@
                     Text: text
                 }),
                 success: (data) => {
+                    $('#' + commentId + '-asnwer-comment-box textarea').val('');
                     //self.comments.push(new Comment($('#username-hidden').val(), text));
                     $('.answer-box').hide();
 
@@ -171,7 +186,7 @@
 
 
 
-    @*class ReactionResult {
+@*class ReactionResult {
         constructor(like, dislike) {
             this.like;
             this.dislike;
