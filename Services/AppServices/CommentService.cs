@@ -2,6 +2,8 @@
 using Domain.Commands;
 using Services.CommandHandlers;
 using Services.DTOs;
+using Services.Queries;
+using Services.QueryHandlers;
 using Services.Utils;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,8 @@ namespace Services.AppServices
 
         private SetCommentReactionHandler _setCommentReactionHandler = new SetCommentReactionHandler();
 
-        
+        private GetTopCommentsQueryHandler _getTopCommentsQueryHandler = new GetTopCommentsQueryHandler();
+
 
         public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName)
         {
@@ -43,10 +46,17 @@ namespace Services.AppServices
 
         public async Task<Result<ReactionDto>> SetCommentReactionAsync(CommentReactionDto dto, string userId)
         {
-            return await _setCommentReactionHandler.HandleAsync(new SetCommentReactionCommand(dto.CommentId, dto.Liked, userId));
+            return await _setCommentReactionHandler.HandleAsync(
+                new SetCommentReactionCommand(dto.CommentId, dto.ParentCommentId, dto.Liked, userId)
+            );
         }
 
+        public async Task<List<CommentPreviewDto>> GetTopCommentPreviews()
+        {
+            return await _getTopCommentsQueryHandler.HandleAsync(new GetTopCommentsQuery(7));
+        }
 
+        
 
         public async Task<Result> DeleteCommentAsync()
         {

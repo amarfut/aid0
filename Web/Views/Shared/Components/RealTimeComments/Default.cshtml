@@ -1,0 +1,24 @@
+﻿@model List<Services.DTOs.CommentPreviewDto>
+
+<span style="font-size:22px;">Прямой эфир</span>
+<p></p>
+@foreach (var comment in Model)
+{
+    <div style="margin-top:30px;">
+        <img class="comment-ava" style="float:left;margin-right:10px; margin-top:5px;" src="https://storage.googleapis.com/youit/users/nophoto.jpg" />
+        <span style="font-size:14px; ">
+            <b style="color:#163e69;">@comment.UserName</b>
+            <span style="font-size:13px;">написал в</span> <span>"Нужны ли программисту сертификаты?"</span>
+        </span>
+        <div style="clear:both"></div>
+
+        @{
+            int last = comment.Text.Length > 120 ? 120 : comment.Text.Length;
+        }
+        <div style="font-size:14px; padding-top:5px; font-style:italic;">
+            <a href="#">
+                @comment.Text.Substring(0, last)...
+            </a>
+        </div>
+    </div>
+}

@@ -20,20 +20,23 @@ namespace Web.Controllers
 
         public IActionResult SignInExternal(string externalProvider)
         {
+            string returnUrl = Request.Headers["Referer"].ToString();
+
             return Challenge(new AuthenticationProperties()
             {
-                RedirectUri = Url.Action(nameof(LoginCallback))
+                RedirectUri = Url.Action(nameof(LoginCallback), new { returnUrl })
             },
             externalProvider);
         }
 
         public async Task<IActionResult> SignOut()
         {
+            string returnUrl = Request.Headers["Referer"].ToString();
             await HttpContext.SignOutAsync();
-            return Redirect("/Home/Index");
+            return Redirect(returnUrl);
         }
 
-        public async Task<IActionResult> LoginCallback()
+        public async Task<IActionResult> LoginCallback(string returnUrl)
         {
             var type = HttpContext.User.Identity.AuthenticationType;
             var authenticateResult = await HttpContext.AuthenticateAsync(type);
@@ -54,7 +57,7 @@ namespace Web.Controllers
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claimsIdentity));
 
-            return Redirect("/Account/Profile");
+            return Redirect(returnUrl);
         }
 
         public IActionResult Profile()

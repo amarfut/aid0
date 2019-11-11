@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Shared\Components\RealTimeComments\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_PostComments.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

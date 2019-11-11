@@ -8,6 +8,8 @@ namespace Services.DTOs
     {
         public string CommentId { get; set; }
 
+        public string ParentCommentId { get; set; }
+
         public bool Liked { get; set; }
     }
 }
