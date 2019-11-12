@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>youIT - программирование и карьера в IT</title>
     <link rel="stylesheet" href="~/css/site.css" />
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
+    @*
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
     <script src="https://kit.fontawesome.com/70be1b95e9.js" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 <body>
 
@@ -39,7 +44,7 @@
                     }
                     else
                     {
-                        <a asp-controller="Account" asp-action="Profile">логин</a>
+                        <a onclick="loadAuthorizeModal()">логин</a>
                     }
                 </div>
                 <div class="search">
@@ -83,7 +88,18 @@
             toogleSodeMenu = () => {
                 $('.mobile-menu').toggle();
             }
+
+            loadAuthorizeModal = () => {
+                $('#authorizeModal').modal('show');
+            }
+
         </script>
     </div>
+
+    <div id="authorizeModal" class="modal">
+        <h3>Авторизация</h3>
+        @await Html.PartialAsync("_Authorize")
+    </div>
+
 </body>
 </html>

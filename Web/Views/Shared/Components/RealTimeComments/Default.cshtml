@@ -1,14 +1,14 @@
 ﻿@model List<Services.DTOs.CommentPreviewDto>
 
-<span style="font-size:22px;">Прямой эфир</span>
+    <span style="font-size:22px;">&nbsp; Что сейчас обсуждают?</span>
 <p></p>
 @foreach (var comment in Model)
 {
     <div style="margin-top:30px;">
         <img class="comment-ava" style="float:left;margin-right:10px; margin-top:5px;" src="https://storage.googleapis.com/youit/users/nophoto.jpg" />
         <span style="font-size:14px; ">
-            <b style="color:#163e69;">@comment.UserName</b>
-            написал в <span>"Нужны ли программисту сертификаты?"</span>
+            <span style="color:#2d66a3;">@comment.UserName</span><br/>
+            <span>@comment.PostTitle</span>
         </span>
         <div style="clear:both"></div>
 

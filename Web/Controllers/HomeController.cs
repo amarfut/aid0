@@ -72,15 +72,19 @@ namespace Web.Controllers
             //todo: move to custom attribute
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
-                RedirectToAction("Profile", "Account");
+                return Forbid();
             }
 
             Result<ReactionDto> result = await _postService.SetPostReaction(dto, UserId);
             return FromResult(result);
         }
 
-       
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Authorize()
         {
             return View();
         }

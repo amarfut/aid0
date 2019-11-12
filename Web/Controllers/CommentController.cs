@@ -11,17 +11,18 @@ using Services.Utils;
 
 namespace Web.Controllers
 {
-    [Authorize]
     public class CommentController : BaseController
     {
         private CommentService _commentService = new CommentService();
 
+        [Authorize]
         public async Task<IActionResult> AddComment([FromBody]AddCommentDto dto)
         {
             Result result = await _commentService.AddCommentAsync(dto, UserId, UserName);
             return FromResult(result);
         }
 
+        [Authorize]
         public async Task<IActionResult> AnswerComment([FromBody]AnswerCommentDto dto)
         {
             Result result = await _commentService.AnswerCommentAsync(dto, UserId, UserName);
@@ -30,6 +31,8 @@ namespace Web.Controllers
 
         public async Task<IActionResult> SetCommentReaction([FromBody]CommentReactionDto dto)
         {
+           
+
             Result<ReactionDto> result = await _commentService.SetCommentReactionAsync(dto, UserId);
             return FromResult(result);
         }

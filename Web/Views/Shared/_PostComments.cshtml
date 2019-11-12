@@ -1,33 +1,27 @@
 ﻿@model Services.DTOs.PostDto
 
-    <div class="comments-wrapper">
-        <input id="post-id-hidden" type="hidden" value="@Model.Id" />
+<a id="begin-comments"></a>
+<div class="comments-wrapper">
+    <input id="post-id-hidden" type="hidden" value="@Model.Id" />
 
-        @if (User.Identity.IsAuthenticated)
-        {
-            <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
-            <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
-            <button data-bind="click: addComment">Комментировать</button>
-        }
-        else
-        {
-            <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>
-            <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Google">
-                Авторизироваться через Google
-            </a> <br />
-
-            <a asp-controller="Account"asp-action="SignInExternal" asp-route-externalProvider="Facebook">
-                Авторизироваться через Facebook
-            </a> <br />
-
-            <a asp-controller="Account"asp-action="SignInExternal" asp-route-externalProvider="VK">
-                Авторизироваться через VK
-            </a>
-
-        }
-        <p></p>
-        <!-- ko foreach: comments -->
-        @*<div class="single-comment-wrapper">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
+        <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
+        <button data-bind="click: addComment">Комментировать</button>
+    }
+    else
+    {
+        <p>
+            <h5>
+                <a href="#" data-bind="click: function() { $('#authorizeModal').modal('show') }">
+                <span style="color:#0026ff; text-decoration:underline;">Авторизируйтесь</span></a> для участия в дискуссии
+            </h5>
+        </p>
+    }
+    <p></p>
+    <!-- ko foreach: comments -->
+    @*<div class="single-comment-wrapper">
             <div>
                 <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
             </div>
@@ -40,59 +34,59 @@
             </div>
         </div>*@
 
-        <!-- /ko -->
-        @if (Model.Comments.Count == 0)
-        {
-            <h3>Оставьте комментарий первым!</h3>
-        }
+    <!-- /ko -->
+    @if (Model.Comments.Count == 0)
+    {
+        <h3>Оставьте комментарий первым!</h3>
+    }
 
-        @foreach (var comment in Model.Comments)
-        {
-            <a id="@comment.Id"></a>
-            <div class="single-comment-wrapper" id="@comment.Id-comment-wrapper">
-                <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
-                <div>
-                    <div class="username">@comment.UserName <span class="comment-created">@comment.Created</span></div>
-                    <div class="comment-text">@comment.Text</div>
-                    <span>
-                        <span class="comment-likes">@comment.Likes</span>
-                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', true) }"><i class="far fa-thumbs-up"></i> </a>
-                        <span class="comment-dislikes">@comment.Dislikes</span>
-                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', false) }"><i class="far fa-thumbs-down"></i> </a>
+    @foreach (var comment in Model.Comments)
+    {
+        <a id="@comment.Id"></a>
+        <div class="single-comment-wrapper" id="@comment.Id-comment-wrapper">
+            <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
+            <div>
+                <div class="username">@comment.UserName <span class="comment-created">@comment.Created</span></div>
+                <div class="comment-text">@comment.Text</div>
+                <span>
+                    <span class="comment-likes">@comment.Likes</span>
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', true) }"><i class="far fa-thumbs-up"></i> </a>
+                    <span class="comment-dislikes">@comment.Dislikes</span>
+                    <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', false) }"><i class="far fa-thumbs-down"></i> </a>
 
-                        <a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id', true) }"> <b>Ответить</b></a>
-                    </span>
-                </div>
+                    <a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id', true) }"> <b>Ответить</b></a>
+                </span>
+            </div>
+        </div>
+
+        <div style="margin-left:65px;">
+            <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
+                <textarea style="width:100%;"></textarea>
+                <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
+                <button data-bind="click: function() { displayAnswerCommentBox('@comment.Id', false) }">Отмена</button>
             </div>
 
-            <div style="margin-left:65px;">
-                <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
-                    <textarea style="width:100%;"></textarea>
-                    <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
-                    <button data-bind="click: function() { displayAnswerCommentBox('@comment.Id', false) }">Отмена</button>
-                </div>
+            @foreach (var answer in comment.Answers)
+            {
+                <div class="single-comment-wrapper" id="@answer.Id-comment-wrapper">
+                    <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
+                    <div>
+                        <div class="username">@answer.UserName <span class="comment-created">@answer.Created</span></div>
+                        <div class="comment-text">@answer.Text</div>
+                        <span>
+                            <span class="comment-likes">@answer.Likes</span>
+                            <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', true) }">Like </a>
+                            <span class="comment-dislikes">@answer.Dislikes</span>
+                            <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', false) }">Dislike </a>
 
-                @foreach (var answer in comment.Answers)
-                {
-                    <div class="single-comment-wrapper" id="@answer.Id-comment-wrapper">
-                        <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
-                        <div>
-                            <div class="username">@answer.UserName <span class="comment-created">@answer.Created</span></div>
-                            <div class="comment-text">@answer.Text</div>
-                            <span>
-                                <span class="comment-likes">@answer.Likes</span>
-                                <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', true) }">Like </a>
-                                <span class="comment-dislikes">@answer.Dislikes</span>
-                                <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', false) }">Dislike </a>
-
-                                <a href="#" data-bind="click: function() { displayAnswerCommentBox('@answer.Id', true) }"> <b>Ответить</b></a>
-                            </span>
-                        </div>
+                            <a href="#" data-bind="click: function() { displayAnswerCommentBox('@answer.Id', true) }"> <b>Ответить</b></a>
+                        </span>
                     </div>
-                }
-            </div>
-        }
-    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
 
 <script>
     class Comment {
@@ -136,8 +130,6 @@
                 }
             });
         }
-
-
 
         self.answerToComment = function (commentId) {
             const text = $('#' + commentId + '-asnwer-comment-box textarea').val();

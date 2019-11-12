@@ -160,6 +160,7 @@ body {
         color:#9b9b9b;
         background-color: #f7f7f7;
         padding:3px;
+        cursor:pointer;
     }
 
 .content h3 {
@@ -361,4 +362,8 @@ div.menu {
 .comment-ava {
     width:50px;
     border-radius:3px;
+}
+
+#authorizeModal {
+    font-size:13px;
 }

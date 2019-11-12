@@ -1,0 +1,26 @@
+﻿@{Layout = null;}
+
+<p>
+    Авторизируйтесь на <b>youIT</b> с помощью популярный социальных сетей всего в один клик
+</p>
+
+<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Google">
+    Авторизироваться через Google
+</a> <br />
+
+<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Facebook">
+    Авторизироваться через Facebook
+</a> <br />
+
+<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="VK">
+    Авторизироваться через VK
+</a>
+
+<p>
+    Авторизированные пользователи могут:
+    <ul>
+        <li>Принимать участие в дискуссиях</li>
+        <li>Добавлять любимые посты в избранное</li>        
+        <li>...</li>
+    </ul>
+</p>
