@@ -67,10 +67,15 @@ namespace Web.Controllers
             return View((object)term);
         }
 
-
         public async Task<IActionResult> SetPostReaction([FromBody] PostReactionDto dto)
         {
-            Result<ReactionDto> result = await _postService.SetPostReaction(dto);
+            //todo: move to custom attribute
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                RedirectToAction("Profile", "Account");
+            }
+
+            Result<ReactionDto> result = await _postService.SetPostReaction(dto, UserId);
             return FromResult(result);
         }
 

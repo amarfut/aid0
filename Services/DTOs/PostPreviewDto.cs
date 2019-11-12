@@ -9,6 +9,7 @@ namespace Services.DTOs
     {
         public PostPreviewDto(Post post)
         {
+            Id = post.Id;
             Title = post.Title;
             Url = post.Url;
             ViewsCount = post.Views;
@@ -17,6 +18,7 @@ namespace Services.DTOs
             DislikesCount = post.WhoDisliked.Length;
         }
 
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
         public int ViewsCount { get; set; }

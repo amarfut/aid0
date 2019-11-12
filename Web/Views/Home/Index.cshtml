@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<Services.DTOs.PostPreviewDto>
-
 <!-- ko foreach: posts -->
 <div class="box content">
     <img style="max-width:100%" data-bind="attr: { src: imageUrl }" />
     <div class="post-button-wrapper">
         <div><i class="far fa-eye"></i> <span data-bind="text: viewsCount"></span></div>
         <div><i class="far fa-comment"></i> <span data-bind="text: commentsCount"></span></div>
-        <a href="#"><div><i class="far fa-thumbs-up"></i> <span data-bind="text: likesCount"></span></div></a>
-        <a href="#"><div><i class="far fa-thumbs-down"></i> <span data-bind="text: dislikesCount"></span></div></a>
+        <a data-bind="click: $parent.like"><div><i class="far fa-thumbs-up"></i> <span data-bind="text: likesCount"></span></div></a>
+        <a data-bind="click: $parent.dislike"><div><i class="far fa-thumbs-down"></i> <span data-bind="text: dislikesCount"></span></div></a>
     </div>
     <a data-bind="attr: { href: postUrl }">
         <h3 data-bind="text: title"></h3>
@@ -23,14 +22,15 @@
 <script>
 
     class Post {
-        constructor(title, imageUrl, postUrl, viewsCount, commentsCount, likesCount, dislikesCount) {
+        constructor(id, title, postUrl, viewsCount, commentsCount, likesCount, dislikesCount) {
+            this.id = id;
             this.title = title;
-            this.viewsCount = viewsCount;
+            this.viewsCount = viewsCount > 1000 ? Math.floor(viewsCount / 1000) + 'k' : viewsCount;
             this.commentsCount = commentsCount;
-            this.likesCount = likesCount;
-            this.dislikesCount = dislikesCount;
-            this.imageUrl = imageUrl;
-            this.postUrl = postUrl;
+            this.likesCount = ko.observable(likesCount);
+            this.dislikesCount = ko.observable(dislikesCount);
+            this.imageUrl = 'https://storage.cloud.google.com/youit/' + postUrl + '/thumbnail.png';;
+            this.postUrl = 'https://localhost:5001/home/post?url=' + postUrl;
         }
     }
 
@@ -39,6 +39,31 @@
         self.posts = ko.observableArray([]);
         self.morePostsButtonVisible = ko.observable(true);
         self.endPostsTextVisible = ko.observable(false);
+
+        self.like = function (post) {
+            self.setReaction(post.id, true);
+        }
+
+        self.dislike = function (post) {
+            self.setReaction(post.id, false);
+        }
+
+        self.setReaction = function (postId, liked) {
+            $.ajax({
+                url: '/home/setpostreaction',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify({ PostId:postId, Liked: liked }),
+                success: (data) => {
+                    const post = self.posts().find(p => p.id === postId);
+                    post.likesCount(data.likes);
+                    post.dislikesCount(data.dislikes);
+                },
+                error: (error) => {
+
+                }
+            });
+        }
 
         self.addPosts = function () {
             let skip = self.posts().length;
@@ -50,16 +75,12 @@
                 }
 
                 for (let post of posts) {
-                    let imageUrl = 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png';
-                    let postUrl = 'https://localhost:5001/home/post?url=' + post.url;
-                    self.posts.push(new Post(post.title, imageUrl, postUrl, post.viewsCount, post.commentsCount, post.likesCount, post.dislikesCount));
+                    self.posts.push(new Post(post.id, post.title, post.url, post.viewsCount, post.commentsCount, post.likesCount, post.dislikesCount));
                 }
             });
         };
 
         self.addPosts();
     }
-
     ko.applyBindings(new AppViewModel());
-
 </script>

@@ -94,7 +94,7 @@ using Web.Models;
             WriteLiteral("        ");
             EndContext();
             BeginContext(549, 122, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "99d7755bbf104e7ebeba891220f9a57d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "457d9982425b409b8bdd93a010796947", async() => {
                 BeginContext(616, 51, true);
                 WriteLiteral("\n            Авторизироваться через Google\n        ");
                 EndContext();
@@ -125,7 +125,7 @@ using Web.Models;
             WriteLiteral("        ");
             EndContext();
             BeginContext(688, 126, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "968d48740e5b44eda98625950299f882", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1839d47a77a04266953cf3283ad479a0", async() => {
                 BeginContext(757, 53, true);
                 WriteLiteral("\n            Авторизироваться через Facebook\n        ");
                 EndContext();
@@ -156,7 +156,7 @@ using Web.Models;
             WriteLiteral("        ");
             EndContext();
             BeginContext(831, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2bdfde2d7254078bcbff00da9964e03", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "05fbf79929ff425c8c3e9827fe87ff6b", async() => {
                 BeginContext(894, 47, true);
                 WriteLiteral("\n            Авторизироваться через VK\n        ");
                 EndContext();

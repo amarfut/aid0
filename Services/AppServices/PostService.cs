@@ -43,10 +43,10 @@ namespace Services.AppServices
             return post;
         }
 
-        public async Task<Result<ReactionDto>> SetPostReaction(PostReactionDto dto)
+        public async Task<Result<ReactionDto>> SetPostReaction(PostReactionDto dto, string userId)
         {
             var result = await _setPostReactionCommandHandler
-                .HandleAsync(new SetPostReactionCommand(dto.PostId, dto.UserId, dto.Liked));
+                .HandleAsync(new SetPostReactionCommand(dto.PostId, userId, dto.Liked));
 
             return result;
         }

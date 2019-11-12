@@ -97,7 +97,7 @@ WriteAttributeValue("", 258, User.Identity.Name, 258, 19, false);
             WriteLiteral("            <p><b>Авторизируйтесь в один клик для участия в дискуссии</b></p>\r\n            ");
             EndContext();
             BeginContext(598, 157, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "614735e92b9b4ced8469fdbd4ae1f307", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d3d68796f09432fb47ce511e7c06701", async() => {
                 BeginContext(690, 61, true);
                 WriteLiteral("\r\n                Авторизироваться через Google\r\n            ");
                 EndContext();
@@ -130,7 +130,7 @@ WriteAttributeValue("", 258, User.Identity.Name, 258, 19, false);
             WriteLiteral("            ");
             EndContext();
             BeginContext(778, 160, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d90ea7d83c7f44afaacb9ccd1cca563e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6935420ff24b4263af19d0542f5285c3", async() => {
                 BeginContext(871, 63, true);
                 WriteLiteral("\r\n                Авторизироваться через Facebook\r\n            ");
                 EndContext();
@@ -163,7 +163,7 @@ WriteAttributeValue("", 258, User.Identity.Name, 258, 19, false);
             WriteLiteral("            ");
             EndContext();
             BeginContext(961, 148, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6c585a52ae04ed6ba6f84419311c64c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "59b8054d13a14dab8799457478fba9f6", async() => {
                 BeginContext(1048, 57, true);
                 WriteLiteral("\r\n                Авторизироваться через VK\r\n            ");
                 EndContext();
