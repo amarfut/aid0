@@ -24,14 +24,25 @@ namespace Services.QueryHandlers
                 .OrderByDescending(c => c.Created)
                 .Take(query.Number).ToListAsync();
 
-            var commentIds = comments.Select(c => c.InternalId).ToList();
+
+            List<Post> posts = new List<Post>();
+            comments.Select(c => c.PostId).ToList().ForEach( id => 
+            {
+                var _posts =  _db.Posts.AsQueryable()
+                .Where(p => p.InternalId == ObjectId.Parse(id))
+                .Select(p => new Post() { InternalId = p.InternalId, Title = p.Title, Url = p.Url}).ToList();
+                posts.AddRange(_posts);
+            });
+
+            var postMap = posts.ToDictionary(p => p.InternalId.ToString(), p => new Tuple<string, string>(p.Title, p.Url));
 
             var result = comments.Select(c => new CommentPreviewDto()
             {
                 CommentId = c.Id,
                 Text = c.Text,
                 UserId = c.UserId,
-                PostTitle = "Post title here",
+                PostTitle = postMap[c.PostId.ToString()].Item1,
+                PostUrl = postMap[c.PostId.ToString()].Item2,
                 UserName = c.UserName
             }).ToList();
 

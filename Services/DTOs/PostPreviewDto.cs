@@ -11,10 +11,10 @@ namespace Services.DTOs
         {
             Title = post.Title;
             Url = post.Url;
-            ViewsCount = 1;
+            ViewsCount = post.Views;
             CommentsCount = post.CommentsCount;
-            LikesCount = 1;
-            DislikesCount = 1;
+            LikesCount = post.WhoLiked.Length;
+            DislikesCount = post.WhoDisliked.Length;
         }
 
         public string Title { get; set; }

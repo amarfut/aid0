@@ -15,6 +15,7 @@ namespace Services.DTOs
             Url = post.Url;
             Text = post.Text;
             CommentsCount = post.CommentsCount;
+            Views = post.Views;
 
             foreach (var comment in comments)
             {
@@ -27,6 +28,7 @@ namespace Services.DTOs
         public string Url { get; set; }
         public string Text { get; set; }
         public int CommentsCount { get; set; }
+        public int Views { get; set; }
 
         public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
     }

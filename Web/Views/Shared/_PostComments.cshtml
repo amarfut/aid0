@@ -48,6 +48,7 @@
 
         @foreach (var comment in Model.Comments)
         {
+            <a id="@comment.Id"></a>
             <div class="single-comment-wrapper" id="@comment.Id-comment-wrapper">
                 <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
                 <div>
@@ -55,9 +56,9 @@
                     <div class="comment-text">@comment.Text</div>
                     <span>
                         <span class="comment-likes">@comment.Likes</span>
-                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', true) }">Like </a>
+                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', true) }"><i class="far fa-thumbs-up"></i> </a>
                         <span class="comment-dislikes">@comment.Dislikes</span>
-                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', false) }">Dislike </a>
+                        <a href="#" data-bind="click: function() { setReaction('@comment.Id', '', false) }"><i class="far fa-thumbs-down"></i> </a>
 
                         <a href="#" data-bind="click: function() { displayAnswerCommentBox('@comment.Id', true) }"> <b>Ответить</b></a>
                     </span>

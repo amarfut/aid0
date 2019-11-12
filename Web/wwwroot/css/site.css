@@ -139,7 +139,7 @@ body {
 .li,
 .fb,
 .vk {
-    background-color: #694c0f;
+    background-color: #fafafa;
     padding: 10px;
     border-radius: 5px;
     color: #FFF;
@@ -147,16 +147,19 @@ body {
 
 
 .post-button-wrapper {
-    grid-gap: 4px;
+    grid-gap: 6px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center;
 }
 
     .post-button-wrapper div {
+        font-size:12px;
         border-radius: 3px;
         text-align: center;
-        background-color: #fff4b7;
+        color:#9b9b9b;
+        background-color: #f7f7f7;
+        padding:3px;
     }
 
 .content h3 {
@@ -176,12 +179,12 @@ body {
     border: 1px solid #fbfaf7;
     border-radius: 5px;
     background-color: #FFF;
-    -moz-box-shadow: inset 0 0 2px #C0C0C0;
-    -webkit-box-shadow: inset 0 0 2px#C0C0C0;
-    box-shadow: inner 0 0 2px #C0C0C0;
+    -moz-box-shadow: inset 0 0 3px #C0C0C0;
+    -webkit-box-shadow: inset 0 0 3px#C0C0C0;
+    box-shadow: inner 0 0 3px #C0C0C0;
     margin-top:-1px;
-    padding-left:10px;
-    padding-top:5px;
+
+    padding: 5px 5px 5px 10px;
 }
 
 .top-menu {

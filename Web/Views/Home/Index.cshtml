@@ -1,34 +1,13 @@
 ﻿@model IEnumerable<Services.DTOs.PostPreviewDto>
 
-@foreach (var post in Model)
-{
-    <div class="box content">
-        @{
-            string url = $"/Home/Post/{post.Url}";
-            string imagePath = $"https://storage.googleapis.com/youit/{post.Url}/thumbnail.png";
-        }
-
-        <img src="@imagePath" style="max-width:100%" />
-        <div class="post-button-wrapper">
-            <div>v: @post.LikesCount</div>
-            <div>c: @post.DislikesCount</div>
-            <div>l: @post.CommentsCount</div>
-            <div>d: @post.ViewsCount</div>
-        </div>
-        <a asp-controller="Home" asp-action="Post" asp-route-url="@post.Url">
-            <h3>@post.Title</h3>
-        </a>
-    </div>
-}
-
 <!-- ko foreach: posts -->
 <div class="box content">
     <img style="max-width:100%" data-bind="attr: { src: imageUrl }" />
     <div class="post-button-wrapper">
-        <div>v: <span data-bind="text: viewsCount"></span></div>
-        <div>c: <span data-bind="text: commentsCount"></span></div>
-        <div>l: <span data-bind="text: likesCount"></span></div>
-        <div>d: <span data-bind="text: dislikesCount"></span></div>
+        <div><i class="far fa-eye"></i> <span data-bind="text: viewsCount"></span></div>
+        <div><i class="far fa-comment"></i> <span data-bind="text: commentsCount"></span></div>
+        <a href="#"><div><i class="far fa-thumbs-up"></i> <span data-bind="text: likesCount"></span></div></a>
+        <a href="#"><div><i class="far fa-thumbs-down"></i> <span data-bind="text: dislikesCount"></span></div></a>
     </div>
     <a data-bind="attr: { href: postUrl }">
         <h3 data-bind="text: title"></h3>
@@ -36,7 +15,7 @@
 </div>
 <!-- /ko -->
 
-<div class="box more-posts-button" >
+<div class="box more-posts-button">
     <a href="#" data-bind="click: addPosts, visible: morePostsButtonVisible"><u>загрузить больше постов</u></a>
     <h3 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h3>
 </div>
@@ -60,10 +39,9 @@
         self.posts = ko.observableArray([]);
         self.morePostsButtonVisible = ko.observable(true);
         self.endPostsTextVisible = ko.observable(false);
-        const initialPostsCount = 9; 
 
         self.addPosts = function () {
-            let skip = initialPostsCount + self.posts().length;
+            let skip = self.posts().length;
             $.get('https://localhost:5001/home/loadposts?skip=' + skip, function (posts) {
                 if (!posts || posts.length === 0) {
                     self.morePostsButtonVisible(false);
@@ -78,6 +56,8 @@
                 }
             });
         };
+
+        self.addPosts();
     }
 
     ko.applyBindings(new AppViewModel());

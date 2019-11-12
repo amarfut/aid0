@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.AppServices;
 using Services.DTOs;
+using Services.Utils;
 using Web.Models;
 
 namespace Web.Controllers
@@ -18,9 +19,9 @@ namespace Web.Controllers
     {
         private PostService _postService = new PostService();
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _postService.GetPostPreviews(skip: 0));
+            return View();
         }
 
         public async Task<IEnumerable<PostPreviewDto>> LoadPosts(int skip)
@@ -64,6 +65,13 @@ namespace Web.Controllers
         public IActionResult Search(string term)
         {
             return View((object)term);
+        }
+
+
+        public async Task<IActionResult> SetPostReaction([FromBody] PostReactionDto dto)
+        {
+            Result<ReactionDto> result = await _postService.SetPostReaction(dto);
+            return FromResult(result);
         }
 
        

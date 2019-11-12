@@ -9,12 +9,15 @@ using Services.Utils;
 using System.Threading.Tasks;
 using MongoDB.Driver.Linq;
 using System;
+using Domain.Services;
 
 namespace Services.CommandHandlers
 {
     public class SetCommentReactionHandler : ICommandHandler<SetCommentReactionCommand, Result<ReactionDto>>
     {
         protected DatabaseContext _db = new DatabaseContext();
+
+        private UserReactionDomainService _userReactionDS = new UserReactionDomainService();
 
         public async Task<Result<ReactionDto>> HandleAsync(SetCommentReactionCommand command)
         {
@@ -28,7 +31,7 @@ namespace Services.CommandHandlers
                 return await HandleCommentAnswer(command, comment);
             }
 
-            var userReaction = GetUserReaction(command.UserId, command.Liked, comment.WhoLiked, comment.WhoDisliked);
+            var userReaction = _userReactionDS.GetUserReaction(command.UserId, command.Liked, comment.WhoLiked, comment.WhoDisliked);
 
             var update = Builders<Comment>.Update.Set(x => x.WhoLiked, userReaction.WhoLiked).Set(x => x.WhoDisliked, userReaction.WhoDisliked);
 
@@ -42,7 +45,7 @@ namespace Services.CommandHandlers
             CommentAnswer answer = comment.Answers.FirstOrDefault(c => c.InternalId == ObjectId.Parse(command.CommentId));
             if (comment == null) return Result.Fail<ReactionDto>("");
 
-            var userReaction = GetUserReaction(command.UserId, command.Liked, comment.WhoLiked, comment.WhoDisliked);
+            var userReaction = _userReactionDS.GetUserReaction(command.UserId, command.Liked, comment.WhoLiked, comment.WhoDisliked);
 
             var filter = Builders<Comment>.Filter;
             var commentAnswerFilter = filter.And(
@@ -57,49 +60,5 @@ namespace Services.CommandHandlers
 
             return Result.Ok(new ReactionDto() { Likes = userReaction.WhoLiked.Length, Dislikes = userReaction.WhoDisliked.Length });
         }
-
-
-        public class UserReaction
-        {
-            public string UserId { get; set; }
-
-            public bool Liked { get; set; }
-
-            public string[] WhoLiked{ get; set; }
-
-            public string[] WhoDisliked { get; set; }
-
-        }
-
-        //TODO: to domain service
-        public UserReaction GetUserReaction(string userId, bool liked, string[] whoLiked, string[] whoDisliked)
-        {
-            var userReaction = new UserReaction();
-
-            var userIds = new string[] { userId };
-            if (liked)
-            {
-                userReaction.WhoDisliked = whoDisliked.Except(userIds).ToArray();
-
-                if (whoLiked.Contains(userId))
-                    userReaction.WhoLiked = whoLiked.Except(userIds).ToArray();
-                else
-                    userReaction.WhoLiked = whoLiked.Concat(userIds).ToArray();
-            }
-            else
-            {
-                userReaction.WhoLiked = whoLiked.Except(userIds).ToArray();
-
-                if (whoDisliked.Contains(userId))
-                    userReaction.WhoDisliked = whoDisliked.Except(userIds).ToArray();
-                else
-                    userReaction.WhoDisliked = whoDisliked.Concat(userIds).ToArray();
-            }
-
-            return userReaction;
-        }
-
     }
 }
-
-

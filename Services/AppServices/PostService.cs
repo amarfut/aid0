@@ -9,19 +9,19 @@ using Services.QueryHandlers;
 using Domain.Entities;
 using Services.DTOs;
 using Services.Queries;
+using Services.InternalCommandHandlers;
+using Domain.Commands;
+using Services.CommandHandlers;
+using Services.Utils;
 
 namespace Services.AppServices
 {
     public class PostService
     {
 
-        private GetPostQueryHandler _getPostQueryHandler 
-            = new GetPostQueryHandler();
-
-        private GetRandomPostPreviewsQueryHandler _getRandomPostPreviewsQueryHandler 
-            = new GetRandomPostPreviewsQueryHandler();
-
-
+        private GetPostQueryHandler _getPostQueryHandler = new GetPostQueryHandler();
+        private GetRandomPostPreviewsQueryHandler _getRandomPostPreviewsQueryHandler = new GetRandomPostPreviewsQueryHandler();
+        private SetPostReactionCommandHandler _setPostReactionCommandHandler = new SetPostReactionCommandHandler();
         private GetPostPreviewsQueryHandler _getPostPreviewsQueryHandler = new GetPostPreviewsQueryHandler();
 
         public async Task<IEnumerable<PostPreviewDto>> GetPostPreviews(int skip)
@@ -39,7 +39,16 @@ namespace Services.AppServices
         public async Task<PostDto> GetPost(string url)
         {
             var post = await _getPostQueryHandler.HandleAsync(new GetPostQuery(url));
+            new IncrementPostViewCount().HandleAsync(post.Id);
             return post;
+        }
+
+        public async Task<Result<ReactionDto>> SetPostReaction(PostReactionDto dto)
+        {
+            var result = await _setPostReactionCommandHandler
+                .HandleAsync(new SetPostReactionCommand(dto.PostId, dto.UserId, dto.Liked));
+
+            return result;
         }
     }
 }
