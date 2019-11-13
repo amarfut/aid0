@@ -6,13 +6,11 @@
     @if (User.Identity.IsAuthenticated)
     {
         string c1 = Model.Action == "comments" ? "bold" : "";
-        string c2 = Model.Action == "archive" ? "bold" : "";
         string c3 = Model.Action == "likedposts" ? "bold" : "";
         string c4 = Model.Action == "editprofile" ? "bold" : "";
 
         <div class="account-menu-wrapper">
             <a asp-controller="Account" asp-action="Profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
-            <a asp-controller="Account" asp-action="Profile" asp-route-param="archive"><div class="@c2">Избранное</div></a>
             <a asp-controller="Account" asp-action="Profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
             <a asp-controller="Account" asp-action="Profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
         </div>
@@ -33,10 +31,6 @@
                     </div>
                 }
             }
-            else if (Model.Action == "archive")
-            {
-
-            }
             else if (Model.Action == "likedposts")
             {
                 foreach (var post in Model.Posts)
@@ -54,7 +48,23 @@
             }
             else if (Model.Action == "editprofile")
             {
+                <form class="pure-form">
+                    <fieldset>
+                        <legend>Ваши данные</legend>
+                        <p>
+                            <input type="text" placeholder="@User.Identity.Name"  />
+                        </p>
+                        
+                        <p>
+                           <input type="file"  />
+                        </p>
 
+                        <p>
+                            <button type="submit" class="pure-button pure-button-active">Сохранить</button>
+                        </p>
+                    </fieldset>
+                </form>
+                <div><i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i></div>
             }
         </div>
     }

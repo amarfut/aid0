@@ -23,6 +23,10 @@ namespace Services.AppServices
         private GetRandomPostPreviewsQueryHandler _getRandomPostPreviewsQueryHandler = new GetRandomPostPreviewsQueryHandler();
         private SetPostReactionCommandHandler _setPostReactionCommandHandler = new SetPostReactionCommandHandler();
         private GetPostPreviewsQueryHandler _getPostPreviewsQueryHandler = new GetPostPreviewsQueryHandler();
+        private AddPostToBookmarksCommandHandler _addPostToBookmarksCommandHandler = new AddPostToBookmarksCommandHandler();
+
+        private GetUserBookmarksQueryHandler _getUserBookmarksQueryHandler = new GetUserBookmarksQueryHandler();
+
 
         public async Task<IEnumerable<PostPreviewDto>> GetPostPreviews(int skip)
         {
@@ -49,6 +53,22 @@ namespace Services.AppServices
                 .HandleAsync(new SetPostReactionCommand(dto.PostId, userId, dto.Liked));
 
             return result;
+        }
+
+        public async Task<Result> AddPostToBookMarksAsync(string postId, string userId)
+        {
+            return await _addPostToBookmarksCommandHandler
+                .HandleAsync(new AddPostToBookmarksCommand()
+                {
+                    PostId = postId,
+                    UserId = userId,
+                    Created = DateTime.UtcNow
+                });
+        }
+
+        public async Task<List<PostPreviewDto>> GetUserBookmarksAsync(string userId)
+        {
+            return await _getUserBookmarksQueryHandler.HandleAsync(new GetUserBookmarksQuery(userId));
         }
     }
 }

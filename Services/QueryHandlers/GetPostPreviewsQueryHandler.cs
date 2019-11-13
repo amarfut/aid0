@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Services.QueryHandlers
 {
-    public class GetPostPreviewsQueryHandler: IQueryHandler<GetPostPreviewQuery, List<PostPreviewDto>>
+    public class GetPostPreviewsQueryHandler : IQueryHandler<GetPostPreviewQuery, List<PostPreviewDto>>
     {
         private DatabaseContext _db = new DatabaseContext();
 

@@ -5,7 +5,9 @@
 @foreach (var comment in Model)
 {
     <div style="margin-top:30px;">
-        <img class="comment-ava" style="float:left;margin-right:10px; margin-top:5px;" src="https://storage.googleapis.com/youit/users/nophoto.jpg" />
+        <div  style="float:left;margin-right:10px;">
+            <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
+        </div>
         <span style="font-size:15px; ">
             <span style="color:#2d66a3;">@comment.UserName</span> <br />
             <span>@comment.PostTitle</span>

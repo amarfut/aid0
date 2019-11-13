@@ -63,7 +63,7 @@ using Web.Models;
             WriteLiteral("\r\n<p>\r\n    Авторизируйтесь на <b>youIT</b> с помощью популярный социальных сетей всего в один клик\r\n</p>\r\n\r\n");
             EndContext();
             BeginContext(127, 133, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0433081b2783404d8ce90f814ce22cc3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "54f57e6e145e4b65be243cb39543a7d6", async() => {
                 BeginContext(219, 37, true);
                 WriteLiteral("\r\n    Авторизироваться через Google\r\n");
                 EndContext();
@@ -93,7 +93,7 @@ using Web.Models;
             WriteLiteral(" <br />\r\n\r\n");
             EndContext();
             BeginContext(271, 137, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc6bf65a8e6f4aa381121a8dda224233", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a494884c2e44f0b850d9d011e90bc46", async() => {
                 BeginContext(365, 39, true);
                 WriteLiteral("\r\n    Авторизироваться через Facebook\r\n");
                 EndContext();
@@ -123,7 +123,7 @@ using Web.Models;
             WriteLiteral(" <br />\r\n\r\n");
             EndContext();
             BeginContext(419, 125, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b37b831527747c48dc2b071d3343f86", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fba117c310284786995605a7fbfe1bda", async() => {
                 BeginContext(507, 33, true);
                 WriteLiteral("\r\n    Авторизироваться через VK\r\n");
                 EndContext();

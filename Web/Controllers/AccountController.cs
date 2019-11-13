@@ -18,6 +18,8 @@ namespace Web.Controllers
     {
         public List<CommentPreviewDto> Comments { get; set; }
         public List<PostPreviewDto> Posts { get; set; }
+        public List<PostPreviewDto> Bookmarks { get; set; }
+
 
         public string Action { get; set; }
     }
@@ -75,41 +77,25 @@ namespace Web.Controllers
 
             if (param == "comments")
                 model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
-            else if (param == "")
-            {
-
-            }
+            else if (param == "archive")
+                model.Bookmarks = await new PostService().GetUserBookmarksAsync(UserId);
             else if (param == "likedposts")
                 model.Posts = await new UserService().GetLikedPosts(UserId);
             
-
             return View(model);
         }
 
         [Authorize]
-        public async Task<IActionResult> YourComments()
+        public async Task<IActionResult> AddToBookmarks([FromBody]Test test)
         {
-            var service = new CommentService();
-            var comments = await service.GetUserCommentsAsync(UserId);
-            return View(comments);
+            var service = new PostService();
+            var result = await service.AddPostToBookMarksAsync(test.PostId, UserId);
+            return FromResult(result);
         }
 
-        [Authorize]
-        public IActionResult YourArchive()
+        public class Test
         {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult LikedComments()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult EditProfile()
-        {
-            return View();
+            public string PostId { get; set; }
         }
     }
 }

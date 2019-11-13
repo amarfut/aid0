@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Domain.ValueObjects;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,8 @@ namespace Domain.Entities
         public string Name { get; set; }
 
         public string Provider { get; set; }
+
+        [BsonIgnoreIfDefault]
+        public Bookmark[] Bookmarks { get; set; } = new Bookmark[] { };
     }
 }

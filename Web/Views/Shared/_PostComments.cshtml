@@ -6,16 +6,20 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
-        <textarea id="comment-box" style="width: 100%" cols="4" placeholder="Комментировать..."></textarea>
-        <button data-bind="click: addComment">Комментировать</button>
+        <form class="pure-form">
+            <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
+            <textarea id="comment-box" style="width: 100%" class="pure-input-1" cols="4" placeholder="Комментировать..."></textarea>
+            <button data-bind="click: addComment" class="pure-button pure-input-1 pure-button">Комментировать</button>
+        </form>
+
     }
     else
     {
         <p>
             <h5>
                 <a href="#" data-bind="click: function() { $('#authorizeModal').modal('show') }">
-                <span style="color:#0026ff; text-decoration:underline;">Авторизируйтесь</span></a> для участия в дискуссии
+                    <span style="color:#0026ff; text-decoration:underline;">Авторизируйтесь</span>
+                </a> для участия в дискуссии
             </h5>
         </p>
     }
@@ -44,7 +48,7 @@
     {
         <a id="@comment.Id"></a>
         <div class="single-comment-wrapper" id="@comment.Id-comment-wrapper">
-            <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
+            <div><i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i></div>
             <div>
                 <div class="username">@comment.UserName <span class="comment-created">@comment.Created</span></div>
                 <div class="comment-text">@comment.Text</div>
@@ -61,9 +65,12 @@
 
         <div style="margin-left:65px;">
             <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
-                <textarea style="width:100%;"></textarea>
-                <button data-bind="click: function() { answerToComment('@comment.Id') }">Комментировать</button>
-                <button data-bind="click: function() { displayAnswerCommentBox('@comment.Id', false) }">Отмена</button>
+                <form class="pure-form">
+                    <textarea style="width:100%;" class="pure-input-1-2"></textarea>
+                    <button data-bind="click: function() { answerToComment('@comment.Id') }" class="pure-button pure-input-1 pure-button">Комментировать</button>
+                    <button data-bind="click: function() { displayAnswerCommentBox('@comment.Id', false) }" class="pure-button pure-input-1 pure-button">Отмена</button>
+                </form>
+
             </div>
 
             @foreach (var answer in comment.Answers)
