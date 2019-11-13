@@ -14,6 +14,14 @@ using Services.Utils;
 
 namespace Web.Controllers
 {
+    public class ProfileViewModel
+    {
+        public List<CommentPreviewDto> Comments { get; set; }
+        public List<PostPreviewDto> Posts { get; set; }
+
+        public string Action { get; set; }
+    }
+
     public class AccountController : BaseController
     {
         private UserService _userService = new UserService();
@@ -60,7 +68,46 @@ namespace Web.Controllers
             return Redirect(returnUrl);
         }
 
-        public IActionResult Profile()
+        [Authorize]
+        public async Task<IActionResult> Profile(string param = "comments")
+        {
+            var model = new ProfileViewModel() { Action = param };
+
+            if (param == "comments")
+                model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
+            else if (param == "")
+            {
+
+            }
+            else if (param == "likedposts")
+                model.Posts = await new UserService().GetLikedPosts(UserId);
+            
+
+            return View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> YourComments()
+        {
+            var service = new CommentService();
+            var comments = await service.GetUserCommentsAsync(UserId);
+            return View(comments);
+        }
+
+        [Authorize]
+        public IActionResult YourArchive()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult LikedComments()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult EditProfile()
         {
             return View();
         }

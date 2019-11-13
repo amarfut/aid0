@@ -17,5 +17,7 @@ namespace Services.DTOs
         public string PostTitle { get; set; }
 
         public string PostUrl { get; set; }
+
+        public DateTime Created { get; set; }
     }
 }

@@ -22,6 +22,10 @@ namespace Services.AppServices
 
         private GetTopCommentsQueryHandler _getTopCommentsQueryHandler = new GetTopCommentsQueryHandler();
 
+        private GetUserCommentsQueryHandler _getUserCommentsQueryHandler = new GetUserCommentsQueryHandler();
+
+
+
 
         public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName)
         {
@@ -56,7 +60,10 @@ namespace Services.AppServices
             return await _getTopCommentsQueryHandler.HandleAsync(new GetTopCommentsQuery(7));
         }
 
-        
+        public async Task<List<CommentPreviewDto>> GetUserCommentsAsync(string userId)
+        {
+            return await _getUserCommentsQueryHandler.HandleAsync(new GetUserCommentsQuery(userId));
+        }
 
         public async Task<Result> DeleteCommentAsync()
         {

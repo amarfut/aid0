@@ -67,12 +67,12 @@ using Web.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(25, 985, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d1ab8cd0d1f4f0b9185da394a2fc6cb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4383b00f557a423b9a5052f7b46bd99c", async() => {
                 BeginContext(31, 174, true);
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>youIT - программирование и карьера в IT</title>\r\n    ");
                 EndContext();
                 BeginContext(205, 47, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3345b483abb240a882b771a19aca2048", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7ed568132470462ba10a584c3806045e", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -117,7 +117,7 @@ using Web.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1012, 3041, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "47f022eb3a6e46a798b948bd8e497d04", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f0934156b66b4ad383e2fe75f9d73ea3", async() => {
                 BeginContext(1018, 78, true);
                 WriteLiteral("\r\n\r\n    <div class=\"header\"> </div>\r\n\r\n    <div class=\"mobile-menu\">\r\n        ");
                 EndContext();
@@ -164,7 +164,7 @@ using Web.Models;
                 WriteLiteral("                        ");
                 EndContext();
                 BeginContext(1795, 79, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de782ac497f9498a98836c6ae51a4b15", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "db6652bf7cd345939fb1c0676b97dc1e", async() => {
                     BeginContext(1844, 3, true);
                     WriteLiteral("<b>");
                     EndContext();
@@ -198,7 +198,7 @@ using Web.Models;
                 WriteLiteral("\r\n                        ");
                 EndContext();
                 BeginContext(1900, 60, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7dcaf4c26fed4d9fa6e3d2a6c4fa1712", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e255121f498d42b081e94bd2cfbeeafa", async() => {
                     BeginContext(1949, 7, true);
                     WriteLiteral("(Выйти)");
                     EndContext();
@@ -240,7 +240,7 @@ using Web.Models;
                 WriteLiteral("                </div>\r\n                <div class=\"search\">\r\n                    ");
                 EndContext();
                 BeginContext(2208, 553, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07d10c3f0d8147d395e5f94a0ff1cf6b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e7ed9d91395e4285a4d852157aadbe9c", async() => {
                     BeginContext(2280, 474, true);
                     WriteLiteral(@"
                         <div style=""position:relative;"">

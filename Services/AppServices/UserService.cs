@@ -2,6 +2,7 @@
 using Domain.Commands;
 using Services.CommandHandlers;
 using Services.DTOs;
+using Services.QueryHandlers;
 using Services.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,21 @@ namespace Services.AppServices
     {
         private CreateUserCommandtHandler _createUserCommandtHandler { get; } = new CreateUserCommandtHandler();
 
+        private GetLikedPostsQueryHandler _getLikedPostsQueryHandler { get; } = new GetLikedPostsQueryHandler();
+
+        
+
         public async Task<Result<UserIdDto>> CreateUserAsync(string externalId, string name, string provider)
         {
             Result<UserIdDto> dto = await _createUserCommandtHandler
                 .HandleAsync(new CreateUserCommand(externalId, name, provider));
 
             return dto;
+        }
+
+        public async Task<List<PostPreviewDto>> GetLikedPosts(string userId)
+        {
+            return await _getLikedPostsQueryHandler.HandleAsync(new Queries.GetLikedPostsQuery(userId));
         }
     }
 }

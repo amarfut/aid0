@@ -24,7 +24,7 @@ namespace Services.CommandHandlers
             };
 
             await _db.Comments.InsertOneAsync(comment);
-
+            
             var increment = Builders<Post>.Update.Inc(p => p.CommentsCount, 1);
             await _db.Posts.UpdateOneAsync(p => p.InternalId == ObjectId.Parse(command.PostId), increment);
             

@@ -1,17 +1,61 @@
-﻿
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model Web.Controllers.ProfileViewModel
+@{Layout = "~/Views/Shared/_Layout.cshtml";}
 
 <div class="full-post">
 
     @if (User.Identity.IsAuthenticated)
     {
+        string c1 = Model.Action == "comments" ? "bold" : "";
+        string c2 = Model.Action == "archive" ? "bold" : "";
+        string c3 = Model.Action == "likedposts" ? "bold" : "";
+        string c4 = Model.Action == "editprofile" ? "bold" : "";
+
         <div class="account-menu-wrapper">
-            <a href="#"><div>Ваши комментарии</div></a>
-            <a href="#"><div>Архив записей</div></a>
-            <a href="#"><div>Лайкнутые записи</div></a>
-            <a href="#"><div>Профиль</div></a>
+            <a asp-controller="Account" asp-action="Profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
+            <a asp-controller="Account" asp-action="Profile" asp-route-param="archive"><div class="@c2">Избранное</div></a>
+            <a asp-controller="Account" asp-action="Profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
+            <a asp-controller="Account" asp-action="Profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
+        </div>
+
+        <div style="margin-top:20px;">
+
+            @if (Model.Action == "comments")
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <div style="margin-bottom:20px;">
+                        <div><b>@comment.PostTitle</b></div>
+                        <div style="font-size:13px; color:#808080;">@comment.Created</div>
+                        <div>
+                            @comment.Text
+                        </div>
+                        <div style="color:red; font-size:13px; font-weight:bold;">удалить</div>
+                    </div>
+                }
+            }
+            else if (Model.Action == "archive")
+            {
+
+            }
+            else if (Model.Action == "likedposts")
+            {
+                foreach (var post in Model.Posts)
+                {
+                    string imagePath = $"https://storage.googleapis.com/youit/{post.Url}/mini.png";
+                    string postUrl = "/home/post?=" + post.Url;
+
+                    <a href="@postUrl">
+                        <img src="@imagePath" style="float:left; margin-right:15px; margin-bottom:40px;" />
+                        <span style="font-size:22px;">@post.Title</span><br />
+                        @Html.Raw(post.TextPreview)
+                    </a>
+                    <div style="clear:both;"></div>
+                }
+            }
+            else if (Model.Action == "editprofile")
+            {
+
+            }
         </div>
     }
 

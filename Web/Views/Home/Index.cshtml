@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Services.DTOs.PostPreviewDto>
+
+
 <!-- ko foreach: posts -->
     <div class="box content">
         <img style="max-width:100%" data-bind="attr: { src: imageUrl }" />
@@ -30,7 +32,7 @@
             this.likesCount = ko.observable(likesCount);
             this.dislikesCount = ko.observable(dislikesCount);
             this.imageUrl = 'https://storage.cloud.google.com/youit/' + postUrl + '/thumbnail.png';;
-            this.postUrl = 'https://localhost:5001/home/post?url=' + postUrl;
+            this.postUrl = '/home/post?url=' + postUrl;
         }
     }
 
@@ -73,7 +75,7 @@
 
         self.addPosts = function () {
             let skip = self.posts().length;
-            $.get('https://localhost:5001/home/loadposts?skip=' + skip, function (posts) {
+            $.get('/home/loadposts?skip=' + skip, function (posts) {
                 if (!posts || posts.length === 0) {
                     self.morePostsButtonVisible(false);
                     self.endPostsTextVisible(true);
@@ -90,3 +92,5 @@
     }
     ko.applyBindings(new AppViewModel());
 </script>
+
+

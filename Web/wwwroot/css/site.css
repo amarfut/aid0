@@ -87,7 +87,7 @@ body {
     .single-comment-wrapper .username {
         font-weight: bold;
         color: #466eb7;
-        font-size:13px;
+        font-size: 13px;
     }
 
     .single-comment-wrapper .comment-created {
@@ -106,7 +106,7 @@ body {
 
 .asnwer-comment-box {
     display: none;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .account-menu-wrapper {
@@ -134,7 +134,9 @@ body {
     text-align: center;
 }
 
-
+.bold {
+    font-weight:bold;
+}
 
 .li,
 .fb,
@@ -154,13 +156,13 @@ body {
 }
 
     .post-button-wrapper div {
-        font-size:12px;
+        font-size: 12px;
         border-radius: 3px;
         text-align: center;
-        color:#9b9b9b;
+        color: #9b9b9b;
         background-color: #f7f7f7;
-        padding:3px;
-        cursor:pointer;
+        padding: 3px;
+        cursor: pointer;
     }
 
 .content h3 {
@@ -171,6 +173,10 @@ body {
     grid-column: 1 / 3;
     min-height: 1000px;
 }
+
+    .full-post h1 {
+        margin-top: 0;
+    }
 
 .sidebar {
     grid-column: 3 / 4;
@@ -183,8 +189,7 @@ body {
     -moz-box-shadow: inset 0 0 3px #C0C0C0;
     -webkit-box-shadow: inset 0 0 3px#C0C0C0;
     box-shadow: inner 0 0 3px #C0C0C0;
-    margin-top:-1px;
-
+    margin-top: -1px;
     padding: 5px 5px 5px 10px;
 }
 
@@ -360,10 +365,10 @@ div.menu {
 }
 
 .comment-ava {
-    width:50px;
-    border-radius:3px;
+    width: 50px;
+    border-radius: 3px;
 }
 
 #authorizeModal {
-    font-size:13px;
+    font-size: 13px;
 }

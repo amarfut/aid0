@@ -14,15 +14,15 @@ using Services.Utils;
 
 namespace Services.QueryHandlers
 {
-    public class GetTopCommentsQueryHandler : IQueryHandler<GetTopCommentsQuery, List<CommentPreviewDto>>
+    public class GetUserCommentsQueryHandler : IQueryHandler<GetUserCommentsQuery, List<CommentPreviewDto>>
     {
         private DatabaseContext _db = new DatabaseContext();
 
-        public async Task<List<CommentPreviewDto>> HandleAsync(GetTopCommentsQuery query)
+        public async Task<List<CommentPreviewDto>> HandleAsync(GetUserCommentsQuery query)
         {
             var comments = await _db.Comments.AsQueryable()
-                .OrderByDescending(c => c.Created)
-                .Take(query.Number).ToListAsync();
+                .Where(c => c.UserId == query.UserId)
+                .OrderByDescending(c => c.Created).ToListAsync();
 
             var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
             var filter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
@@ -37,7 +37,8 @@ namespace Services.QueryHandlers
                 UserId = c.UserId,
                 PostTitle = postMap[c.PostId.ToString()].Item1,
                 PostUrl = postMap[c.PostId.ToString()].Item2,
-                UserName = c.UserName
+                UserName = c.UserName,
+                Created = c.Created
             }).ToList();
 
             return result;
