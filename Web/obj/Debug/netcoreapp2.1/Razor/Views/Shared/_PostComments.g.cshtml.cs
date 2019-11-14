@@ -74,7 +74,7 @@ WriteAttributeValue("", 145, Model.Id, 145, 9, false);
             WriteLiteral("        ");
             EndContext();
             BeginContext(218, 381, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32414525a4b94d62bf49e7fee95ad166", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "87c399d09d4749fa88d0804ac0010d4b", async() => {
                 BeginContext(242, 55, true);
                 WriteLiteral("\r\n            <input id=\"username-hidden\" type=\"hidden\"");
                 EndContext();
@@ -280,7 +280,7 @@ WriteAttributeValue("", 3010, comment.Id, 3010, 11, false);
             WriteLiteral(" class=\"asnwer-comment-box\">\r\n                ");
             EndContext();
             BeginContext(3087, 468, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d7d5d1e6c4a04c34b5c1ebe210c53c2d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "290b416ffcd444b7b29e5bfb9437f494", async() => {
                 BeginContext(3111, 164, true);
                 WriteLiteral("\r\n                    <textarea style=\"width:100%;\" class=\"pure-input-1-2\"></textarea>\r\n                    <button data-bind=\"click: function() { answerToComment(\'");
                 EndContext();

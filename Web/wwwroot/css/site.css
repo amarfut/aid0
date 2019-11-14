@@ -18,6 +18,10 @@ body {
     font-weight: normal;
 }
 
+.image-in-post {
+margin-top:10px;
+}
+
 .header {
     height: 80px;
 }

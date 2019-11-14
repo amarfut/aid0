@@ -1,4 +1,5 @@
 ﻿@model Services.DTOs.PostDto
+@using System.Text.RegularExpressions
 
 <div class="box full-post">
 
@@ -21,6 +22,19 @@
             </div>
         </a>
     </div>
+
+    @*@{
+        var imagesCount = Regex.Matches(Model.Text,@"[*]\d[*]").Count;
+
+        string baseImageUrl = $"https://storage.cloud.google.com/youit/{Model.Url}/";
+
+        for (int i = 1; i <= imagesCount; i++)
+        {
+            string imageUrl = baseImageUrl + i + ".png";
+            string imgTag = $"<img src='{imageUrl}' />";
+            Model.Text.Replace($"*{i}*", imgTag);
+        }
+    }*@
 
     @Html.Raw(Model.Text)
 
