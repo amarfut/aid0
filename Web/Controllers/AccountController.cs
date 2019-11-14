@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.AppServices;
@@ -48,24 +49,39 @@ namespace Web.Controllers
 
         public async Task<IActionResult> LoginCallback(string returnUrl)
         {
-            var type = HttpContext.User.Identity.AuthenticationType;
-            var authenticateResult = await HttpContext.AuthenticateAsync(type);
+            Claim nameIdentifier = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            Claim name = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            string type = HttpContext.User.Identity.AuthenticationType;
 
-            if (!authenticateResult.Succeeded)
-                return BadRequest(); // TODO: Handle this better.
+            Claim pictureClaim = HttpContext.User.FindFirst("userProfileImage");
+            string userPictureUrl = pictureClaim != null ? pictureClaim.Value : "noPhoto";
 
-            Claim nameIdentifier = authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier);
-            Claim name = authenticateResult.Principal.FindFirst(ClaimTypes.Name);
+            Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type, userPictureUrl);
 
-            var claimsIdentity = new ClaimsIdentity(type);
-            claimsIdentity.AddClaim(nameIdentifier);
-            claimsIdentity.AddClaim(name);
+            var claims = new ClaimsIdentity(type);
+            claims.AddClaims(HttpContext.User.Claims);
+            claims.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
 
-            Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
+            await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claims));
 
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
+            //var type = HttpContext.User.Identity.AuthenticationType;
+            //var authenticateResult = await HttpContext.AuthenticateAsync(type);
 
-            await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claimsIdentity));
+            //if (!authenticateResult.Succeeded)
+            //    return BadRequest(); // TODO: Handle this better.
+
+            //Claim nameIdentifier = authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier);
+            //Claim name = authenticateResult.Principal.FindFirst(ClaimTypes.Name);
+
+            //var claimsIdentity = new ClaimsIdentity(type);
+            //claimsIdentity.AddClaim(nameIdentifier);
+            //claimsIdentity.AddClaim(name);
+
+            //Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
+
+            //claimsIdentity.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
+
+            //
 
             return Redirect(returnUrl);
         }

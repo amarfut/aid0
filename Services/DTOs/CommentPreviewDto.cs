@@ -18,6 +18,8 @@ namespace Services.DTOs
 
         public string PostUrl { get; set; }
 
+        public string UserPhotoUrl { get; set; }
+
         public DateTime Created { get; set; }
     }
 }

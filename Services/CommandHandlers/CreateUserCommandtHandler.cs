@@ -18,8 +18,8 @@ namespace Services.CommandHandlers
             var exists = await _db.Users.AsQueryable().Where(u => u.ExternalId == command.ExternalId).AnyAsync();
             if (exists)
             {
-                var nameUpdateDefinition = Builders<User>.Update.Set("Name", command.Name);
-                await _db.Users.UpdateOneAsync(u => u.ExternalId == command.ExternalId, nameUpdateDefinition);
+                var update = Builders<User>.Update.Set("Name", command.Name).Set("PhotoUrl", command.PhotoUrl);
+                await _db.Users.UpdateOneAsync(u => u.ExternalId == command.ExternalId, update);
             }
             else
             {
@@ -27,7 +27,8 @@ namespace Services.CommandHandlers
                 {
                     ExternalId = command.ExternalId,
                     Name = command.Name,
-                    Provider = command.Provider
+                    Provider = command.Provider,
+                    PhotoUrl = command.PhotoUrl
                 });
             }
 

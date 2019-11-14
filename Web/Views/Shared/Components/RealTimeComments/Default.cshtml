@@ -1,12 +1,22 @@
 ﻿@model List<Services.DTOs.CommentPreviewDto>
+@using Microsoft.AspNetCore.Mvc;
+
 
     <span style="font-size:22px;">&nbsp; Что сейчас обсуждают?</span>
 <p></p>
 @foreach (var comment in Model)
 {
     <div style="margin-top:30px;">
-        <div  style="float:left;margin-right:10px;">
-            <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
+        <div style="float:left;margin-right:10px; width:60px;">
+
+            @if (string.IsNullOrEmpty(comment.UserPhotoUrl))
+            {
+                <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
+            }
+            else
+            {
+                <img src="@comment.UserPhotoUrl" style="width:100%;  border-radius:3px;"/>
+            }
         </div>
         <span style="font-size:15px; ">
             <span style="color:#2d66a3;">@comment.UserName</span> <br />

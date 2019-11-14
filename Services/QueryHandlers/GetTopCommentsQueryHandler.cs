@@ -37,7 +37,8 @@ namespace Services.QueryHandlers
                 UserId = c.UserId,
                 PostTitle = postMap[c.PostId.ToString()].Item1,
                 PostUrl = postMap[c.PostId.ToString()].Item2,
-                UserName = c.UserName
+                UserName = c.UserName,
+                UserPhotoUrl = "https://lh3.googleusercontent.com/a-/AAuE7mDBBB9rQwvy17R_a6YqvSWmgScplEYqlt2GH-ZMCQ"
             }).ToList();
 
             return result;

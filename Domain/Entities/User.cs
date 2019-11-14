@@ -17,5 +17,7 @@ namespace Domain.Entities
 
         [BsonIgnoreIfDefault]
         public Bookmark[] Bookmarks { get; set; } = new Bookmark[] { };
+
+        public string PhotoUrl { get; set; }
     }
 }

@@ -52,6 +52,17 @@ namespace Web
                 .AddGoogle("Google", options => {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                    options.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
+                    options.Events = new OAuthEvents
+                    {
+                        OnCreatingTicket = context =>
+                        {
+                            var identity = (ClaimsIdentity)context.Principal.Identity;
+                            var profileImg = context.User["picture"].ToString();
+                            identity.AddClaim(new Claim("userProfileImage", profileImg));
+                            return Task.FromResult(0);
+                        }
+                    };
                 })
                 .AddFacebook("Facebook", options => {
                     options.ClientId = Configuration["Authentication:Facebook:ClientId"];

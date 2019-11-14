@@ -21,10 +21,10 @@ namespace Services.AppServices
         
 
 
-        public async Task<Result<UserIdDto>> CreateUserAsync(string externalId, string name, string provider)
+        public async Task<Result<UserIdDto>> CreateUserAsync(string externalId, string name, string provider, string userPictureUrl)
         {
             Result<UserIdDto> dto = await _createUserCommandtHandler
-                .HandleAsync(new CreateUserCommand(externalId, name, provider));
+                .HandleAsync(new CreateUserCommand(externalId, name, provider, userPictureUrl));
 
             return dto;
         }
