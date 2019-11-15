@@ -17,6 +17,16 @@ namespace Services.DTOs
     {
         public CommentDto(Comment comment, Dictionary<string, string> userPhotoMap)
         {
+            InitProperties(comment, userPhotoMap);
+
+            foreach (CommentAnswer answer in comment.Answers)
+            {
+                Answers.Add(new CommentDto(answer, userPhotoMap));
+            }
+        }
+
+        private void InitProperties(Comment comment, Dictionary<string, string> userPhotoMap)
+        {
             Id = comment.Id;
             UserName = comment.UserName;
             Text = comment.Text;
@@ -26,39 +36,9 @@ namespace Services.DTOs
             WhoLiked = comment.WhoLiked;
             WhoDisliked = comment.WhoDisliked;
             UserPhoto = userPhotoMap[comment.UserId];
-
-            foreach (CommentAnswer answer in comment.Answers)
-            {
-                Answers.Add(new CommentAnswerDto(answer, userPhotoMap));
-            }
         }
 
-        public string Id { get; set; }
-
-        public string Text { get; set; }
-
-        public string UserName { get; set; }
-
-        public DateTime Created { get; set; }
-
-        public int Likes { get; set; }
-
-        public int Dislikes { get; set; }
-
-        public string[] WhoLiked { get; set; }
-        public string[] WhoDisliked { get; set; }
-
-        public string UserPhoto { get; set; }
-
-        public List<CommentAnswerDto> Answers { get; set; } = new List<CommentAnswerDto>();
-
-        public UserReaction UserReaction { get; set; }
-    }
-
-
-    public class CommentAnswerDto
-    {
-        public CommentAnswerDto(CommentAnswer answer, Dictionary<string, string> userPhotoMap)
+        public CommentDto(CommentAnswer answer, Dictionary<string, string> userPhotoMap)
         {
             Id = answer.Id;
             ParentCommentId = answer.ParentCommentId;
@@ -72,16 +52,26 @@ namespace Services.DTOs
             UserPhoto = userPhotoMap[answer.UserId];
         }
 
+
         public string Id { get; set; }
         public string ParentCommentId { get; set; }
         public string Text { get; set; }
+
         public string UserName { get; set; }
+
         public DateTime Created { get; set; }
+
         public int Likes { get; set; }
+
         public int Dislikes { get; set; }
+
         public string[] WhoLiked { get; set; }
         public string[] WhoDisliked { get; set; }
-        public UserReaction UserReaction { get; set; }
+
         public string UserPhoto { get; set; }
+
+        public List<CommentDto> Answers { get; set; } = new List<CommentDto>();
+
+        public UserReaction UserReaction { get; set; }
     }
 }
