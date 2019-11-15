@@ -49,7 +49,8 @@ namespace Web
                     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
                 })
                 .AddCookie()
-                .AddGoogle("Google", options => {
+                .AddGoogle("Google", options =>
+                {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                     options.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
@@ -64,21 +65,22 @@ namespace Web
                         }
                     };
                 })
-                .AddFacebook("Facebook", options => {
+                .AddFacebook("Facebook", options =>
+                {
                     options.ClientId = Configuration["Authentication:Facebook:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Facebook:ClientSecret"];
-                })
-                .AddOAuth("Github", options => {
-                    options.ClientId = Configuration["Authentication:Github:ClientId"];
-                    options.ClientSecret = Configuration["Authentication:Github:ClientSecret"];
-                    options.CallbackPath = "/signin-github";
-
-                    options.AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
-                    options.TokenEndpoint = "https://github.com/login/oauth/access_token";
-                    options.UserInformationEndpoint = "https://api.github.com/user";
+                    options.Events = new OAuthEvents
+                    {
+                        OnCreatingTicket = context =>
+                       {
+                           var identity = (ClaimsIdentity)context.Principal.Identity;
+                           Claim nameIdentifier = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                           string profileImg = $"https://graph.facebook.com/{nameIdentifier.Value}/picture?type=large";
+                           identity.AddClaim(new Claim("userProfileImage", profileImg));
+                           return Task.FromResult(0);
+                       }
+                    };
                 });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

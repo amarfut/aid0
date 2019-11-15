@@ -25,10 +25,15 @@ namespace Services.QueryHandlers
                 .Take(query.Number).ToListAsync();
 
             var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
-            var filter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
-            var posts = await _db.Posts.Find(filter).ToListAsync();
+            var userIds = comments.Select(c => ObjectId.Parse(c.UserId));
+
+            var postsFilter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
+            var usersFilter = Builders<User>.Filter.In(x => x.InternalId, userIds);
+            var posts = await _db.Posts.Find(postsFilter).ToListAsync();
+            var users = await _db.Users.Find(usersFilter).ToListAsync();
 
             var postMap = posts.ToDictionary(p => p.InternalId.ToString(), p => new Tuple<string, string>(p.Title, p.Url));
+            var usersMap = users.ToDictionary(p => p.Id, p => p.PhotoUrl);
 
             var result = comments.Select(c => new CommentPreviewDto()
             {
@@ -38,7 +43,7 @@ namespace Services.QueryHandlers
                 PostTitle = postMap[c.PostId.ToString()].Item1,
                 PostUrl = postMap[c.PostId.ToString()].Item2,
                 UserName = c.UserName,
-                UserPhotoUrl = "https://lh3.googleusercontent.com/a-/AAuE7mDBBB9rQwvy17R_a6YqvSWmgScplEYqlt2GH-ZMCQ"
+                UserPhotoUrl = usersMap[c.UserId]
             }).ToList();
 
             return result;

@@ -33,5 +33,10 @@ namespace Services.AppServices
         {
             return await _getLikedPostsQueryHandler.HandleAsync(new Queries.GetLikedPostsQuery(userId));
         }
+
+        public async Task<string> GetUser(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

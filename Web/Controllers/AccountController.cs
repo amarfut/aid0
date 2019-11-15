@@ -23,6 +23,8 @@ namespace Web.Controllers
 
 
         public string Action { get; set; }
+
+        public string UserPhoto { get; set; }
     }
 
     public class AccountController : BaseController
@@ -43,8 +45,17 @@ namespace Web.Controllers
         public async Task<IActionResult> SignOut()
         {
             string returnUrl = Request.Headers["Referer"].ToString();
+            
             await HttpContext.SignOutAsync();
-            return Redirect(returnUrl);
+
+            if (returnUrl.Contains("profile", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return Redirect("/home/index");
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
 
         public async Task<IActionResult> LoginCallback(string returnUrl)
@@ -54,7 +65,9 @@ namespace Web.Controllers
             string type = HttpContext.User.Identity.AuthenticationType;
 
             Claim pictureClaim = HttpContext.User.FindFirst("userProfileImage");
-            string userPictureUrl = pictureClaim != null ? pictureClaim.Value : "noPhoto";
+            string userPictureUrl = pictureClaim != null ? 
+                pictureClaim.Value :
+                "https://storage.googleapis.com/youit/users/nophoto.jpg";
 
             Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type, userPictureUrl);
 
@@ -64,32 +77,24 @@ namespace Web.Controllers
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claims));
 
-            //var type = HttpContext.User.Identity.AuthenticationType;
-            //var authenticateResult = await HttpContext.AuthenticateAsync(type);
-
-            //if (!authenticateResult.Succeeded)
-            //    return BadRequest(); // TODO: Handle this better.
-
-            //Claim nameIdentifier = authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier);
-            //Claim name = authenticateResult.Principal.FindFirst(ClaimTypes.Name);
-
-            //var claimsIdentity = new ClaimsIdentity(type);
-            //claimsIdentity.AddClaim(nameIdentifier);
-            //claimsIdentity.AddClaim(name);
-
-            //Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type);
-
-            //claimsIdentity.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
-
-            //
-
             return Redirect(returnUrl);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(string userName)
+        {
+
+
+            return View();
         }
 
         [Authorize]
         public async Task<IActionResult> Profile(string param = "comments")
         {
-            var model = new ProfileViewModel() { Action = param };
+            var model = new ProfileViewModel()
+            {
+                Action = param, UserPhoto = base.UserPhotoUrl
+            };
 
             if (param == "comments")
                 model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
@@ -97,7 +102,7 @@ namespace Web.Controllers
                 model.Bookmarks = await new PostService().GetUserBookmarksAsync(UserId);
             else if (param == "likedposts")
                 model.Posts = await new UserService().GetLikedPosts(UserId);
-            
+          
             return View(model);
         }
 

@@ -20,7 +20,7 @@ namespace Web.Controllers
             get
             {
                 var claim = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
-                return claim.Value;
+                return claim?.Value;
             }
         }
 
@@ -32,6 +32,16 @@ namespace Web.Controllers
                 return claim.Value;
             }
         }
+
+        protected string UserPhotoUrl
+        {
+            get
+            {
+                var claim = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "userProfileImage");
+                return claim.Value;
+            }
+        }
+
 
         protected IActionResult FromResult(Result result)
         {

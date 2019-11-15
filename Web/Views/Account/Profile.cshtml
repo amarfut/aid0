@@ -48,16 +48,12 @@
             }
             else if (Model.Action == "editprofile")
             {
-                <div id="profile-view">
-                    <form class="pure-form">
+                <div id="profile-view" style="position:relative;">
+                    <form class="pure-form" asp-controller="Account" asp-action="Edit">
                         <fieldset>
                             <legend>Ваши данные</legend>
                             <p>
-                                <input type="text" placeholder="@User.Identity.Name" />
-                            </p>
-
-                            <p>
-                                <input type="file" id="photoInput" />
+                                <input type="text" name="userName" placeholder="@User.Identity.Name" />
                             </p>
 
                             <p>
@@ -65,13 +61,12 @@
                             </p>
                         </fieldset>
                     </form>
-                    <div id="photoBox">
-                        <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
-                        <img id="userPhoto" src="#" alt="your image" />
+                    <div id="photoBox" style="position:absolute; top:50px; right:0;">
+                        <img id="userPhoto" src="@Model.UserPhoto" />
                     </div>
                 </div>
 
-                <script>
+                @*<script>
                     $("#photoInput").change((data) => {
                         var input = data.target;
                         if (input.files && input.files[0]) {
@@ -83,7 +78,7 @@
                         }
                     });
 
-                </script>
+                </script>*@
 
             }
         </div>

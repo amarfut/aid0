@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="box sidebar">
+        <div class="box sidebar scrollbar">
             @await Component.InvokeAsync("RealTimeComments")
         </div>
 
@@ -98,10 +98,7 @@
         </script>
     </div>
 
-    <div id="authorizeModal" class="modal">
-        <h3>Авторизация</h3>
-        @await Html.PartialAsync("_Authorize")
-    </div>
+    @await Html.PartialAsync("_Authorize")
 
 </body>
 </html>

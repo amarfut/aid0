@@ -1,26 +1,33 @@
 ﻿@{Layout = null;}
 
-<p>
-    Авторизируйтесь на <b>youIT</b> с помощью популярный социальных сетей всего в один клик
-</p>
+    <div id="authorizeModal" class="modal">
 
-<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Google">
-    Авторизироваться через Google
-</a> <br />
+        <h2>Авторизация</h2>
 
-<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Facebook">
-    Авторизироваться через Facebook
-</a> <br />
+        <p style="font-size:16px;">
+            Авторизируйтесь на <b>youIT</b> с помощью популярный социальных сетей:
+        </p>
 
-<a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="VK">
-    Авторизироваться через VK
-</a>
+        <div class="social-links-auth-wrapper">
+            <div>
+                <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Google" title="Google">
+                    <i class="fab fa-google" style="color:#ae0303"></i>
+                </a>
+            </div>
 
-<p>
-    Авторизированные пользователи могут:
-    <ul>
-        <li>Принимать участие в дискуссиях</li>
-        <li>Добавлять любимые посты в избранное</li>        
-        <li>...</li>
-    </ul>
-</p>
+            <div>
+                <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Facebook" title="Facebook">
+                    <i class="fab fa-facebook" style="color:#0f286d"></i>
+                </a>
+            </div>
+
+            <div>
+                <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="VK" title="Vkontakte">
+                    <i class="fab fa-vk" style="color:#203469"></i>
+                </a>
+            </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+    </div>

@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc;
 
 
-    <span style="font-size:22px;">&nbsp; Что сейчас обсуждают?</span>
+<span style="font-size:22px;">&nbsp; Что сейчас обсуждают?</span>
 <p></p>
 @foreach (var comment in Model)
 {
@@ -15,12 +15,12 @@
             }
             else
             {
-                <img src="@comment.UserPhotoUrl" style="width:100%;  border-radius:3px;"/>
+                <img src="@comment.UserPhotoUrl" style="width:100%;  border-radius:3px;" />
             }
         </div>
         <span style="font-size:15px; ">
             <span style="color:#2d66a3;">@comment.UserName</span> <br />
-            <span>@comment.PostTitle</span>
+            <span style="font-weight:bold; font-size:11px;">@comment.PostTitle</span>
         </span>
         <div style="clear:both"></div>
 
