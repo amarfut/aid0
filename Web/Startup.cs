@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Common;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -60,7 +61,7 @@ namespace Web
                         {
                             var identity = (ClaimsIdentity)context.Principal.Identity;
                             var profileImg = context.User["picture"].ToString();
-                            identity.AddClaim(new Claim("userProfileImage", profileImg));
+                            identity.AddClaim(new Claim(Constants.ProfileImage, profileImg));
                             return Task.FromResult(0);
                         }
                     };
@@ -76,7 +77,7 @@ namespace Web
                            var identity = (ClaimsIdentity)context.Principal.Identity;
                            Claim nameIdentifier = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
                            string profileImg = $"https://graph.facebook.com/{nameIdentifier.Value}/picture?type=large";
-                           identity.AddClaim(new Claim("userProfileImage", profileImg));
+                           identity.AddClaim(new Claim(Constants.ProfileImage, profileImg));
                            return Task.FromResult(0);
                        }
                     };

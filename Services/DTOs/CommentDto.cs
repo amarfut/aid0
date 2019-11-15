@@ -15,7 +15,7 @@ namespace Services.DTOs
 
     public class CommentDto
     {
-        public CommentDto(Comment comment)
+        public CommentDto(Comment comment, Dictionary<string, string> userPhotoMap)
         {
             Id = comment.Id;
             UserName = comment.UserName;
@@ -25,10 +25,11 @@ namespace Services.DTOs
             Created = comment.Created;
             WhoLiked = comment.WhoLiked;
             WhoDisliked = comment.WhoDisliked;
+            UserPhoto = userPhotoMap[comment.UserId];
 
             foreach (CommentAnswer answer in comment.Answers)
             {
-                Answers.Add(new CommentAnswerDto(answer));
+                Answers.Add(new CommentAnswerDto(answer, userPhotoMap));
             }
         }
 
@@ -46,7 +47,9 @@ namespace Services.DTOs
 
         public string[] WhoLiked { get; set; }
         public string[] WhoDisliked { get; set; }
-        
+
+        public string UserPhoto { get; set; }
+
         public List<CommentAnswerDto> Answers { get; set; } = new List<CommentAnswerDto>();
 
         public UserReaction UserReaction { get; set; }
@@ -55,7 +58,7 @@ namespace Services.DTOs
 
     public class CommentAnswerDto
     {
-        public CommentAnswerDto(CommentAnswer answer)
+        public CommentAnswerDto(CommentAnswer answer, Dictionary<string, string> userPhotoMap)
         {
             Id = answer.Id;
             ParentCommentId = answer.ParentCommentId;
@@ -66,6 +69,7 @@ namespace Services.DTOs
             Created = answer.Created;
             WhoLiked = answer.WhoLiked;
             WhoDisliked = answer.WhoDisliked;
+            UserPhoto = userPhotoMap[answer.UserId];
         }
 
         public string Id { get; set; }
@@ -78,6 +82,6 @@ namespace Services.DTOs
         public string[] WhoLiked { get; set; }
         public string[] WhoDisliked { get; set; }
         public UserReaction UserReaction { get; set; }
-
+        public string UserPhoto { get; set; }
     }
 }

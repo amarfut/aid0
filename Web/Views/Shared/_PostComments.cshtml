@@ -1,19 +1,12 @@
 ﻿@model Services.DTOs.PostDto
+@using Web.Utils
 
 <a id="begin-comments"></a>
+<h3>Комментарии</h3>
 <div class="comments-wrapper">
     <input id="post-id-hidden" type="hidden" value="@Model.Id" />
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <form class="pure-form">
-            <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
-            <textarea id="comment-box" style="width: 100%" class="pure-input-1" cols="4" placeholder="Комментировать..."></textarea>
-            <button data-bind="click: addComment" class="pure-button pure-input-1 pure-button">Комментировать</button>
-        </form>
-
-    }
-    else
+    @if (!User.Identity.IsAuthenticated)
     {
         <p>
             <h5>
@@ -22,6 +15,20 @@
                 </a> для участия в дискуссии
             </h5>
         </p>
+    }
+    else
+    {
+        <div style="display:grid; grid-gap:5px; grid-template-columns: 1fr 10fr;margin-bottom:40px;">
+            @{string url = Helper.GetUserPhotoUrl(User); }
+            <div class="user-ava"><img src="@url" /></div>
+            <div>
+                <form class="pure-form">
+                    <input id="username-hidden" type="hidden" value="@User.Identity.Name" />
+                    <textarea id="comment-box" class="pure-input-1" placeholder="Комментировать..."></textarea>
+                    <div class="comment-button" data-bind="click: addComment">Комментировать </div>
+                </form>
+            </div>
+        </div>
     }
     <p></p>
     <!-- ko foreach: comments -->
@@ -48,7 +55,7 @@
     {
         <a id="@comment.Id"></a>
         <div class="single-comment-wrapper" id="@comment.Id-comment-wrapper">
-            <div><i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i></div>
+            <div class="user-ava"><img src="@comment.UserPhoto" /></div>
             <div>
                 <div class="username">@comment.UserName <span class="comment-created">@comment.Created</span></div>
                 <div class="comment-text">@comment.Text</div>
@@ -65,6 +72,8 @@
 
         <div style="margin-left:65px;">
             <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
+
+
                 <form class="pure-form">
                     <textarea style="width:100%;" class="pure-input-1-2"></textarea>
                     <button data-bind="click: function() { answerToComment('@comment.Id') }" class="pure-button pure-input-1 pure-button">Комментировать</button>
@@ -76,7 +85,7 @@
             @foreach (var answer in comment.Answers)
             {
                 <div class="single-comment-wrapper" id="@answer.Id-comment-wrapper">
-                    <div><img class="comment-ava" src="https://storage.googleapis.com/youit/users/nophoto.jpg" /></div>
+                    <div class="user-ava"><img src="@answer.UserPhoto" /></div>
                     <div>
                         <div class="username">@answer.UserName <span class="comment-created">@answer.Created</span></div>
                         <div class="comment-text">@answer.Text</div>

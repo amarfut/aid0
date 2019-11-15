@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Common;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
@@ -67,7 +68,7 @@ namespace Web.Controllers
             Claim pictureClaim = HttpContext.User.FindFirst("userProfileImage");
             string userPictureUrl = pictureClaim != null ? 
                 pictureClaim.Value :
-                "https://storage.googleapis.com/youit/users/nophoto.jpg";
+                Constants.NoPhoto;
 
             Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type, userPictureUrl);
 

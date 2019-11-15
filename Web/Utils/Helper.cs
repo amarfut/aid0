@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Services.AppServices;
 using Services.QueryHandlers;
+using System.Security.Claims;
+using Common;
+using Microsoft.AspNetCore.Http;
 
 namespace Web.Utils
 {
     public class Helper
     {
-        public string GetUserUrl(HttpContext context) 
+        public static string GetUserPhotoUrl(ClaimsPrincipal principal)
         {
-            var claim = context.User.FindFirst("user_image");
-            return claim.Value;
+            
+            var claim = principal.FindFirst(x => x.Type == Constants.ProfileImage);
+            return claim != null ? claim.Value : Constants.NoPhoto;
         }
     }
 }

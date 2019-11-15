@@ -8,7 +8,7 @@ namespace Services.DTOs
 {
     public class PostDto
     {
-        public PostDto(Post post, List<Comment> comments)
+        public PostDto(Post post, List<Comment> comments, Dictionary<string, string> userPhotoMap)
         {
             Id = post.Id;
             Title = post.Title;
@@ -19,7 +19,7 @@ namespace Services.DTOs
 
             foreach (var comment in comments)
             {
-                Comments.Add(new CommentDto(comment));
+                Comments.Add(new CommentDto(comment, userPhotoMap));
             }
         }
 

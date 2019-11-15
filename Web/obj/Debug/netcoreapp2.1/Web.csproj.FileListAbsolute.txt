@@ -130,3 +130,5 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Home\Post.g.
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_PostComments.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\RealTimeComments\Default.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Authorize.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\bin\Debug\netcoreapp2.1\Common.dll
+C:\Users\omarf\Desktop\site\Web\bin\Debug\netcoreapp2.1\Common.pdb
