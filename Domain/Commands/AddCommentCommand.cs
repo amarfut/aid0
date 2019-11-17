@@ -13,5 +13,7 @@ namespace Domain.Commands
         public string UserName { get; set; }
 
         public DateTime Created { get; set; }
+
+        public string ParentCommentId { get; set; }
     }
 }

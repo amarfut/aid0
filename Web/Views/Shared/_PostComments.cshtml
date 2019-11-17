@@ -2,8 +2,31 @@
 @using Web.Utils
 
 <a id="begin-comments"></a>
+<h3>Комментарии</h3>
 
-<div class="comments-wrapper">
+<div id="post-comments-form" class="comments-wrapper">
+
+    @if (Model.Comments.Count == 0)
+    {
+        <h3>Оставьте комментарий первым!</h3>
+    }
+
+    @foreach (var comment in Model.Comments)
+    {
+        @await Html.PartialAsync("_CommentInfo", comment);
+
+        <div style="margin-left:65px;">
+            @foreach (var answer in comment.Answers)
+            {
+                @await Html.PartialAsync("_CommentInfo", answer);
+            }
+
+            <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
+                @await Html.PartialAsync("_CommentForm", new Tuple<string, string>(Model.Id, comment.Id))
+            </div>
+        </div>
+    }
+
     @if (!User.Identity.IsAuthenticated)
     {
         <p>
@@ -14,130 +37,15 @@
             </h5>
         </p>
     }
-    else
+    else 
     {
-        <h3>Комментарии</h3>
-        @await Html.PartialAsync("_CommentForm")
+        @await Html.PartialAsync("_CommentForm", new Tuple<string, string>(Model.Id, ""))
     }
 
-    @if (Model.Comments.Count == 0)
-    {
-        <h3>Оставьте комментарий первым!</h3>
-    }
-
-
-    @foreach (var comment in Model.Comments)
-    {
-        @await Html.PartialAsync("_CommentInfo", comment);
-
-        <div style="margin-left:65px;">
-            <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
-                @await Html.PartialAsync("_CommentForm")
-            </div>
-
-            @foreach (var answer in comment.Answers)
-            {
-                @await Html.PartialAsync("_CommentInfo", answer);
-            }
-        </div>
-    }
 </div>
 
 
-
-
-<script>
-    class Comment {
-        constructor(name, text) {
-            this.name = name;
-            this.created = 'секунду назад';
-            this.text = text;
-            this.likes = 0;
-            this.dislikes = 0;
-        }
-    }
-
-    function AppCommentModel() {
-        let self = this;
-        self.comments = ko.observableArray([]);
-        self.answerBoxVisibe = ko.observable(false);
-
-        self.displayAnswerCommentBox = function (commentId, isVisible) {
-            $('.asnwer-comment-box').hide();
-            const answerComment = $('#' + commentId + '-asnwer-comment-box');
-            isVisible ? answerComment.show() : answerComment.hide();
-        }
-
-        self.setReaction = function (parentCommentId, commentId, currentReaction) {
-
-            $.ajax({
-                url: '/comment/setcommentreaction',
-                type: 'POST',
-                contentType: "application/json",
-                data: JSON.stringify({
-                    ParentCommentId: parentCommentId,
-                    CommentId: commentId,
-                    Liked: currentReaction
-                }),
-                success: (data) => {
-                    $('#' + commentId + '-comment-wrapper .comment-likes').text(data.likes);
-                    $('#' + commentId + '-comment-wrapper .comment-dislikes').text(data.dislikes);
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
-
-        self.answerToComment = function (commentId) {
-            const text = $('#' + commentId + '-asnwer-comment-box textarea').val();
-            $.ajax({
-                url: '/comment/answercomment',
-                type: 'POST',
-                contentType: "application/json",
-                data: JSON.stringify({
-                    ParentCommentId: commentId,
-                    Text: text
-                }),
-                success: (data) => {
-                    $('#' + commentId + '-asnwer-comment-box textarea').val('');
-                    //self.comments.push(new Comment($('#username-hidden').val(), text));
-                    $('.answer-box').hide();
-
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
-
-        self.addComment = function () {
-            const text = $('#comment-box').val();
-            $('#comment-box').val('');
-            const postId = $('@Model.Id').val();
-
-            $.ajax({
-                url: '/comment/addcomment',
-                type: 'POST',
-                contentType: "application/json",
-                data: JSON.stringify({
-                    Text: text,
-                    PostId: postId
-                }),
-                success: (data) => {
-                    self.comments.push(new Comment($('#username-hidden').val(), text));
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
-    }
-
-    ko.applyBindings(new AppCommentModel());
-
-</script>
-
+<script src="~/js/comments.js"></script>
 
 
 

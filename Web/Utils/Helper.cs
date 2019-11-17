@@ -20,5 +20,11 @@ namespace Web.Utils
             var claim = principal.FindFirst(x => x.Type == Constants.ProfileImage);
             return claim != null ? claim.Value : Constants.NoPhoto;
         }
+
+        public static string GetUserId(ClaimsPrincipal principal)
+        {
+            var claim = principal.FindFirst(x => x.Type == ClaimTypes.PrimarySid);
+            return claim != null ? claim.Value : null;
+        }
     }
 }

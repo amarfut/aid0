@@ -1,22 +1,51 @@
 ﻿@using Services.DTOs
+@using Web.Utils
 @model CommentDto
 
+@{
+    string thumbUpClass = "noReaction";
+    string thumbDownClass = "noReaction";
+
+    string userId = Helper.GetUserId(User);
+
+    if (Model.WhoLiked.Contains(userId))
+    {
+        thumbUpClass = "liked";
+    }
+    else if (Model.WhoDisliked.Contains(userId)) {
+        thumbDownClass = "disliked";
+    }
+}
+
 <a id="@Model.Id"></a>
-<div class="single-comment-wrapper" id="@Model.Id-comment-wrapper">
+<div class="single-comment-wrapper">
+    @*<div style="position:absolute; right:0;">x</div>*@
     <div class="user-ava"><img src="@Model.UserPhoto" /></div>
     <div>
-        <div class="username">@Model.UserName <span class="comment-created">@Model.Created</span></div>
+        <div class="username">
+            @Model.UserName
+            <span class="comment-created"> 1 час назад</span>
+        </div>
         <div class="comment-text">@Model.Text</div>
-        <span>
-            <span class="comment-likes">@Model.Likes</span>
-            <a href="#" data-bind="click: function() { setReaction('@Model.Id', '', true) }">
-                <i class="far fa-thumbs-up"></i>
-            </a>
-            <span class="comment-dislikes">@Model.Dislikes</span>
-            <a href="#" data-bind="click: function() { setReaction('@Model.Id', '', false) }">
-                <i class="far fa-thumbs-down"></i>
-            </a>
-            <a href="#" data-bind="click: function() { displayAnswerCommentBox('@Model.Id', true) }"> <b>Ответить</b></a>
+        <span style="font-size:13px; font-weight:bold;">
+            <span class="@thumbUpClass">
+                <span id="@Model.Id-likes" class="comment-likes">@Model.Likes</span>
+                <a href="#" data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
+                    <i class="far fa-thumbs-up @thumbUpClass"></i>
+                </a>
+            </span>
+            
+            &nbsp;
+            <span class="@thumbDownClass">
+                <span id="@Model.Id-dislikes" class="comment-dislikes">@Model.Dislikes</span>
+                <a href="#" data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
+                    <i class="far fa-thumbs-down @thumbDownClass"></i>
+                </a>
+            </span>
+            
+            &nbsp;<span data-bind="click: function() { displayAnswerCommentBox('@Model.Id', '@Model.ParentCommentId', true, '@Model.UserName') }" style="color:#296673; font-size:11px; cursor:pointer;" >
+                <b>Ответить</b>
+            </span>
         </span>
     </div>
 </div>

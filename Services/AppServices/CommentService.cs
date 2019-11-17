@@ -31,13 +31,19 @@ namespace Services.AppServices
         {
             //todo: validate command
 
+            if (string.IsNullOrEmpty(dto.Text))
+            {
+                return Result.Fail("Comment is empty.");
+            }
+
             return await _addCommentHandler.HandleAsync(new AddCommentCommand()
             {
                 Created = DateTime.UtcNow,
                 UserName = userName,
                 PostId = dto.PostId,
                 UserId = userId,
-                Text = dto.Text
+                Text = dto.Text,
+                ParentCommentId = dto.ParentCommentId
             });
         }
 
