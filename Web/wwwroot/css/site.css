@@ -115,14 +115,17 @@ margin-top:10px;
 
 .noReaction {
     color:#747474;
+    cursor:pointer;
 }
 
 .liked {
     color: #00bb2a;
+    cursor: pointer;
 }
 
 .disliked {
     color: #ea1717;
+    cursor: pointer;
 }
 
 .account-menu-wrapper {

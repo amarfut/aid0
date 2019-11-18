@@ -28,10 +28,18 @@ namespace Services.QueryHandlers
                 .Where(c => c.PostId == post.Id)
                 .ToListAsync();
 
+            var parentCommentIds = comments.Select(c => c.Id).ToList();
+            var answers = await _db.Answers.AsQueryable()
+                .Where(a => parentCommentIds.Contains(a.ParentCommentId))
+                .ToListAsync();
+
+            foreach (var comment in comments)
+            {
+                comment.Answers = answers.Where(a => a.ParentCommentId == comment.Id).ToArray();
+            }
 
             var userIds = comments.Select(c => ObjectId.Parse(c.UserId)).ToList();
-            var userIdAnswers = comments.SelectMany(x => x.Answers.Select(y => ObjectId.Parse(y.UserId)));
-            userIds.AddRange(userIdAnswers);
+            userIds.AddRange(answers.Select(a => ObjectId.Parse(a.UserId)).ToList());
 
             var filter = Builders<User>.Filter.In(x => x.InternalId, userIds);
             var userPhotos = await _db.Users.Find(filter).Project(x => new { x.Id, x.PhotoUrl }).ToListAsync();

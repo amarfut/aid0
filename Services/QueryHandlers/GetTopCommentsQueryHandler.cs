@@ -24,6 +24,8 @@ namespace Services.QueryHandlers
                 .OrderByDescending(c => c.Created)
                 .Take(query.Number).ToListAsync();
 
+            //TODO: get answers as well
+
             var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
             var userIds = comments.Select(c => ObjectId.Parse(c.UserId));
 

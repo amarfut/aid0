@@ -22,13 +22,6 @@ namespace Web.Controllers
             return FromResult(result);
         }
 
-        [Authorize]
-        public async Task<IActionResult> AnswerComment([FromBody]AnswerCommentDto dto)
-        {
-            Result result = await _commentService.AnswerCommentAsync(dto, UserId, UserName);
-            return FromResult(result);
-        }
-
         public async Task<IActionResult> SetCommentReaction([FromBody]CommentReactionDto dto)
         {
            

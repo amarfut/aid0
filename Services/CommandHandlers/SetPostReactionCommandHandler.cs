@@ -27,7 +27,7 @@ namespace Services.CommandHandlers
             var update = Builders<Post>.Update.Set(x => x.WhoLiked, reaction.WhoLiked).Set(x => x.WhoDisliked, reaction.WhoDisliked);
             await _db.Posts.FindOneAndUpdateAsync(c => c.InternalId == ObjectId.Parse(command.PostId), update);
 
-            return Result.Ok(new ReactionDto() { Likes = reaction.WhoLiked.Length, Dislikes = reaction.WhoDisliked.Length });
+            return Result.Ok(new ReactionDto(reaction.WhoLiked.Length, reaction.WhoDisliked.Length, reaction.Reaction));
         }
     }
 }

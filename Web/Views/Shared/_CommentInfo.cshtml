@@ -28,19 +28,19 @@
         </div>
         <div class="comment-text">@Model.Text</div>
         <span style="font-size:13px; font-weight:bold;">
-            <span class="@thumbUpClass">
-                <span id="@Model.Id-likes" class="comment-likes">@Model.Likes</span>
-                <a href="#" data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
-                    <i class="far fa-thumbs-up @thumbUpClass"></i>
-                </a>
+            <span id="@Model.Id-likes" class="@thumbUpClass">
+                <span class="comment-likes">@Model.Likes</span>
+                <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
+                    <i class="far fa-thumbs-up"></i>
+                </span>
             </span>
             
             &nbsp;
-            <span class="@thumbDownClass">
-                <span id="@Model.Id-dislikes" class="comment-dislikes">@Model.Dislikes</span>
-                <a href="#" data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
-                    <i class="far fa-thumbs-down @thumbDownClass"></i>
-                </a>
+            <span id="@Model.Id-dislikes" class="@thumbDownClass">
+                <span class="comment-dislikes">@Model.Dislikes</span>
+                <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
+                    <i class="far fa-thumbs-down"></i>
+                </span>
             </span>
             
             &nbsp;<span data-bind="click: function() { displayAnswerCommentBox('@Model.Id', '@Model.ParentCommentId', true, '@Model.UserName') }" style="color:#296673; font-size:11px; cursor:pointer;" >

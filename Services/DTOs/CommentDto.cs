@@ -19,7 +19,7 @@ namespace Services.DTOs
         {
             InitProperties(comment, userPhotoMap);
 
-            foreach (CommentAnswer answer in comment.Answers)
+            foreach (Answer answer in comment.Answers)
             {
                 Answers.Add(new CommentDto(answer, userPhotoMap));
             }
@@ -38,7 +38,7 @@ namespace Services.DTOs
             UserPhoto = userPhotoMap[comment.UserId];
         }
 
-        public CommentDto(CommentAnswer answer, Dictionary<string, string> userPhotoMap)
+        public CommentDto(Answer answer, Dictionary<string, string> userPhotoMap)
         {
             Id = answer.Id;
             ParentCommentId = answer.ParentCommentId;

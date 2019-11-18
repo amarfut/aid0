@@ -5,6 +5,13 @@ using System.Linq;
 
 namespace Domain.Services
 {
+    public enum Reaction
+    {
+        None = 1,
+        Liked = 2,
+        Disliked = 3
+    }
+
     public class UserReaction
     {
         public string UserId { get; set; }
@@ -14,6 +21,8 @@ namespace Domain.Services
         public string[] WhoLiked { get; set; }
 
         public string[] WhoDisliked { get; set; }
+
+        public Reaction Reaction { get; set; }
     }
 
     public class UserReactionDomainService
@@ -42,7 +51,16 @@ namespace Domain.Services
                     userReaction.WhoDisliked = whoDisliked.Concat(userIds).ToArray();
             }
 
+            userReaction.Reaction = GetReactionType(userId, userReaction.WhoLiked, userReaction.WhoDisliked);
+
             return userReaction;
+        }
+
+        private Reaction GetReactionType(string userId, string[] whoLiked, string[] whoDisliked)
+        {
+            if (whoLiked.Contains(userId)) return Reaction.Liked;
+            else if (whoDisliked.Contains(userId)) return Reaction.Disliked;
+            else return Reaction.None;
         }
     }
 }

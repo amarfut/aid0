@@ -66,8 +66,25 @@ function AppCommentModel() {
                 Liked: currentReaction
             }),
             success: (data) => {
-                $(`#${commentId}-likes`).text(data.likes);
-                $(`#${commentId}-dislikes`).text(data.dislikes);
+                $(`#${commentId}-likes .comment-likes`).text(data.likes);
+                $(`#${commentId}-dislikes .comment-dislikes`).text(data.dislikes);
+                $(`#${commentId}-likes`).removeClass();
+                $(`#${commentId}-dislikes`).removeClass();
+
+                if (data.reaction === 1) {
+                    $(`#${commentId}-likes`).addClass('noReaction');
+                    $(`#${commentId}-dislikes`).addClass('noReaction');
+                }
+                else if (data.reaction === 2) {
+                    $(`#${commentId}-likes`).addClass("liked");
+                    $(`#${commentId}-dislikes`).addClass('noReaction');
+
+                }
+                else if (data.reaction === 3) {
+                    $(`#${commentId}-dislikes`).addClass("disliked");
+                    $(`#${commentId}-likes`).addClass('noReaction');
+
+                }
             },
             error: (error) => {
                 console.log(error);

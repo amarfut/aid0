@@ -11,6 +11,6 @@ namespace Domain.Entities
         public string PostId { get; set; }
 
         [BsonIgnoreIfDefault]
-        public CommentAnswer[] Answers { get; set; } = new CommentAnswer[0];
+        public Answer[] Answers { get; set; } = new Answer[0];
     }
 }

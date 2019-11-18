@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class CommentAnswer : BaseComment
+    public class Answer : BaseComment
     {
         public string ParentCommentId { get; set; }
     }
