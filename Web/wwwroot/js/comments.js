@@ -43,6 +43,8 @@ function AppCommentModel() {
         const answerId = parentCommentId ? parentCommentId : commentId;
         $('.asnwer-comment-box').hide();
         $('.asnwer-comment-box').val('');
+        $(`#${parentCommentId}-comment-box`).val('');
+
         const answerComment = $('#' + answerId + '-asnwer-comment-box');
         if (isVisible) {
             if (parentCommentId) {

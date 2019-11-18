@@ -20,9 +20,8 @@ namespace Services.QueryHandlers
 
         public async Task<List<CommentPreviewDto>> HandleAsync(GetUserCommentsQuery query)
         {
-            var comments = await _db.Comments.AsQueryable()
-                .Where(c => c.UserId == query.UserId)
-                .OrderByDescending(c => c.Created).ToListAsync();
+            var comments = await _db.Comments.AsQueryable().Where(c => c.UserId == query.UserId).ToListAsync();
+            var answers = await _db.Answers.AsQueryable().Where(c => c.UserId == query.UserId).ToListAsync();
 
             var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
             var filter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
@@ -40,6 +39,20 @@ namespace Services.QueryHandlers
                 UserName = c.UserName,
                 Created = c.Created
             }).ToList();
+
+            var map = result.ToDictionary(c => c.CommentId, p => new Tuple<string, string>(p.PostTitle, p.PostUrl));
+
+            result.AddRange(answers.Select(c => new CommentPreviewDto()
+            {
+                CommentId = c.Id,
+                Text = c.Text,
+                UserId = c.UserId,
+                PostTitle = map[c.ParentCommentId].Item1,
+                PostUrl = map[c.ParentCommentId].Item2,
+                UserName = c.UserName,
+                Created = c.Created,
+                ParentCommentId = c.ParentCommentId
+            }));
 
             return result;
         }

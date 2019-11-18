@@ -26,6 +26,7 @@ namespace Services.AppServices
         private AddPostToBookmarksCommandHandler _addPostToBookmarksCommandHandler = new AddPostToBookmarksCommandHandler();
 
         private GetUserBookmarksQueryHandler _getUserBookmarksQueryHandler = new GetUserBookmarksQueryHandler();
+        private DeleteCommentCommandHandler _deleteCommentCommandHandler = new DeleteCommentCommandHandler();
 
 
         public async Task<IEnumerable<PostPreviewDto>> GetPostPreviews(int skip)
@@ -65,6 +66,16 @@ namespace Services.AppServices
                     Created = DateTime.UtcNow
                 });
         }
+
+        public async Task<Result> DeleteCommentAsync(DeleteCommentDto comment, string userId)
+        {
+            return await _deleteCommentCommandHandler.HandleAsync(new DeleteCommentCommand()
+            {
+                CommentId = comment.CommentId,
+                TopLevel = comment.TopLevel
+            });
+        }
+            
 
         public async Task<List<PostPreviewDto>> GetUserBookmarksAsync(string userId)
         {

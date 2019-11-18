@@ -97,9 +97,10 @@ namespace Web.Controllers
                 Action = param, UserPhoto = base.UserPhotoUrl
             };
 
-            if (param == "comments")
-                model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
-            else if (param == "archive")
+            //if (param == "comments")
+            //    model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
+            //else 
+            if (param == "archive")
                 model.Bookmarks = await new PostService().GetUserBookmarksAsync(UserId);
             else if (param == "likedposts")
                 model.Posts = await new UserService().GetLikedPosts(UserId);
@@ -112,6 +113,21 @@ namespace Web.Controllers
         {
             var service = new PostService();
             var result = await service.AddPostToBookMarksAsync(test.PostId, UserId);
+            return FromResult(result);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> GetProfileComments()
+        {
+            var comments = await new CommentService().GetUserCommentsAsync(UserId);
+            return new JsonResult(comments);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteComment([FromBody]DeleteCommentDto comment)
+        {
+            var service = new PostService();
+            var result = await service.DeleteCommentAsync(comment, UserId);
             return FromResult(result);
         }
 

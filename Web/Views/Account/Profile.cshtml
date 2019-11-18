@@ -19,17 +19,70 @@
 
             @if (Model.Action == "comments")
             {
-                foreach (var comment in Model.Comments)
-                {
-                    <div style="margin-bottom:20px;">
-                        <div><b>@comment.PostTitle</b></div>
-                        <div style="font-size:13px; color:#808080;">@comment.Created</div>
-                        <div>
-                            @comment.Text
-                        </div>
-                        <div style="color:red; font-size:13px; font-weight:bold;">удалить</div>
+                <div id="profile-comments">
+
+                    <!-- ko foreach: comments -->
+                    <div style="margin-bottom:50px;">
+                        <div><h3 data-bind="text: postTitle"></h3></div>
+                        <p style="font-size:13px; color:#808080;">Добавлено <span data-bind="text: created"></span> </p>
+                        <p data-bind="text: text"></p>
+
+                        <button class="button-error pure-button" data-bind="click: $parent.delete">Удалить комментарий</button>
                     </div>
-                }
+                    <!-- /ko -->
+
+                </div>
+
+
+                <script>
+                    function ProfileCommentsViewModel() {
+                        let self = this;
+                        self.comments = ko.observableArray([]);
+
+                        self.load = function () {
+                            $.ajax({
+                                url: '/account/getprofilecomments',
+                                type: 'GET',
+                                success: (comments) => {
+                                    for (let comment of comments) {
+                                        self.comments.push(comment);
+                                    }
+                                },
+                                error: (error) => {
+
+                                }
+                            });
+                        };
+
+                        self.delete = function (comment) {
+                            if (confirm("Вы действительно хотите удалить комментарий?")) {
+                                const commentId = comment.commentId;
+                                const isTopLevel = comment.parentCommentId === null;
+                                $.ajax({
+                                    url: '/account/deletecomment',
+                                    type: 'POST',
+                                    contentType: "application/json",
+                                    data: JSON.stringify({
+                                        CommentId: commentId,
+                                        TopLevel: isTopLevel
+                                    }),
+                                    success: (comments) => {
+                                        const comment = self.comments().find(p => p.commentId === commentId);
+                                        self.comments.remove(comment);
+                                    },
+                                    error: (error) => {
+
+                                    }
+                                });
+                            }
+                        };
+
+                        self.load();
+                    }
+
+                    ko.applyBindings(new ProfileCommentsViewModel(), document.getElementById("profile-comments"));
+
+                </script>
             }
             else if (Model.Action == "likedposts")
             {
@@ -65,21 +118,6 @@
                         <img id="userPhoto" src="@Model.UserPhoto" />
                     </div>
                 </div>
-
-                @*<script>
-                    $("#photoInput").change((data) => {
-                        var input = data.target;
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = (e) => {
-                                $('#blah').attr('src', e.target.result);
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    });
-
-                </script>*@
-
             }
         </div>
     }
