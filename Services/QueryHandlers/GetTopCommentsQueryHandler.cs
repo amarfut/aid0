@@ -20,35 +20,49 @@ namespace Services.QueryHandlers
 
         public async Task<List<CommentPreviewDto>> HandleAsync(GetTopCommentsQuery query)
         {
-            var comments = await _db.Comments.AsQueryable()
+            var comments = await _db.LatestComments.AsQueryable()
                 .OrderByDescending(c => c.Created)
                 .Take(query.Number).ToListAsync();
-
-            //TODO: get answers as well
-
-            var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
-            var userIds = comments.Select(c => ObjectId.Parse(c.UserId));
-
-            var postsFilter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
-            var usersFilter = Builders<User>.Filter.In(x => x.InternalId, userIds);
-            var posts = await _db.Posts.Find(postsFilter).ToListAsync();
-            var users = await _db.Users.Find(usersFilter).ToListAsync();
-
-            var postMap = posts.ToDictionary(p => p.InternalId.ToString(), p => new Tuple<string, string>(p.Title, p.Url));
-            var usersMap = users.ToDictionary(p => p.Id, p => p.PhotoUrl);
 
             var result = comments.Select(c => new CommentPreviewDto()
             {
                 CommentId = c.Id,
                 Text = c.Text,
                 UserId = c.UserId,
-                PostTitle = postMap[c.PostId.ToString()].Item1,
-                PostUrl = postMap[c.PostId.ToString()].Item2,
+                PostTitle = c.PostTitle,
+                PostUrl = c.PostUrl,
                 UserName = c.UserName,
-                UserPhotoUrl = usersMap[c.UserId]
+                UserPhotoUrl = c.UserPhotoUrl
             }).ToList();
 
             return result;
         }
     }
 }
+
+
+
+
+////TODO: get answers as well
+
+//var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
+//var userIds = comments.Select(c => ObjectId.Parse(c.UserId));
+
+//var postsFilter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
+//var usersFilter = Builders<User>.Filter.In(x => x.InternalId, userIds);
+//var posts = await _db.Posts.Find(postsFilter).ToListAsync();
+//var users = await _db.Users.Find(usersFilter).ToListAsync();
+
+//var postMap = posts.ToDictionary(p => p.InternalId.ToString(), p => new Tuple<string, string>(p.Title, p.Url));
+//var usersMap = users.ToDictionary(p => p.Id, p => p.PhotoUrl);
+
+//var result = comments.Select(c => new CommentPreviewDto()
+//{
+//    CommentId = c.Id,
+//    Text = c.Text,
+//    UserId = c.UserId,
+//    PostTitle = postMap[c.PostId.ToString()].Item1,
+//    PostUrl = postMap[c.PostId.ToString()].Item2,
+//    UserName = c.UserName,
+//    UserPhotoUrl = usersMap[c.UserId]
+//}).ToList();

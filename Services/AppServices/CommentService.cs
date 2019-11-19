@@ -27,7 +27,7 @@ namespace Services.AppServices
 
 
 
-        public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName)
+        public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName, string userPhotoUrl)
         {
             //todo: validate command
 
@@ -43,7 +43,10 @@ namespace Services.AppServices
                 PostId = dto.PostId,
                 UserId = userId,
                 Text = dto.Text,
-                ParentCommentId = dto.ParentCommentId
+                ParentCommentId = dto.ParentCommentId,
+                PostUrl = dto.PostUrl,
+                PostTitle = dto.PostTitle,
+                UserPhotoUrl = userPhotoUrl
             });
         }
 

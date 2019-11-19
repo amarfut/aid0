@@ -1,9 +1,12 @@
 ﻿@model Services.DTOs.PostDto
 @using Web.Utils
 
+@{
+    int totalCommentsCount = @Model.Comments.Count + @Model.Comments.Select(c => c.Answers).Count();
+}
 
 <a id="begin-comments"></a>
-<h3>Комментарии</h3>
+<h3>Комментарии (@totalCommentsCount)</h3>
 
 <div id="post-comments-form" class="comments-wrapper">
 

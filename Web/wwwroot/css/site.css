@@ -372,7 +372,7 @@ body {
 }
 
 .login-bar {
-    text-align: right;
+    /*text-align: right;*/
     padding-top: 5px;
     color: #868686;
     font-size: 15px;
@@ -382,7 +382,7 @@ body {
 /*Menu*/
 .nav {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr 2fr;
+    grid-template-columns: 1fr 4fr 3fr;
 }
 
 .toggle,
@@ -461,7 +461,7 @@ div.menu {
 
 
 .searchTerm {
-    width: 60%;
+    width: 100%;
     padding: 4px 12px;
     display: inline-block;
     border: 1px solid #ccc;

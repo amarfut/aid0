@@ -37,26 +37,51 @@
                     @await Component.InvokeAsync("TopMenu")
                 </div>
                 <div class="login-bar">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
-                        <a asp-controller="Account" asp-action="SignOut">(Выйти)</a>
-                    }
-                    else
-                    {
-                        <a onclick="loadAuthorizeModal()">логин</a>
-                    }
+
+
+                    <div class="search" style=" margin-top:-3px; width:200px;float:left;">
+                        <form id="searchForm" method="post" asp-action="Search" class="desktop">
+                            <div style="position:relative; ">
+                                <input type="text" style="font-weight:100;" class="searchTerm" name="term" placeholder="Что ищем?">
+                                <a href="#" onclick="document.getElementById('searchForm').submit();">
+                                    <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:6px;"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div style="float:right; margin-top:3px;">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
+                            <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+                        }
+                        else
+                        {
+                            <span onclick="loadAuthorizeModal()" style="color:#adadad; cursor:pointer; font-weight:100;"><i class="fas fa-sign-in-alt"></i>&nbsp;логин</span>
+                        }
+                    </div>
+                   
+
+                    @*<div style="float:left;">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
+                <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+            }
+            else
+            {
+                <a onclick="loadAuthorizeModal()">логин</a>
+            }
+        </div>
+
+
+        <div class="search" style="float:right;">
+
+        </div>*@
+
                 </div>
-                <div class="search">
-                    <form id="searchForm" method="post" asp-action="Search" class="desktop">
-                        <div style="position:relative;">
-                            <input type="text" class="searchTerm" name="term" placeholder="Что ищем?">
-                            <a href="#" onclick="document.getElementById('searchForm').submit();">
-                                <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:3px;"></i>
-                            </a>
-                        </div>
-                    </form>
-                </div>
+
             </div>
         </div>
         <div class="box sidebar scrollbar">
@@ -65,24 +90,7 @@
 
         @RenderBody()
 
-        <div class="box footer">
-            <div class="social-icons-wrapper">
-                social icons
-            </div>
-
-            <a href="#">О проекте youIT</a>
-            <span>|</span>
-            <a href="#">Контакты</a>
-            <span>|</span>
-            <a href="#">Cookies</a>
-            <span>|</span>
-            <a href="#">Конфиденциальность</a>
-            <span>|</span>
-            <a href="#">Условия использования</a>
-            <div class="copyright">
-                ©2019 youit.co. Все права защищены. Полное или частичное копирование материалов сайта без согласования с редакцией запрещено.
-            </div>
-        </div>
+        @await Html.PartialAsync("_Footer")
 
         <script>
             toogleSodeMenu = () => {
