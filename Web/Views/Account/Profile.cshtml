@@ -1,4 +1,6 @@
 ﻿@model Web.Controllers.ProfileViewModel
+@using Web.Utils
+
 @{Layout = "~/Views/Shared/_Layout.cshtml";}
 
 <div class="full-post">
@@ -23,27 +25,32 @@
 
                     <!-- ko foreach: comments -->
                     <div style="margin-bottom:50px;">
-                        <div><h3 data-bind="text: postTitle"></h3></div>
-                        <p style="font-size:13px; color:#808080;">Добавлено <span data-bind="text: created"></span> </p>
+                        <a data-bind="attr: { href: $parent.getPostUrl(postUrl, commentId) }">
+                            <div><h3 data-bind="text: postTitle"></h3></div>
+                        </a>
+                        <p style="font-size:13px; color:#808080;">Добавлено <span data-bind="text: createdTimeRelative"></span> </p>
                         <p data-bind="text: text"></p>
 
                         <button class="button-error pure-button" data-bind="click: $parent.delete">Удалить комментарий</button>
                     </div>
                     <!-- /ko -->
-
                 </div>
-
 
                 <script>
                     function ProfileCommentsViewModel() {
                         let self = this;
                         self.comments = ko.observableArray([]);
 
+                        self.getPostUrl = function (postUrl, commentId) {
+                            return `/home/post?url=${postUrl}#${commentId}`;
+                        }
+
                         self.load = function () {
                             $.ajax({
                                 url: '/account/getprofilecomments',
                                 type: 'GET',
                                 success: (comments) => {
+                                    console.log(comments);
                                     for (let comment of comments) {
                                         self.comments.push(comment);
                                     }

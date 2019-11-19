@@ -20,10 +20,12 @@ namespace Services.QueryHandlers
 
         public async Task<List<CommentPreviewDto>> HandleAsync(GetUserCommentsQuery query)
         {
-            var comments = await _db.Comments.AsQueryable().Where(c => c.UserId == query.UserId).ToListAsync();
+            var comments = await _db.Comments.AsQueryable().Where(c => c.UserId == query.UserId && !c.IsDeleted).ToListAsync();
             var answers = await _db.Answers.AsQueryable().Where(c => c.UserId == query.UserId).ToListAsync();
 
-            var postIds = comments.Select(c => ObjectId.Parse(c.PostId));
+            var postIds = comments.Select(c => ObjectId.Parse(c.PostId)).ToList();
+            postIds.AddRange(answers.Select(a => ObjectId.Parse(a.PostId)));
+
             var filter = Builders<Post>.Filter.In(x => x.InternalId, postIds);
             var posts = await _db.Posts.Find(filter).ToListAsync();
 
@@ -37,21 +39,24 @@ namespace Services.QueryHandlers
                 PostTitle = postMap[c.PostId.ToString()].Item1,
                 PostUrl = postMap[c.PostId.ToString()].Item2,
                 UserName = c.UserName,
-                Created = c.Created
+                Created = c.Created,
+                Likes = c.WhoLiked.Length,
+                Dislikes = c.WhoDisliked.Length
             }).ToList();
 
-            var map = result.ToDictionary(c => c.CommentId, p => new Tuple<string, string>(p.PostTitle, p.PostUrl));
 
             result.AddRange(answers.Select(c => new CommentPreviewDto()
             {
                 CommentId = c.Id,
                 Text = c.Text,
                 UserId = c.UserId,
-                PostTitle = map[c.ParentCommentId].Item1,
-                PostUrl = map[c.ParentCommentId].Item2,
+                PostTitle = postMap[c.PostId.ToString()].Item1,
+                PostUrl = postMap[c.PostId.ToString()].Item2,
                 UserName = c.UserName,
                 Created = c.Created,
-                ParentCommentId = c.ParentCommentId
+                ParentCommentId = c.ParentCommentId,
+                Likes = c.WhoLiked.Length,
+                Dislikes = c.WhoDisliked.Length
             }));
 
             return result;

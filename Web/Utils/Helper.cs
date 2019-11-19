@@ -34,48 +34,48 @@ namespace Web.Utils
         */
        
 
-        public string GetRelativeTime(DateTime dateTime)
+        public static string GetRelativeTime(DateTime dateTime)
         {
-            string result = string.Empty;
-            var timeSpan = DateTime.UtcNow.Subtract(dateTime);
+            TimeSpan span = DateTime.UtcNow - dateTime;
+            int totalMinutes = (int)span.TotalMinutes;
+            int totalHours = (int)span.TotalHours;
+            int totalDays = (int)span.TotalDays;
 
-            if (timeSpan <= TimeSpan.FromSeconds(60))
+            if (totalMinutes < 2)
             {
-                int val = timeSpan.Seconds % 10;
-                if (val == 1) return $"{timeSpan.Seconds} минуту";
+                return "только что";
             }
-            else if (timeSpan <= TimeSpan.FromMinutes(60))
+            else if (totalMinutes < 60)
             {
-                result = timeSpan.Minutes > 1 ?
-                    String.Format("about {0} minutes ago", timeSpan.Minutes) :
-                    "about a minute ago";
+                if (totalMinutes >= 11 && totalMinutes <= 19)
+                    return totalMinutes + " минут назад";
+
+                int v = totalMinutes % 10;
+                if (v == 0) return totalMinutes + " минут назад";
+                else if (v == 1) return totalMinutes + " минуту назад";
+                else if (v == 2 || v == 3 || v == 4) return totalMinutes + " минуты назад";
+                else return totalMinutes + " минут назад";
             }
-            else if (timeSpan <= TimeSpan.FromHours(24))
+            else if (totalHours < 24)
             {
-                result = timeSpan.Hours > 1 ?
-                    String.Format("about {0} hours ago", timeSpan.Hours) :
-                    "about an hour ago";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(30))
-            {
-                result = timeSpan.Days > 1 ?
-                    String.Format("about {0} days ago", timeSpan.Days) :
-                    "yesterday";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(365))
-            {
-                result = timeSpan.Days > 30 ?
-                    String.Format("about {0} months ago", timeSpan.Days / 30) :
-                    "about a month ago";
+                if (totalHours >= 11 && totalHours <= 19) return totalHours + " часов назад";
+
+                int v = totalHours % 10;
+                if (v == 0) return " часов назад";
+                else if (v == 1) return totalHours + " час назад";
+                else if (v == 2 || v == 3 || v == 4) return totalHours + " часа назад";
+                else return totalHours + " часов назад";
             }
             else
             {
-                result = timeSpan.Days > 365 ?
-                    String.Format("about {0} years ago", timeSpan.Days / 365) :
-                    "about a year ago";
-            }
+                if (totalDays >= 11 && totalDays <= 19) return totalDays + " дней назад";
 
-            return result;
+                int v = totalDays % 10;
+                if (v == 0) return " дней назад";
+                else if (v == 1) return totalDays + " день назад";
+                else if (v == 2 || v == 3 || v == 4) return totalDays + " дня назад";
+                else return totalDays + " дней назад";
+            }
         }
     }
 }

@@ -7,7 +7,6 @@
     <div class="user-ava"><img src="@url" /></div>
     <div>
         <form class="pure-form">
-            @*<input id="username-hidden" type="hidden" value="@User.Identity.Name" />*@
             <textarea id="@Model.Item2-comment-box" class="pure-input-1" placeholder="Комментировать..."></textarea>
             <div class="comment-button" data-bind="click: function() { addComment('@Model.Item1', '@Model.Item2') }" style="float:left; margin-right:15px;">
                 Комментировать

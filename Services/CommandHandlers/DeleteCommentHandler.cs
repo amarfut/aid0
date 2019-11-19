@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Services.Utils;
 using System.Threading.Tasks;
+using MongoDB.Driver.Linq;
 
 namespace Services.CommandHandlers
 {
@@ -16,14 +17,25 @@ namespace Services.CommandHandlers
         {
             if (command.TopLevel)
             {
-                await _db.Comments.DeleteOneAsync(x => x.InternalId == ObjectId.Parse(command.CommentId));
+                //Comment topComment = await _db.Comments.Find(x => x.InternalId == ObjectId.Parse(command.CommentId)).FirstOrDefaultAsync();
+
+                bool hasAnswers = await _db.Answers.AsQueryable().Where(a => a.ParentCommentId == command.CommentId).AnyAsync();
+                if (hasAnswers)
+                {
+                    await _db.Comments.FindOneAndUpdateAsync(c => c.InternalId == ObjectId.Parse(command.CommentId),
+                        Builders<Comment>.Update.Set(x => x.IsDeleted, true).Set(x => x.Text, string.Empty));
+                }
+                else
+                {
+                    await _db.Comments.DeleteOneAsync(x => x.InternalId == ObjectId.Parse(command.CommentId));
+                }
             }
             else
             {
                 await _db.Answers.DeleteOneAsync(x => x.InternalId == ObjectId.Parse(command.CommentId));
             }
 
-            //var increment = Builders<Post>.Update.Inc(p => p.CommentsCount, 1);
+            //var increment = Builders<Post>.Update.Inc(p => p.CommentsCount, -1);
             //await _db.Posts.UpdateOneAsync(p => p.InternalId == ObjectId.Parse(command.PostId), increment);
 
             return Result.Ok();

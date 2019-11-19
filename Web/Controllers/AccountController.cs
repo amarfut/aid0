@@ -13,6 +13,7 @@ using Services;
 using Services.AppServices;
 using Services.DTOs;
 using Services.Utils;
+using Web.Utils;
 
 namespace Web.Controllers
 {
@@ -70,11 +71,12 @@ namespace Web.Controllers
                 pictureClaim.Value :
                 Constants.NoPhoto;
 
-            Result<UserIdDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type, userPictureUrl);
+            Result<UserDto> result = await _userService.CreateUserAsync(nameIdentifier.Value, name.Value, type, userPictureUrl);
 
             var claims = new ClaimsIdentity(type);
-            claims.AddClaims(HttpContext.User.Claims);
-            claims.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.UserID));
+            claims.AddClaims(HttpContext.User.Claims.Where(c => c.Type != ClaimTypes.Name));
+            claims.AddClaim(new Claim(ClaimTypes.PrimarySid, result.Value.Id));
+            claims.AddClaim(new Claim(ClaimTypes.Name, result.Value.Name));
 
             await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claims));
 
@@ -84,9 +86,22 @@ namespace Web.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(string userName)
         {
+            if (string.IsNullOrEmpty(userName))
+            {
+                userName = UserName;
+            }
 
+            var userService = new UserService();
+            Result result = await userService.UpdateProfileAsync(userName, UserId);
+            if (result.Success)
+            {
+                var claims = new ClaimsIdentity(HttpContext.User.Identity.AuthenticationType);
+                claims.AddClaims(HttpContext.User.Claims.Where(c => c.Type != ClaimTypes.Name));
+                claims.AddClaim(new Claim(ClaimTypes.Name, userName));
+                await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claims));
+            }
 
-            return View();
+            return Redirect("/account/profile");
         }
 
         [Authorize]
@@ -120,6 +135,12 @@ namespace Web.Controllers
         public async Task<IActionResult> GetProfileComments()
         {
             var comments = await new CommentService().GetUserCommentsAsync(UserId);
+            //TODO: to UI factory
+            foreach (var comment in comments)
+            {
+                comment.CreatedTimeRelative = Helper.GetRelativeTime(comment.Created);
+            }
+
             return new JsonResult(comments);
         }
 

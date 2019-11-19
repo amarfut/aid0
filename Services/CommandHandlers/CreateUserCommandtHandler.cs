@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Services.CommandHandlers
 {
-    public class CreateUserCommandtHandler : ICommandHandler<CreateUserCommand, Result<UserIdDto>>
+    public class CreateUserCommandtHandler : ICommandHandler<CreateUserCommand, Result<UserDto>>
     {
         protected DatabaseContext _db = new DatabaseContext();
 
-        public async Task<Result<UserIdDto>> HandleAsync(CreateUserCommand command)
+        public async Task<Result<UserDto>> HandleAsync(CreateUserCommand command)
         {
             var exists = await _db.Users.AsQueryable().Where(u => u.ExternalId == command.ExternalId).AnyAsync();
             if (exists)
             {
-                var update = Builders<User>.Update.Set("Name", command.Name).Set("PhotoUrl", command.PhotoUrl);
+                var update = Builders<User>.Update.Set("PhotoUrl", command.PhotoUrl);
                 await _db.Users.UpdateOneAsync(u => u.ExternalId == command.ExternalId, update);
             }
             else
@@ -33,7 +33,7 @@ namespace Services.CommandHandlers
             }
 
             var user = await _db.Users.Find(u => u.ExternalId == command.ExternalId).FirstOrDefaultAsync();
-            return Result.Ok(new UserIdDto(user.Id));
+            return Result.Ok(new UserDto() { Id = user.Id, Name = user.Name });
         }
 
     }

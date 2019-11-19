@@ -23,5 +23,13 @@ namespace Services.DTOs
         public string UserPhotoUrl { get; set; }
 
         public DateTime Created { get; set; }
+
+        public string CreatedTimeRelative { get; set; }
+
+        public int AnswersCount { get; set; }
+
+        public int Likes { get; set; }
+
+        public int Dislikes { get; set; }
     }
 }

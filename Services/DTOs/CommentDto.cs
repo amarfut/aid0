@@ -18,6 +18,7 @@ namespace Services.DTOs
         public CommentDto(Comment comment, Dictionary<string, string> userPhotoMap)
         {
             InitProperties(comment, userPhotoMap);
+            IsDeleted = comment.IsDeleted;
 
             foreach (Answer answer in comment.Answers)
             {
@@ -73,5 +74,7 @@ namespace Services.DTOs
         public List<CommentDto> Answers { get; set; } = new List<CommentDto>();
 
         public UserReaction UserReaction { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

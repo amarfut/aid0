@@ -35,7 +35,8 @@ namespace Services.CommandHandlers
                     Created = command.Created,
                     ParentCommentId = command.ParentCommentId,
                     UserId = command.UserId,
-                    UserName = command.UserName
+                    UserName = command.UserName,
+                    PostId = command.PostId
                 };
 
                 await _db.Answers.InsertOneAsync(answer);

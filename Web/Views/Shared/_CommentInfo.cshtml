@@ -6,14 +6,18 @@
     string thumbUpClass = "noReaction";
     string thumbDownClass = "noReaction";
 
-    string userId = Helper.GetUserId(User);
-
-    if (Model.WhoLiked.Contains(userId))
+    if (User.Identity.IsAuthenticated)
     {
-        thumbUpClass = "liked";
-    }
-    else if (Model.WhoDisliked.Contains(userId)) {
-        thumbDownClass = "disliked";
+        string userId = Helper.GetUserId(User);
+
+        if (Model.WhoLiked.Contains(userId))
+        {
+            thumbUpClass = "liked";
+        }
+        else if (Model.WhoDisliked.Contains(userId))
+        {
+            thumbDownClass = "disliked";
+        }
     }
 }
 
@@ -24,28 +28,46 @@
     <div>
         <div class="username">
             @Model.UserName
-            <span class="comment-created"> 1 час назад</span>
+
+            @if (!Model.IsDeleted)
+            {
+                <span class="comment-created">@Helper.GetRelativeTime(Model.Created)</span>
+            }
         </div>
-        <div class="comment-text">@Model.Text</div>
-        <span style="font-size:13px; font-weight:bold;">
-            <span id="@Model.Id-likes" class="@thumbUpClass">
-                <span class="comment-likes">@Model.Likes</span>
-                <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
-                    <i class="far fa-thumbs-up"></i>
+
+        @if (Model.IsDeleted)
+        {
+            <div class="deleted-comment-text">Комментарий был удален</div>
+        }
+        else
+        {
+            <div class="comment-text">@Model.Text</div>
+            <span style="font-size:13px; font-weight:bold;">
+                <span id="@Model.Id-likes" class="@thumbUpClass">
+                    <span class="comment-likes">@Model.Likes</span>
+                    <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
+                        <i class="far fa-thumbs-up"></i>
+                    </span>
                 </span>
-            </span>
-            
-            &nbsp;
-            <span id="@Model.Id-dislikes" class="@thumbDownClass">
-                <span class="comment-dislikes">@Model.Dislikes</span>
-                <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
-                    <i class="far fa-thumbs-down"></i>
+
+                &nbsp;
+                <span id="@Model.Id-dislikes" class="@thumbDownClass">
+                    <span class="comment-dislikes">@Model.Dislikes</span>
+                    <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
+                        <i class="far fa-thumbs-down"></i>
+                    </span>
                 </span>
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span data-bind="click: function() { displayAnswerCommentBox('@Model.Id', '@Model.ParentCommentId', true, '@Model.UserName') }" style="color:#296673; font-size:11px; cursor:pointer;">
+                        &nbsp;<b>Ответить</b>
+                    </span>
+                }
+
             </span>
-            
-            &nbsp;<span data-bind="click: function() { displayAnswerCommentBox('@Model.Id', '@Model.ParentCommentId', true, '@Model.UserName') }" style="color:#296673; font-size:11px; cursor:pointer;" >
-                <b>Ответить</b>
-            </span>
-        </span>
+        }
+
     </div>
 </div>

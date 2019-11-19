@@ -17,13 +17,23 @@ namespace Services.AppServices
 
         private GetLikedPostsQueryHandler _getLikedPostsQueryHandler { get; } = new GetLikedPostsQueryHandler();
 
-        
-        
+        private UpdateProfileCommandHandler _updateProfileCommandHandler { get; } = new UpdateProfileCommandHandler();
 
 
-        public async Task<Result<UserIdDto>> CreateUserAsync(string externalId, string name, string provider, string userPictureUrl)
+        public async Task<Result> UpdateProfileAsync(string userName, string userId)
+        { 
+            Result result = await _updateProfileCommandHandler.HandleAsync(new UpdateProfileCommand()
+            {
+                Username = userName,
+                UserId = userId
+            });
+
+            return result;
+        }
+
+        public async Task<Result<UserDto>> CreateUserAsync(string externalId, string name, string provider, string userPictureUrl)
         {
-            Result<UserIdDto> dto = await _createUserCommandtHandler
+            Result<UserDto> dto = await _createUserCommandtHandler
                 .HandleAsync(new CreateUserCommand(externalId, name, provider, userPictureUrl));
 
             return dto;

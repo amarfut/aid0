@@ -20,7 +20,6 @@ function AppCommentModel() {
         $(commentBoxId).val('');
         $(answerCommentBoxId).val('');
 
-        console.log(text);
         $.ajax({
             url: '/comment/addcomment',
             type: 'POST',
@@ -97,21 +96,3 @@ function AppCommentModel() {
 
 ko.applyBindings(new AppCommentModel(), document.getElementById('post-comments-form'));
 
-
-
-class UrlHelper {
-    makePost(url, data) {
-        $.ajax({
-            url: url,
-            type: 'POST',
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: (data) => {
-               
-            },
-            error: (error) => {
-               
-            }
-        });
-    }
-}

@@ -15,6 +15,8 @@ namespace Domain.Entities
 
         public string UserName { get; set; }
 
+        public string PostId { get; set; }
+
         [BsonIgnoreIfDefault]
         public string[] WhoLiked { get; set; } = new string[] { };
 
