@@ -18,11 +18,13 @@
     self.getSimilarPosts();
 }
 
+
+
 function MorePostsViewModel() {
     let self = this;
     self.morePosts = ko.observableArray([]);
     self.getMorePosts = function () {
-        $.get('/home/loadsimilarposts?type=1', function (posts) {
+        $.get('/home/loadsimilarposts?type=0', function (posts) {
             for (let post of posts) {
                 let p = {
                     title: post.title,
@@ -37,7 +39,11 @@ function MorePostsViewModel() {
     self.getMorePosts();
 }
 
-let elem = document.getElementById("more-posts");
-console.log(elem);
-ko.applyBindings(new SimilarPostsViewModel(), document.getElementById("similar-posts"));
-ko.applyBindings(new MorePostsViewModel(), elem);
+let similarPostsElem = document.getElementById("similar-posts");
+let morePostsElem = document.getElementById("more-posts");
+
+console.log(similarPostsElem);
+console.log(morePostsElem);
+
+ko.applyBindings(new SimilarPostsViewModel(), similarPostsElem);
+ko.applyBindings(new MorePostsViewModel(), morePostsElem);

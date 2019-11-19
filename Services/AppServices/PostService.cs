@@ -27,9 +27,10 @@ namespace Services.AppServices
         
 
 
-        public async Task<IEnumerable<PostPreviewDto>> GetSimilarPosts(PostType type)
+        public async Task<IEnumerable<PostPreviewDto>> GetSimilarPosts(PostType type = PostType.None)
         {
-            var posts = await _getRandomPostPreviewsQueryHandler.HandleAsync(new GetRandomPostPreviewsQuery(type, 3));
+            int number = type == PostType.None ? 6 : 3;
+            var posts = await _getRandomPostPreviewsQueryHandler.HandleAsync(new GetRandomPostPreviewsQuery(type, number));
             return posts;
         }
 

@@ -29,7 +29,7 @@
     </div>
     @Html.Raw(Model.Text)
 
-    <h4>Вас также может заинтересовать</h4>
+    <h4>Похожие записи</h4>
     <div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
         <!-- ko foreach: similarPosts -->
         <a data-bind="attr: { href: url }">
@@ -45,6 +45,7 @@
     @await Html.PartialAsync("_PostComments", Model)
 
     <p></p>
+    <h4>Вас также может заинтересовать</h4>
     <div id="more-posts" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap:10px;">
         <!-- ko foreach: morePosts -->
         <div >
@@ -57,4 +58,4 @@
     </div>
 
 </div>
-<script src="~/js/full-post.js"></script>
+<script src="~/js/full-post.js" async></script>

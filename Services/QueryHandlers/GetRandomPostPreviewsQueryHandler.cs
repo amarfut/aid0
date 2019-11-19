@@ -16,10 +16,18 @@ namespace Services.QueryHandlers
 
         public async Task<List<PostPreviewDto>> HandleAsync(GetRandomPostPreviewsQuery query)
         {
-            var postsPreviewsForType = await _db.Posts.AsQueryable()
+            List<Post> postsPreviewsForType = null;
+            if (query.PostType == Domain.PostType.None)
+            {
+                postsPreviewsForType = await _db.Posts.AsQueryable().Sample(query.Number).ToListAsync();
+            }
+            else
+            {
+                postsPreviewsForType = await _db.Posts.AsQueryable()
                         .Where(x => x.Type == (int)query.PostType)
                         .Sample(query.Number).ToListAsync();
-
+            }
+        
             return postsPreviewsForType.Select(p => new PostPreviewDto(p)).ToList();
         }
     }
