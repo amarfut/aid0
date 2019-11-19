@@ -1,43 +1,60 @@
 ﻿@model Services.DTOs.PostDto
 @using System.Text.RegularExpressions
 
+
 <div class="box full-post">
 
     <h1>@Model.Title</h1>
 
-    <div class="social-links-wrapper">
-        <a href="#">
-            <div class="li">
-                Поделиться в LinkedIn
+    <div>
+        <a href="#"
+           class="pure-button pure-button-primary" style="font-size:14px; background-color:#4c75a3;">
+            Поделиться ВКонтакте <i class="far fa-share-square"></i>
+        </a>
+        <a href="#"
+           class="pure-button pure-button-primary" style="font-size:14px; background-color: #898F9C;">
+            Поделиться в Facebook <i class="far fa-share-square"></i>
+        </a> <!-- #4267B2 -->
+        <a href="#"
+           class="pure-button pure-button-primary" style="font-size:14px; background-color:#2867B2;">
+            Поделиться LinkedIn <i class="far fa-share-square"></i>
+        </a>
+
+    </div>
+    <div class="post-statistic">
+        <div><i class="far fa-eye"></i> @Model.ViewsFormatted</div>
+        <div><i class="far fa-comment"></i> @Model.CommentsCount </div>
+        <div><i class="far fa-thumbs-up"></i> @Model.Likes </div>
+        <div> <i class="far fa-thumbs-down"></i> @Model.Dislikes</div>
+    </div>
+    @Html.Raw(Model.Text)
+
+    <h4>Вас также может заинтересовать</h4>
+    <div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
+        <!-- ko foreach: similarPosts -->
+        <a data-bind="attr: { href: url }">
+            <div>
+                <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
+                <span data-bind="text: title" style="font-size:20px;"></span>
             </div>
         </a>
-        <a href="#">
-            <div class="fb">
-                Поделиться Вконтакте
-            </div>
-        </a>
-        <a href="#">
-            <div class="vk">
-                Поделиться в Фейсбук
-            </div>
-        </a>
+        <!-- /ko -->
     </div>
 
-    @*@{
-        var imagesCount = Regex.Matches(Model.Text,@"[*]\d[*]").Count;
-
-        string baseImageUrl = $"https://storage.cloud.google.com/youit/{Model.Url}/";
-
-        for (int i = 1; i <= imagesCount; i++)
-        {
-            string imageUrl = baseImageUrl + i + ".png";
-            string imgTag = $"<img src='{imageUrl}' />";
-            Model.Text.Replace($"*{i}*", imgTag);
-        }
-    }*@
-
-    @Html.Raw(Model.Text)
 
     @await Html.PartialAsync("_PostComments", Model)
 
+    <p></p>
+    <div id="more-posts" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap:10px;">
+        <!-- ko foreach: morePosts -->
+        <div >
+            <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }"  />
+            <a data-bind="attr: { href: url }">
+                <span  style="font-size:20px;" data-bind="text: title"></span>
+            </a>
+        </div>
+        <!-- /ko -->
+    </div>
+
 </div>
+<script src="~/js/full-post.js"></script>

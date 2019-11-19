@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using Domain;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace Services.DTOs
             Text = post.Text;
             CommentsCount = post.CommentsCount;
             Views = post.Views;
+            Likes = post.WhoLiked.Length;
+            Dislikes = post.WhoDisliked.Length;
+            Type = (PostType)post.Type;
 
             foreach (var comment in comments)
             {
@@ -29,6 +33,18 @@ namespace Services.DTOs
         public string Text { get; set; }
         public int CommentsCount { get; set; }
         public int Views { get; set; }
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
+
+        public string ViewsFormatted
+        {
+            get
+            {
+                return Views > 1000 ? Math.Floor((double)(Views / 1000)).ToString() + "k" : Views.ToString();
+            }
+        }
+
+        public PostType Type { get; set; }
 
         public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
     }

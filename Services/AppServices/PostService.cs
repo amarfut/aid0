@@ -24,6 +24,14 @@ namespace Services.AppServices
         private SetPostReactionCommandHandler _setPostReactionCommandHandler = new SetPostReactionCommandHandler();
         private GetPostPreviewsQueryHandler _getPostPreviewsQueryHandler = new GetPostPreviewsQueryHandler();
         private AddPostToBookmarksCommandHandler _addPostToBookmarksCommandHandler = new AddPostToBookmarksCommandHandler();
+        
+
+
+        public async Task<IEnumerable<PostPreviewDto>> GetSimilarPosts(PostType type)
+        {
+            var posts = await _getRandomPostPreviewsQueryHandler.HandleAsync(new GetRandomPostPreviewsQuery(type, 3));
+            return posts;
+        }
 
         private GetUserBookmarksQueryHandler _getUserBookmarksQueryHandler = new GetUserBookmarksQueryHandler();
         private DeleteCommentCommandHandler _deleteCommentCommandHandler = new DeleteCommentCommandHandler();

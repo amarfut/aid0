@@ -77,7 +77,7 @@ using Web.Models;
                 ");
             EndContext();
             BeginContext(321, 202, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df403c20a89544dba63f9f459b3762a8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a609c14fcfef429a89d4346b95db7abf", async() => {
                 BeginContext(428, 91, true);
                 WriteLiteral("\r\n                    <i class=\"fab fa-google\" style=\"color:#ae0303\"></i>\r\n                ");
                 EndContext();
@@ -108,7 +108,7 @@ using Web.Models;
             WriteLiteral("\r\n            </div>\r\n\r\n            <div>\r\n                ");
             EndContext();
             BeginContext(582, 208, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e759fa97d26c47c48b5f94757b4d9694", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d13095fa8ac4cd4bf652ad4c64345cb", async() => {
                 BeginContext(693, 93, true);
                 WriteLiteral("\r\n                    <i class=\"fab fa-facebook\" style=\"color:#0f286d\"></i>\r\n                ");
                 EndContext();
@@ -139,7 +139,7 @@ using Web.Models;
             WriteLiteral("\r\n            </div>\r\n\r\n            <div>\r\n                ");
             EndContext();
             BeginContext(849, 197, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "23495b002b4f479e9290aecc5d049769", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98d1ce232eec4432b999a89cb62bb706", async() => {
                 BeginContext(955, 87, true);
                 WriteLiteral("\r\n                    <i class=\"fab fa-vk\" style=\"color:#203469\"></i>\r\n                ");
                 EndContext();

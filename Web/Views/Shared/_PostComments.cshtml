@@ -1,6 +1,7 @@
 ﻿@model Services.DTOs.PostDto
 @using Web.Utils
 
+
 <a id="begin-comments"></a>
 <h3>Комментарии</h3>
 
@@ -37,7 +38,7 @@
             </h5>
         </p>
     }
-    else 
+    else
     {
         @await Html.PartialAsync("_CommentForm", new Tuple<string, string>(Model.Id, ""))
     }

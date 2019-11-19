@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
@@ -27,6 +28,11 @@ namespace Web.Controllers
         public async Task<IEnumerable<PostPreviewDto>> LoadPosts(int skip)
         {
             return await _postService.GetPostPreviews(skip);
+        }
+
+        public async Task<IEnumerable<PostPreviewDto>> LoadSimilarPosts(PostType type)
+        {
+            return await _postService.GetSimilarPosts(type);
         }
 
         public async Task<IActionResult> Post(string url)
