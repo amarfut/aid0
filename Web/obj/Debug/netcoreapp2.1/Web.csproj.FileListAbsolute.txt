@@ -103,7 +103,6 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.csprojAssemblyRefere
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.csproj.CoreCompileInputs.cache
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.RazorAssemblyInfo.cache
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.RazorAssemblyInfo.cs
-C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.AssemblyInfoInputs.cache
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.AssemblyInfo.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Web.TagHelpers.input.cache
@@ -140,3 +139,4 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Contact
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Cookies.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Privacy.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\TermsAndConditions.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "AspNet.Security.OAuth.Vkontakte/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AspNet.Security.OAuth.Vkontakte.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AspNet.Security.OAuth.Vkontakte.dll": {}
+        }
+      },
       "DnsClient/1.2.0": {
         "type": "package",
         "dependencies": {
@@ -5045,6 +5057,20 @@
     }
   },
   "libraries": {
+    "AspNet.Security.OAuth.Vkontakte/2.1.0": {
+      "sha512": "HavEIFbG6zuLyhRoet1SciYB0XsLJgijHQRPvKyQqYOO9AWV/Q9AFrmWeauxNwyjpVeA9fYHs+rDRH1k/vYlYw==",
+      "type": "package",
+      "path": "aspnet.security.oauth.vkontakte/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aspnet.security.oauth.vkontakte.2.1.0.nupkg.sha512",
+        "aspnet.security.oauth.vkontakte.nuspec",
+        "lib/netstandard2.0/AspNet.Security.OAuth.Vkontakte.dll",
+        "lib/netstandard2.0/AspNet.Security.OAuth.Vkontakte.pdb",
+        "lib/netstandard2.0/AspNet.Security.OAuth.Vkontakte.xml"
+      ]
+    },
     "DnsClient/1.2.0": {
       "sha512": "P34wUkeqU4FoQiOMV8OjpdeDZKs4d3r+VlHuKJ6eO5feiZgna3+9MF5orHRUn3DAv1g/HPE5hlkGucmxmsFfBw==",
       "type": "package",
@@ -13571,6 +13597,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "AspNet.Security.OAuth.Vkontakte >= 2.1.0",
       "Common >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Authentication.Google >= 2.1.1",
@@ -13628,6 +13655,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "AspNet.Security.OAuth.Vkontakte": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",

@@ -1,5 +1,24 @@
 ﻿@model Services.DTOs.PostDto
+@using Web.Utils
 @using System.Text.RegularExpressions
+
+@{
+    string thumbUpClass = "noReaction";
+    string thumbDownClass = "noReaction";
+
+    if (User.Identity.IsAuthenticated)
+    {
+        string userId = Helper.GetUserId(User);
+        if (Model.WhoLiked.Contains(userId))
+        {
+            thumbUpClass = "liked";
+        }
+        else if (Model.WhoDisliked.Contains(userId))
+        {
+            thumbDownClass = "disliked";
+        }
+    }
+}
 
 
 <div class="box full-post">
@@ -8,38 +27,43 @@
 
     <div>
         <a href="#"
-           class="pure-button pure-button-primary" style="font-size:14px; background-color:#4c75a3;">
+           class="pure-button pure-button-primary" style="font-size:14px; background-color:#4c75a3; margin-bottom:3px;">
             Поделиться ВКонтакте <i class="far fa-share-square"></i>
         </a>
         <a href="#"
-           class="pure-button pure-button-primary" style="font-size:14px; background-color: #898F9C;">
+           class="pure-button pure-button-primary" style="font-size:14px; background-color: #898F9C; margin-bottom:3px;">
             Поделиться в Facebook <i class="far fa-share-square"></i>
         </a> <!-- #4267B2 -->
         <a href="#"
-           class="pure-button pure-button-primary" style="font-size:14px; background-color:#2867B2;">
+           class="pure-button pure-button-primary" style="font-size:14px; background-color:#2867B2; margin-bottom:3px;">
             Поделиться LinkedIn <i class="far fa-share-square"></i>
         </a>
 
     </div>
-    <div class="post-statistic">
+    <div id="post-statistic">
         <div><i class="far fa-eye"></i> @Model.ViewsFormatted</div>
-        <div><i class="far fa-comment"></i> @Model.CommentsCount </div>
-        <div><i class="far fa-thumbs-up"></i> @Model.Likes </div>
-        <div> <i class="far fa-thumbs-down"></i> @Model.Dislikes</div>
+        <div><a href="#begin-comments"><i class="far fa-comment"></i> @Model.CommentsCount</a> </div>
+
+        <div id="post-likes" class="@thumbUpClass" data-bind="click: function() { setLike('@Model.Id') }" style="cursor:pointer;">
+            <i class="far fa-thumbs-up"></i> <span>@Model.Likes</span>
+        </div>
+        <div id="post-dislikes" class="@thumbDownClass" data-bind="click: function() { setDislike('@Model.Id') }" style="cursor:pointer;">
+            <i class="far fa-thumbs-down"></i> <span>@Model.Dislikes</span>
+        </div>
     </div>
     @Html.Raw(Model.Text)
 
 
     @*<div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
-        <!-- ko foreach: similarPosts -->
-        <a data-bind="attr: { href: url }">
-            <div>
-                <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
-                <span data-bind="text: title" style="font-size:20px;"></span>
-            </div>
-        </a>
-        <!-- /ko -->
-    </div>*@
+            <!-- ko foreach: similarPosts -->
+            <a data-bind="attr: { href: url }">
+                <div>
+                    <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
+                    <span data-bind="text: title" style="font-size:20px;"></span>
+                </div>
+            </a>
+            <!-- /ko -->
+        </div>*@
 
 
     @await Html.PartialAsync("_PostComments", Model)
@@ -48,10 +72,10 @@
     <h4>Вас также может заинтересовать</h4>
     <div id="more-posts" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap:10px;">
         <!-- ko foreach: morePosts -->
-        <div >
-            <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }"  />
+        <div>
+            <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
             <a data-bind="attr: { href: url }">
-                <span  style="font-size:20px;" data-bind="text: title"></span>
+                <span style="font-size:20px;" data-bind="text: title"></span>
             </a>
         </div>
         <!-- /ko -->

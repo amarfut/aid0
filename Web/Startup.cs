@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 
 namespace Web
@@ -72,7 +73,7 @@ namespace Web
                     options.ClientSecret = Configuration["Authentication:Facebook:ClientSecret"];
                     options.Events = new OAuthEvents
                     {
-                        OnCreatingTicket = context =>
+                       OnCreatingTicket = context =>
                        {
                            var identity = (ClaimsIdentity)context.Principal.Identity;
                            Claim nameIdentifier = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
@@ -81,7 +82,47 @@ namespace Web
                            return Task.FromResult(0);
                        }
                     };
+                })
+                .AddVkontakte("VKontakte", options =>
+                {
+                    options.ClientId = Configuration["Authentication:VK:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:VK:ClientSecret"];
+
+                    options.Events = new OAuthEvents
+                    {
+                        OnCreatingTicket = context =>
+                        {
+                            var identity = (ClaimsIdentity)context.Principal.Identity;
+                            return Task.FromResult(0);
+                        }
+                    };
                 });
+                
+                 //.AddOAuth("VKontakte", options =>
+                 //{
+                 //    options.ClientId = Configuration["Authentication:VK:ClientId"];
+                 //    options.ClientSecret = Configuration["Authentication:VK:ClientSecret"];
+                 //    options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                 //    options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                 //    options.CallbackPath = new PathString("/signin-vk");
+                 //    options.UserInformationEndpoint = "https://api.vk.com/method/users.get";
+                 //    options.Scope.Add("");
+
+
+                 //    options.ClaimActions.MapJsonKey("test", "nickname");
+
+                 //    options.Events = new OAuthEvents
+                 //    {
+                 //        OnCreatingTicket = context =>
+                 //        {
+                 //            var identity = (ClaimsIdentity)context.Principal.Identity;
+                 //            //Claim nameIdentifier = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                 //            //string profileImg = $"https://graph.facebook.com/{nameIdentifier.Value}/picture?type=large";
+                 //            //identity.AddClaim(new Claim(Constants.ProfileImage, profileImg));
+                 //            return Task.FromResult(0);
+                 //        }
+                 //    };
+                 //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,7 +143,7 @@ namespace Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -15,16 +15,24 @@ namespace Web.Controllers
     {
         private CommentService _commentService = new CommentService();
 
-        [Authorize]
         public async Task<IActionResult> AddComment([FromBody]AddCommentDto dto)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Forbid();
+            }
+
             Result result = await _commentService.AddCommentAsync(dto, UserId, UserName, UserPhotoUrl);
             return FromResult(result);
         }
 
-        [Authorize]
+   
         public async Task<IActionResult> SetCommentReaction([FromBody]CommentReactionDto dto)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Forbid();
+            }
             Result<ReactionDto> result = await _commentService.SetCommentReactionAsync(dto, UserId);
             return FromResult(result);
         }

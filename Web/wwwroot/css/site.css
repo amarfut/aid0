@@ -17,17 +17,21 @@ body {
     font-weight: normal;
 }
 
-.post-statistic {
+#post-statistic {
     float: right;
     width: 100px;
     margin: 10px -10px 10px 15px; /*top right bottom left*/
     color: #9b9b9b;
 }
 
-.post-statistic div {
-    padding: 10px 10px 0px 10px;
-   
-}
+
+    #post-statistic a {
+        color: #9b9b9b;
+    }
+
+    #post-statistic div {
+        padding: 10px 10px 0px 10px;
+    }
 
 .button-xsmall {
     width: 50%;

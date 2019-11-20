@@ -31,7 +31,7 @@
                     <a href="#" class="mobile-menu-button" onclick="toogleSodeMenu()">
                         <i class="fa fa-search"></i>
                     </a>
-                    <a href="/Home/Index">youIT</a>
+                    <a href="/">youIT</a>
                 </div>
                 <div class="menu">
                     @await Component.InvokeAsync("TopMenu")
@@ -60,27 +60,7 @@
                             <span onclick="loadAuthorizeModal()" style="color:#adadad; cursor:pointer; font-weight:100;"><i class="fas fa-sign-in-alt"></i>&nbsp;логин</span>
                         }
                     </div>
-
-
-                    @*<div style="float:left;">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                            <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
-                            <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
-                            }
-                            else
-                            {
-                            <a onclick="loadAuthorizeModal()">логин</a>
-                            }
-                        </div>
-
-
-                        <div class="search" style="float:right;">
-
-                        </div>*@
-
                 </div>
-
             </div>
         </div>
         <div class="box sidebar scrollbar">

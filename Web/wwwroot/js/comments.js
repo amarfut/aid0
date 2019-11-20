@@ -79,16 +79,16 @@ function AppCommentModel() {
                 else if (data.reaction === 2) {
                     $(`#${commentId}-likes`).addClass("liked");
                     $(`#${commentId}-dislikes`).addClass('noReaction');
-
                 }
                 else if (data.reaction === 3) {
                     $(`#${commentId}-dislikes`).addClass("disliked");
                     $(`#${commentId}-likes`).addClass('noReaction');
-
                 }
             },
             error: (error) => {
-                console.log(error);
+                if (error.status === 403) {
+                    $('#authorizeModal').modal('show');
+                }
             }
         });
     };

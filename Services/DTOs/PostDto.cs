@@ -20,6 +20,8 @@ namespace Services.DTOs
             Likes = post.WhoLiked.Length;
             Dislikes = post.WhoDisliked.Length;
             Type = (PostType)post.Type;
+            WhoLiked = post.WhoLiked;
+            WhoDisliked = post.WhoDisliked;
 
             foreach (var comment in comments)
             {
@@ -35,6 +37,9 @@ namespace Services.DTOs
         public int Views { get; set; }
         public int Likes { get; set; }
         public int Dislikes { get; set; }
+
+        public string[] WhoLiked { get; set; }
+        public string[] WhoDisliked { get; set; }
 
         public string ViewsFormatted
         {
