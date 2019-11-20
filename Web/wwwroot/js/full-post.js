@@ -1,22 +1,22 @@
-﻿function SimilarPostsViewModel() {
-    let self = this;
-    self.similarPosts = ko.observableArray([]);
+﻿//function SimilarPostsViewModel() {
+//    let self = this;
+//    self.similarPosts = ko.observableArray([]);
 
-    self.getSimilarPosts = function () {
-        $.get('/home/loadsimilarposts?type=1', function (posts) {
-            for (let post of posts) {
-                let p = {
-                    title: post.title,
-                    url: '/home/post?url=' + post.url,
-                    image: 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png'
-                };
-                self.similarPosts.push(p);
-            }
-        });
-    };
+//    self.getSimilarPosts = function () {
+//        $.get('/home/loadsimilarposts?type=1', function (posts) {
+//            for (let post of posts) {
+//                let p = {
+//                    title: post.title,
+//                    url: '/home/post?url=' + post.url,
+//                    image: 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png'
+//                };
+//                self.similarPosts.push(p);
+//            }
+//        });
+//    };
 
-    self.getSimilarPosts();
-}
+//    self.getSimilarPosts();
+//}
 
 
 
@@ -39,11 +39,11 @@ function MorePostsViewModel() {
     self.getMorePosts();
 }
 
-let similarPostsElem = document.getElementById("similar-posts");
+//let similarPostsElem = document.getElementById("similar-posts");
 let morePostsElem = document.getElementById("more-posts");
 
-console.log(similarPostsElem);
+//console.log(similarPostsElem);
 console.log(morePostsElem);
 
-ko.applyBindings(new SimilarPostsViewModel(), similarPostsElem);
+//ko.applyBindings(new SimilarPostsViewModel(), similarPostsElem);
 ko.applyBindings(new MorePostsViewModel(), morePostsElem);

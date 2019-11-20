@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using Services.Utils;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Services.CommandHandlers
 {
@@ -15,6 +16,7 @@ namespace Services.CommandHandlers
 
         public async Task<Result> HandleAsync(AddCommentCommand command)
         {
+            var commentId = ObjectId.GenerateNewId();
             if (string.IsNullOrEmpty(command.ParentCommentId))
             {
                 var comment = new Comment()
@@ -23,7 +25,8 @@ namespace Services.CommandHandlers
                     Created = command.Created,
                     PostId = command.PostId,
                     UserId = command.UserId,
-                    UserName = command.UserName
+                    UserName = command.UserName,
+                    InternalId = commentId
                 };
 
                 await _db.Comments.InsertOneAsync(comment);
@@ -37,35 +40,46 @@ namespace Services.CommandHandlers
                     ParentCommentId = command.ParentCommentId,
                     UserId = command.UserId,
                     UserName = command.UserName,
-                    PostId = command.PostId
+                    PostId = command.PostId,
+                    InternalId = commentId
                 };
 
                 await _db.Answers.InsertOneAsync(answer);
             }
 
-            InsertInLatestComments(command);
-
             var increment = Builders<Post>.Update.Inc(p => p.CommentsCount, 1);
             await _db.Posts.UpdateOneAsync(p => p.InternalId == ObjectId.Parse(command.PostId), increment);
+
+            InsertInLatestComments(commentId, command);
 
             return Result.Ok();
         }
 
-        private async Task InsertInLatestComments(AddCommentCommand command)
+        private async Task InsertInLatestComments(ObjectId commentId, AddCommentCommand command)
         {
+            var post = await _db.Posts.Find(p => p.InternalId == ObjectId.Parse(command.PostId)).FirstOrDefaultAsync();
+            if (post == null) return;
+
             var preview = new CommentPreview()
             {
                 Created = DateTime.UtcNow,
                 PostId = command.PostId,
-                PostTitle = command.PostTitle,
+                PostTitle = post.Title,
                 UserPhotoUrl = command.UserPhotoUrl,
-                PostUrl = command.PostUrl,
+                PostUrl = post.Url,
                 Text = command.Text,
                 UserId = command.UserId,
                 UserName = command.UserName,
+                CommentId = commentId.ToString()
             };
 
-            await _db.LatestComments.InsertOneAsync(preview);
+            var comments = await _db.LatestComments.Find(_ => true).ToListAsync();
+            comments.Add(preview);
+            var sortedComments = comments.OrderByDescending(c => c.Created).Take(15);
+
+            _db.LatestComments.DeleteMany(_ => true);
+
+            await _db.LatestComments.InsertManyAsync(sortedComments);
         }
     }
 }

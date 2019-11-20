@@ -81,7 +81,8 @@ namespace Services.AppServices
             return await _deleteCommentCommandHandler.HandleAsync(new DeleteCommentCommand()
             {
                 CommentId = comment.CommentId,
-                TopLevel = comment.TopLevel
+                TopLevel = comment.TopLevel,
+                PostUrl = comment.PostUrl
             });
         }
             

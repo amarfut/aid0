@@ -7,8 +7,6 @@ namespace Domain.Commands
         public string Text { get; set; }
 
         public string PostId { get; set; }
-        public string PostTitle { get; set; }
-        public string PostUrl { get; set; }
 
         public string UserId { get; set; }
 

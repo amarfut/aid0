@@ -29,8 +29,8 @@
     </div>
     @Html.Raw(Model.Text)
 
-    <h4>Похожие записи</h4>
-    <div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
+
+    @*<div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
         <!-- ko foreach: similarPosts -->
         <a data-bind="attr: { href: url }">
             <div>
@@ -39,7 +39,7 @@
             </div>
         </a>
         <!-- /ko -->
-    </div>
+    </div>*@
 
 
     @await Html.PartialAsync("_PostComments", Model)

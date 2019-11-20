@@ -44,8 +44,6 @@ namespace Services.AppServices
                 UserId = userId,
                 Text = dto.Text,
                 ParentCommentId = dto.ParentCommentId,
-                PostUrl = dto.PostUrl,
-                PostTitle = dto.PostTitle,
                 UserPhotoUrl = userPhotoUrl
             });
         }

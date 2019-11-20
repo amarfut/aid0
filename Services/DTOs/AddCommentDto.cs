@@ -11,9 +11,5 @@ namespace Services.DTOs
         public string PostId { get; set; }
 
         public string ParentCommentId { get; set; }
-
-        public string PostTitle { get; set; }
-
-        public string PostUrl { get; set; }
     }
 }

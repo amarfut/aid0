@@ -19,7 +19,7 @@ namespace Domain.Entities
         public DateTime Created { get; set; }
 
         public int CommentsCount { get; set; }
-
+        
         public int Views { get; set; }
 
         [BsonIgnoreIfDefault]

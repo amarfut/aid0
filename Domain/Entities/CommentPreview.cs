@@ -20,5 +20,7 @@ namespace Domain.Entities
 
         public string PostTitle { get; set; }
         public string PostUrl { get; set; }
+
+        public string CommentId { get; set; }
     }
 }

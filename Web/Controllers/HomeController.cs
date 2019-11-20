@@ -68,9 +68,11 @@ namespace Web.Controllers
             return View(post);
         }
 
-        public IActionResult Search(string term)
+        public RedirectResult Search(string term)
         {
-            return View((object)term);
+            string sitesearch = "martinfowler.com";
+            string url = $"https://www.google.com/search?q={term}&sitesearch={sitesearch}";
+            return Redirect(new Uri(url).AbsoluteUri);
         }
 
         public async Task<IActionResult> SetPostReaction([FromBody] PostReactionDto dto)

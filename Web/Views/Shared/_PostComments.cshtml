@@ -2,7 +2,7 @@
 @using Web.Utils
 
 @{
-    int totalCommentsCount = @Model.Comments.Count + @Model.Comments.Select(c => c.Answers).Count();
+    int totalCommentsCount = @Model.Comments.Count + @Model.Comments.SelectMany(c => c.Answers).Count();
 }
 
 <a id="begin-comments"></a>

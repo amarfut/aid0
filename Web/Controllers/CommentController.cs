@@ -18,7 +18,7 @@ namespace Web.Controllers
         [Authorize]
         public async Task<IActionResult> AddComment([FromBody]AddCommentDto dto)
         {
-            Result result = await _commentService.AddCommentAsync(dto, UserId, UserName, "new not implemented exception");
+            Result result = await _commentService.AddCommentAsync(dto, UserId, UserName, UserPhotoUrl);
             return FromResult(result);
         }
 

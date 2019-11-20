@@ -38,22 +38,21 @@
                 </div>
                 <div class="login-bar">
 
-
-                    <div class="search" style=" margin-top:-3px; width:200px;float:left;">
+                    <div class="search" style=" margin-top:-5px; width:200px;float:left;">
                         <form id="searchForm" method="post" asp-action="Search" class="desktop">
-                            <div style="position:relative; ">
-                                <input type="text" style="font-weight:100;" class="searchTerm" name="term" placeholder="Что ищем?">
-                                <a href="#" onclick="document.getElementById('searchForm').submit();">
+                            <div style="position:relative;">
+                                <input id="searchBox" type="text" style="font-weight:100;" class="searchTerm" name="term" placeholder="Что ищем?">
+                                <a href="#" onclick="searchClick()">
                                     <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:6px;"></i>
                                 </a>
                             </div>
                         </form>
                     </div>
 
-                    <div style="float:right; margin-top:3px;">
+                    <div style="float:right;">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
+                            <a asp-controller="Account" asp-action="Profile">@User.Identity.Name</a>
                             <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
                         }
                         else
@@ -61,24 +60,24 @@
                             <span onclick="loadAuthorizeModal()" style="color:#adadad; cursor:pointer; font-weight:100;"><i class="fas fa-sign-in-alt"></i>&nbsp;логин</span>
                         }
                     </div>
-                   
+
 
                     @*<div style="float:left;">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
-                <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
-            }
-            else
-            {
-                <a onclick="loadAuthorizeModal()">логин</a>
-            }
-        </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                            <a asp-controller="Account" asp-action="Profile"><b>@User.Identity.Name</b></a>
+                            <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+                            }
+                            else
+                            {
+                            <a onclick="loadAuthorizeModal()">логин</a>
+                            }
+                        </div>
 
 
-        <div class="search" style="float:right;">
+                        <div class="search" style="float:right;">
 
-        </div>*@
+                        </div>*@
 
                 </div>
 
@@ -93,6 +92,11 @@
         @await Html.PartialAsync("_Footer")
 
         <script>
+            searchClick = () => {
+                if (!$('#searchBox').val()) return;
+                document.getElementById('searchForm').submit();
+            }
+
             toogleSodeMenu = () => {
                 $('.mobile-menu').toggle();
             }

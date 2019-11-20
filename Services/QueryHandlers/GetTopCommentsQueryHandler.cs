@@ -26,7 +26,7 @@ namespace Services.QueryHandlers
 
             var result = comments.Select(c => new CommentPreviewDto()
             {
-                CommentId = c.Id,
+                CommentId = c.CommentId,
                 Text = c.Text,
                 UserId = c.UserId,
                 PostTitle = c.PostTitle,

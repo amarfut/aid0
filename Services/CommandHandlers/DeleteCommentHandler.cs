@@ -17,8 +17,6 @@ namespace Services.CommandHandlers
         {
             if (command.TopLevel)
             {
-                //Comment topComment = await _db.Comments.Find(x => x.InternalId == ObjectId.Parse(command.CommentId)).FirstOrDefaultAsync();
-
                 bool hasAnswers = await _db.Answers.AsQueryable().Where(a => a.ParentCommentId == command.CommentId).AnyAsync();
                 if (hasAnswers)
                 {
@@ -35,8 +33,8 @@ namespace Services.CommandHandlers
                 await _db.Answers.DeleteOneAsync(x => x.InternalId == ObjectId.Parse(command.CommentId));
             }
 
-            //var increment = Builders<Post>.Update.Inc(p => p.CommentsCount, -1);
-            //await _db.Posts.UpdateOneAsync(p => p.InternalId == ObjectId.Parse(command.PostId), increment);
+            _db.Posts.UpdateOneAsync(p => p.Url == command.PostUrl, Builders<Post>.Update.Inc(p => p.CommentsCount, -1));
+            _db.LatestComments.DeleteOneAsync(c => c.CommentId == command.CommentId);
 
             return Result.Ok();
         }

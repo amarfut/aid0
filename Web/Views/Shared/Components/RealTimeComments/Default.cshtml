@@ -6,30 +6,32 @@
 <p></p>
 @foreach (var comment in Model)
 {
-    <div style="margin-top:30px;">
-        <div class="user-ava" style="float:left;">
-          
-            @if (string.IsNullOrEmpty(comment.UserPhotoUrl))
-            {
-                <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
-            }
-            else
-            {
-                <img src="@comment.UserPhotoUrl" />
-            }
-        </div>
-        <span style="font-size:15px; ">
-            <span style="color:#2d66a3;">@comment.UserName</span> <br />
-            <span style="font-weight:bold; font-size:11px;">@comment.PostTitle</span>
-        </span>
-        <div style="clear:both"></div>
+    int last = comment.Text.Length > 120 ? 120 : comment.Text.Length;
+    string url = $"/home/post/?url={comment.PostUrl}#{comment.CommentId}";
 
-        @{
-            int last = comment.Text.Length > 120 ? 120 : comment.Text.Length;
-            string url = $"/home/post/?url={comment.PostUrl}#{comment.CommentId}";
-        }
-        <div style="font-size:14px; padding-top:5px; font-style:italic;">
-            <a href="@url">@comment.Text.Substring(0, last)...</a>
-        </div>
+    <div style="margin-top:30px;">
+        <a href="@url">
+            <div class="user-ava" style="float:left;">
+
+                @if (string.IsNullOrEmpty(comment.UserPhotoUrl))
+                {
+                    <i class="fas fa-portrait" style="font-size:64px; color:#99afbe;"></i>
+                }
+                else
+                {
+                    <img src="@comment.UserPhotoUrl" />
+                }
+            </div>
+            <span style="font-size:15px; ">
+                <span style="color:#2d66a3;">@comment.UserName</span> <br />
+                <span style="font-weight:bold; font-size:11px;">@comment.PostTitle</span>
+            </span>
+            <div style="clear:both"></div>
+
+            <div style="font-size:14px; padding-top:5px; font-style:italic;">
+                @comment.Text.Substring(0, last)...
+
+            </div>
+        </a>
     </div>
 }
