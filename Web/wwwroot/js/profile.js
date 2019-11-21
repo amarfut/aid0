@@ -23,7 +23,7 @@ function ProfileCommentsViewModel() {
     };
 
     self.delete = function (comment) {
-        if (confirm("Вы действительно хотите удалить комментарий?")) {
+        if (confirm("Are you sure?")) {
             const commentId = comment.commentId;
             const isTopLevel = comment.parentCommentId === null;
             $.ajax({

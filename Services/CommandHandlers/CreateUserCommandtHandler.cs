@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Domain.Commands;
 using Domain.Entities;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Services.DTOs;
@@ -15,26 +16,27 @@ namespace Services.CommandHandlers
 
         public async Task<Result<UserDto>> HandleAsync(CreateUserCommand command)
         {
-            var exists = await _db.Users.AsQueryable().Where(u => u.ExternalId == command.ExternalId).AnyAsync();
-            if (exists)
+            var user = await _db.Users.Find(u => u.ExternalId == command.ExternalId).FirstOrDefaultAsync();
+
+            if (user != null)
             {
                 var update = Builders<User>.Update.Set("PhotoUrl", command.PhotoUrl);
-                await _db.Users.UpdateOneAsync(u => u.ExternalId == command.ExternalId, update);
+                await _db.Users.UpdateOneAsync(u => u.InternalId == user.InternalId, update);
+                return Result.Ok(new UserDto() { Id = user.Id, Name = user.Name });
             }
             else
             {
+                var userObjectId = ObjectId.GenerateNewId();
                 await _db.Users.InsertOneAsync(new User
                 {
                     ExternalId = command.ExternalId,
                     Name = command.Name,
                     Provider = command.Provider,
-                    PhotoUrl = command.PhotoUrl
+                    PhotoUrl = command.PhotoUrl,
+                    InternalId = userObjectId
                 });
+                return Result.Ok(new UserDto() { Id = userObjectId.ToString(), Name = user.Name });
             }
-
-            var user = await _db.Users.Find(u => u.ExternalId == command.ExternalId).FirstOrDefaultAsync();
-            return Result.Ok(new UserDto() { Id = user.Id, Name = user.Name });
         }
-
     }
 }

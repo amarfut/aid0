@@ -92,7 +92,16 @@ namespace Web
                     {
                         OnCreatingTicket = context =>
                         {
+                            string givenname = context.Principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value;
+                            string surname = context.Principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Surname)?.Value;
+                            string photo = context.Principal.Claims.FirstOrDefault(c => c.Type == "urn:vkontakte:photo_thumb:link")?.Value;
+
+                            string userName = $"{givenname} {surname}";
+
                             var identity = (ClaimsIdentity)context.Principal.Identity;
+                            identity.AddClaim(new Claim(ClaimTypes.Name, userName));
+                            identity.AddClaim(new Claim(Constants.ProfileImage, photo));
+
                             return Task.FromResult(0);
                         }
                     };

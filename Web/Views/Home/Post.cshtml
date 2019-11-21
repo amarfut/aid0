@@ -72,9 +72,9 @@
     <h4>Вас также может заинтересовать</h4>
     <div id="more-posts" style="display:grid; grid-template-columns: 1fr 1fr; grid-gap:10px;">
         <!-- ko foreach: morePosts -->
-        <div>
-            <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
+        <div style="margin-bottom:30px;">
             <a data-bind="attr: { href: url }">
+                <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
                 <span style="font-size:20px;" data-bind="text: title"></span>
             </a>
         </div>
