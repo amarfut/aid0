@@ -77,7 +77,7 @@ using Web.Models;
                 ");
             EndContext();
             BeginContext(348, 307, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab0e1ecc29ef44a4bd975321030f5476", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "235383c71ad74b28b8614de50f4b9921", async() => {
                 BeginContext(455, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();
@@ -111,7 +111,7 @@ using Web.Models;
             WriteLiteral("\r\n            </div>\r\n\r\n            <div>\r\n                ");
             EndContext();
             BeginContext(714, 238, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a5ca10408e4c2dbacc8d7b8bbd8827", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "65533752ce82408fac197840a1518819", async() => {
                 BeginContext(825, 123, true);
                 WriteLiteral("\r\n                    <img src=\"https://storage.googleapis.com/youit/site/facebook.png\" alt=\"Facebook\" />\r\n                ");
                 EndContext();
@@ -142,7 +142,7 @@ using Web.Models;
             WriteLiteral("\r\n            </div>\r\n\r\n            <div>\r\n                ");
             EndContext();
             BeginContext(1011, 235, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c38bfa346bbd447fa47f02eb2231481c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "158603269a6b429388653aa1ca53575d", async() => {
                 BeginContext(1124, 118, true);
                 WriteLiteral("\r\n                    <img src=\"https://storage.googleapis.com/youit/site/vk.png\" alt=\"ВКонтакте\" />\r\n                ");
                 EndContext();

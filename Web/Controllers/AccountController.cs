@@ -105,7 +105,7 @@ namespace Web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Profile(string param = "comments")
+        public async Task<IActionResult> Profile(string param = "editprofile")
         {
             var model = new ProfileViewModel()
             {

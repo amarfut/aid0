@@ -90,7 +90,7 @@ using Web.Utils;
             WriteLiteral("        <div class=\"account-menu-wrapper\">\r\n            ");
             EndContext();
             BeginContext(436, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcdd5c65438147f7b7a5ca2833076470", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e20ba540e81b41ebb0d845c8b4871bf7", async() => {
                 BeginContext(512, 4, true);
                 WriteLiteral("<div");
                 EndContext();
@@ -130,7 +130,7 @@ WriteAttributeValue("", 524, c1, 524, 3, false);
             WriteLiteral("\r\n            ");
             EndContext();
             BeginContext(564, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b10e7009f5cb4bc5a95386462a4838ef", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4185d7e4d5874882bafa6b60b5976f6a", async() => {
                 BeginContext(642, 4, true);
                 WriteLiteral("<div");
                 EndContext();
@@ -170,7 +170,7 @@ WriteAttributeValue("", 654, c3, 654, 3, false);
             WriteLiteral("\r\n            ");
             EndContext();
             BeginContext(696, 113, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a71abb47a984698aaae3a07535b1e6c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8dce0d85e4274fa1bbcb14bee632f744", async() => {
                 BeginContext(775, 4, true);
                 WriteLiteral("<div");
                 EndContext();
@@ -301,7 +301,7 @@ WriteAttributeValue("", 2089, imagePath, 2089, 10, false);
             WriteLiteral("                <div id=\"profile-view\" style=\"position:relative;\">\r\n                    ");
             EndContext();
             BeginContext(2566, 581, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "860b2eb07b064a9fa95d4243bd9c85d0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d841c7f9b4b49898fc8614e82c89eb7", async() => {
                 BeginContext(2633, 195, true);
                 WriteLiteral("\r\n                        <fieldset>\r\n                            <legend>Ваши данные</legend>\r\n                            <p>\r\n                                <input type=\"text\" name=\"userName\"");
                 EndContext();
@@ -363,7 +363,7 @@ WriteAttributeValue("", 3285, Model.UserPhoto, 3285, 16, false);
             WriteLiteral("\r\n\r\n            ");
             EndContext();
             BeginContext(3390, 45, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f9b143b0c3af49ef88979667e6c29f64", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3902c53678e4321a1256b8f83c26fc9", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

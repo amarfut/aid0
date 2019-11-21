@@ -11,11 +11,11 @@
         string c3 = Model.Action == "likedposts" ? "bold" : "";
         string c4 = Model.Action == "editprofile" ? "bold" : "";
 
-        <div class="account-menu-wrapper">
-            <a asp-controller="Account" asp-action="Profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
-            <a asp-controller="Account" asp-action="Profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
-            <a asp-controller="Account" asp-action="Profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
-        </div>
+    <div class="account-menu-wrapper">
+        <a asp-controller="Account" asp-action="Profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
+        <a asp-controller="Account" asp-action="Profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
+        <a asp-controller="Account" asp-action="Profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
+    </div>
 
         <div style="margin-top:20px;">
 
