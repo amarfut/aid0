@@ -1,28 +1,7 @@
-﻿//function SimilarPostsViewModel() {
-//    let self = this;
-//    self.similarPosts = ko.observableArray([]);
-
-//    self.getSimilarPosts = function () {
-//        $.get('/home/loadsimilarposts?type=1', function (posts) {
-//            for (let post of posts) {
-//                let p = {
-//                    title: post.title,
-//                    url: '/home/post?url=' + post.url,
-//                    image: 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png'
-//                };
-//                self.similarPosts.push(p);
-//            }
-//        });
-//    };
-
-//    self.getSimilarPosts();
-//}
-
-
-function StaticPostViewModel() {
+﻿function StaticPostViewModel() {
     let self = this;
+
     self.setLike = function (postId) {
-        console.log("asdadas");
         self.setReaction(postId, true);
     };
 
@@ -37,7 +16,6 @@ function StaticPostViewModel() {
             contentType: "application/json",
             data: JSON.stringify({ PostId: postId, Liked: liked }),
             success: (data) => {
-                console.log(data);
                 $('#post-likes span').text(data.likes);
                 $('#post-dislikes span').text(data.dislikes);
 
@@ -90,11 +68,6 @@ function MorePostsViewModel() {
     self.getMorePosts();
 }
 
-//let similarPostsElem = document.getElementById("similar-posts");
 let morePostsElem = document.getElementById("more-posts");
-
-//console.log(similarPostsElem);
 console.log(morePostsElem);
-
-//ko.applyBindings(new SimilarPostsViewModel(), similarPostsElem);
 ko.applyBindings(new MorePostsViewModel(), morePostsElem);

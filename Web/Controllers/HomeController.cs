@@ -35,6 +35,7 @@ namespace Web.Controllers
             return await _postService.GetSimilarPosts(type);
         }
 
+        [HttpGet("post/{url}/", Name = "Post")]
         public async Task<IActionResult> Post(string url)
         {
             var service = new PostService();
@@ -42,28 +43,28 @@ namespace Web.Controllers
 
             //TODO: introduce UI services layer and move it to there and refactor
 
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                string userId = UserId;
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+            //    string userId = UserId;
 
-                foreach (var comment in post.Comments)
-                {
-                    if (comment.WhoLiked.Contains(userId))
-                        comment.UserReaction = UserReaction.Liked;
-                    else if (comment.WhoDisliked.Contains(userId))
-                        comment.UserReaction = UserReaction.Disliked;
-                    else comment.UserReaction = UserReaction.None;
+            //    foreach (var comment in post.Comments)
+            //    {
+            //        if (comment.WhoLiked.Contains(userId))
+            //            comment.UserReaction = UserReaction.Liked;
+            //        else if (comment.WhoDisliked.Contains(userId))
+            //            comment.UserReaction = UserReaction.Disliked;
+            //        else comment.UserReaction = UserReaction.None;
 
-                    foreach (var answer in comment.Answers)
-                    {
-                        if (answer.WhoLiked.Contains(userId))
-                            answer.UserReaction = UserReaction.Liked;
-                        else if (answer.WhoDisliked.Contains(userId))
-                            answer.UserReaction = UserReaction.Disliked;
-                        else answer.UserReaction = UserReaction.None;
-                    }
-                }
-            }
+            //        foreach (var answer in comment.Answers)
+            //        {
+            //            if (answer.WhoLiked.Contains(userId))
+            //                answer.UserReaction = UserReaction.Liked;
+            //            else if (answer.WhoDisliked.Contains(userId))
+            //                answer.UserReaction = UserReaction.Disliked;
+            //            else answer.UserReaction = UserReaction.None;
+            //        }
+            //    }
+            //}
 
             return View(post);
         }

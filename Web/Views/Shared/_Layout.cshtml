@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Web.Utils;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,37 +21,27 @@
 <body>
 
     <div class="header"> </div>
-
-    <div class="mobile-menu">
-        @await Component.InvokeAsync("MobileMenu")
-    </div>
-
     <div class="wrapper">
         <div class="box top-menu">
             <div class="nav">
                 <div class="logo">
-                    <a href="#" class="mobile-menu-button" onclick="toogleSodeMenu()">
-                        <i class="fa fa-search"></i>
-                    </a>
                     <a href="/">youIT</a>
                 </div>
                 <div class="menu">
                     @await Component.InvokeAsync("TopMenu")
                 </div>
                 <div class="login-bar">
-
-                    <div class="search" style=" margin-top:-5px; width:200px;float:left;">
+                    <div class="search">
                         <form id="searchForm" method="post" asp-action="Search" class="desktop">
                             <div style="position:relative;">
-                                <input id="searchBox" type="text" style="font-weight:100;" class="searchTerm" name="term" placeholder="Что ищем?">
+                                <input id="searchBox" type="text" class="searchTerm" name="term" placeholder="Что ищем?">
                                 <a href="#" onclick="searchClick()">
-                                    <i class="fa fa-search" style="color:#acacac; position:absolute; right:6px; top:6px;"></i>
+                                    <img src="@Helper.GetImageUrl("search.png")" alt="Искать" />
                                 </a>
                             </div>
                         </form>
                     </div>
-
-                    <div style="float:right;">
+                    <div class="login">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <a asp-controller="Account" asp-action="Profile">@User.Identity.Name</a>
@@ -57,7 +49,9 @@
                         }
                         else
                         {
-                            <span onclick="loadAuthorizeModal()" style="color:#adadad; cursor:pointer; font-weight:100;"><i class="fas fa-sign-in-alt"></i>&nbsp;логин</span>
+                            <span onclick="loadAuthorizeModal()" class="login-link">
+                                <img src="@Helper.GetImageUrl("login.png")" alt="Искать" />
+                            </span>
                         }
                     </div>
                 </div>
@@ -66,29 +60,19 @@
         <div class="box sidebar scrollbar">
             @await Component.InvokeAsync("RealTimeComments")
         </div>
-
         @RenderBody()
-
         @await Html.PartialAsync("_Footer")
-
         <script>
             searchClick = () => {
                 if (!$('#searchBox').val()) return;
                 document.getElementById('searchForm').submit();
             }
 
-            toogleSodeMenu = () => {
-                $('.mobile-menu').toggle();
-            }
-
             loadAuthorizeModal = () => {
                 $('#authorizeModal').modal('show');
             }
-
         </script>
     </div>
-
     @await Html.PartialAsync("_Authorize")
-
 </body>
 </html>

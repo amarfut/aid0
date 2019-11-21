@@ -7,7 +7,7 @@
 @foreach (var comment in Model)
 {
     int last = comment.Text.Length > 120 ? 120 : comment.Text.Length;
-    string url = $"/home/post/?url={comment.PostUrl}#{comment.CommentId}";
+    string url = $"/post/{comment.PostUrl}#{comment.CommentId}";
 
     <div style="margin-top:30px;">
         <a href="@url">

@@ -16,7 +16,7 @@ namespace Web.Utils
     {
         public static string GetUserPhotoUrl(ClaimsPrincipal principal)
         {
-            
+
             var claim = principal.FindFirst(x => x.Type == Constants.ProfileImage);
             return claim != null ? claim.Value : Constants.NoPhoto;
         }
@@ -27,12 +27,17 @@ namespace Web.Utils
             return claim != null ? claim.Value : null;
         }
 
+        public static string GetImageUrl(string imageName)
+        {
+            return $"https://storage.cloud.google.com/youit/site/{imageName}";
+        }
+
         /*
          1 минуту
          2,3,4 минуты
          5,6,7,8,9,0 минут
         */
-       
+
 
         public static string GetRelativeTime(DateTime dateTime)
         {

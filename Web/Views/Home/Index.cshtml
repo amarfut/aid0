@@ -16,8 +16,10 @@
 <!-- /ko -->
 
 <div class="box more-posts-button">
-    <a href="#" data-bind="click: addPosts, visible: morePostsButtonVisible"><u>загрузить больше постов</u></a>
-    <h3 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h3>
+    <span data-bind="click: addPosts, visible: morePostsButtonVisible">
+        <u>загрузить больше постов</u>
+    </span>
+    <h4 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h4>
 </div>
 
-<script src="~/js/start-page.js" async></script>
+<script src="~/js/start-page.js"></script>

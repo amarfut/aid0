@@ -19,8 +19,6 @@
         }
     }
 }
-
-
 <div class="box full-post">
 
     <h1>@Model.Title</h1>
@@ -52,19 +50,6 @@
         </div>
     </div>
     @Html.Raw(Model.Text)
-
-
-    @*<div id="similar-posts" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px;">
-            <!-- ko foreach: similarPosts -->
-            <a data-bind="attr: { href: url }">
-                <div>
-                    <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image }" />
-                    <span data-bind="text: title" style="font-size:20px;"></span>
-                </div>
-            </a>
-            <!-- /ko -->
-        </div>*@
-
 
     @await Html.PartialAsync("_PostComments", Model)
 

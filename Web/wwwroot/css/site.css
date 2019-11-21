@@ -24,6 +24,9 @@ body {
     color: #9b9b9b;
 }
 
+.login {
+    float:right;
+}
 
     #post-statistic a {
         color: #9b9b9b;
@@ -317,6 +320,10 @@ body {
     font-weight: bold;
 }
 
+.more-posts-button span {
+    cursor: pointer;
+}
+
 .footer {
     grid-column: 1 / 4;
     background-color: #3c3c3c;
@@ -363,13 +370,26 @@ body {
     }
 
 
-
+.login-link {
+    color: #adadad;
+    cursor: pointer;
+    font-weight: 100;
+}
 
 
 .search {
     text-align: right;
+    margin-top: -5px;
+    width: 200px;
+    float: left;
 }
 
+    .search img {
+        color: #acacac;
+        position: absolute;
+        right: 6px;
+        top: 5px;
+    }
 
 .logo {
     font-size: 22px;
@@ -471,6 +491,7 @@ div.menu {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+    font-weight: 100;
 }
 
 .comment-ava {

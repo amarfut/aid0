@@ -7,7 +7,7 @@
         this.likesCount = ko.observable(likesCount);
         this.dislikesCount = ko.observable(dislikesCount);
         this.imageUrl = 'https://storage.cloud.google.com/youit/' + postUrl + '/thumbnail.png';
-        this.postUrl = '/home/post?url=' + postUrl;
+        this.postUrl = '/post/' + postUrl;
     }
 }
 
@@ -64,4 +64,5 @@ function AppViewModel() {
 
     self.addPosts();
 }
+
 ko.applyBindings(new AppViewModel());
