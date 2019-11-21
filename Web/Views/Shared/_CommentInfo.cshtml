@@ -23,7 +23,6 @@
 
 <a id="@Model.Id"></a>
 <div class="single-comment-wrapper">
-    @*<div style="position:absolute; right:0;">x</div>*@
     <div class="user-ava"><img src="@Model.UserPhoto" /></div>
     <div>
         <div class="username">
@@ -44,16 +43,16 @@
             <div class="comment-text">@Model.Text</div>
             <span style="font-size:13px; font-weight:bold;">
                 <span id="@Model.Id-likes" class="@thumbUpClass">
-                    <span class="comment-likes">@Model.Likes</span>
                     <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', true) }">
+                        <span class="comment-likes">@Model.Likes</span>
                         <i class="far fa-thumbs-up"></i>
                     </span>
                 </span>
 
                 &nbsp;
                 <span id="@Model.Id-dislikes" class="@thumbDownClass">
-                    <span class="comment-dislikes">@Model.Dislikes</span>
                     <span data-bind="click: function() { setReaction('@Model.Id', '@Model.ParentCommentId', false) }">
+                        <span class="comment-dislikes">@Model.Dislikes</span>
                         <i class="far fa-thumbs-down"></i>
                     </span>
                 </span>
@@ -61,12 +60,14 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <span data-bind="click: function() { displayAnswerCommentBox('@Model.Id', '@Model.ParentCommentId', true, '@Model.UserName') }" style="color:#296673; font-size:11px; cursor:pointer;">
+                    <span data-bind="click: function() { displayAnswerCommentBox('@Model.Id') }" style="color:#296673; font-size:11px; cursor:pointer;">
                         &nbsp;<b>Ответить</b>
                     </span>
                 }
 
             </span>
+            <p></p>
+            @await Html.PartialAsync("_CommentForm", new Tuple<string, string, bool, string>(Model.PostId, Model.Id, true, Model.ParentCommentId))
         }
 
     </div>

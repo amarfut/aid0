@@ -57,8 +57,8 @@ function MorePostsViewModel() {
             for (let post of posts) {
                 let p = {
                     title: post.title,
-                    url: '/home/post?url=' + post.url,
-                    image: 'https://storage.cloud.google.com/youit/' + post.url + '/thumbnail.png'
+                    url: '/post/' + post.url,
+                    image: 'https://storage.googleapis.com/youit/' + post.url + '/thumbnail.png'
                 };
                 self.morePosts.push(p);
             }

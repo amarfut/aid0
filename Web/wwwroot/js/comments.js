@@ -14,11 +14,7 @@ function AppCommentModel() {
     self.answerBoxVisibe = ko.observable(false);
 
     self.addComment = function (postId, parentCommentId = null) {
-        const commentBoxId = '#comment-box';
-        var answerCommentBoxId = `#${parentCommentId}-comment-box`;
-        const text = parentCommentId === null ? $(commentBoxId).val() : $(answerCommentBoxId).val();
-        $(commentBoxId).val('');
-        $(answerCommentBoxId).val('');
+        const text = $(`#${parentCommentId}-comment-box textarea`).val();
 
         $.ajax({
             url: '/comment/addcomment',
@@ -38,22 +34,14 @@ function AppCommentModel() {
         });
     };
 
-    self.displayAnswerCommentBox = function (commentId, parentCommentId, isVisible, userName) {
-        const answerId = parentCommentId ? parentCommentId : commentId;
-        $('.asnwer-comment-box').hide();
-        $('.asnwer-comment-box').val('');
-        $(`#${parentCommentId}-comment-box`).val('');
+    self.closeAllAnswerCommentBox = function () {
+        $('.asnwer-comment-box textarea').val('');
+        $('.asnwer-comment-box').hide('');
+    };
 
-        const answerComment = $('#' + answerId + '-asnwer-comment-box');
-        if (isVisible) {
-            if (parentCommentId) {
-                $(`#${parentCommentId}-comment-box`).val('@' + userName + ', ');
-            }
-            answerComment.show();
-        }
-        else {
-            answerComment.hide();
-        }
+    self.displayAnswerCommentBox = function (commentId) {
+        self.closeAllAnswerCommentBox();
+        $(`#${commentId}-comment-box`).show();
     };
 
     self.setReaction = function (commentId, parentCommentId, currentReaction) {
@@ -95,4 +83,3 @@ function AppCommentModel() {
 }
 
 ko.applyBindings(new AppCommentModel(), document.getElementById('post-comments-form'));
-

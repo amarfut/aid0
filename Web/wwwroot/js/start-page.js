@@ -6,7 +6,7 @@
         this.commentsCount = commentsCount;
         this.likesCount = ko.observable(likesCount);
         this.dislikesCount = ko.observable(dislikesCount);
-        this.imageUrl = 'https://storage.cloud.google.com/youit/' + postUrl + '/thumbnail.png';
+        this.imageUrl = 'https://storage.googleapis.com/youit/' + postUrl + '/thumbnail.png';
         this.postUrl = '/post/' + postUrl;
     }
 }

@@ -29,7 +29,7 @@ namespace Web.Utils
 
         public static string GetImageUrl(string imageName)
         {
-            return $"https://storage.cloud.google.com/youit/site/{imageName}";
+            return $"https://storage.googleapis.com/youit/site/{imageName}";
         }
 
         /*

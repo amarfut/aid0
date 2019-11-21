@@ -10,28 +10,11 @@
 
 <div id="post-comments-form" class="comments-wrapper">
 
-    @if (Model.Comments.Count == 0)
+    @if (User.Identity.IsAuthenticated)
     {
-        <h3>Оставьте комментарий первым!</h3>
+        @await Html.PartialAsync("_CommentForm", new Tuple<string, string, bool, string>(Model.Id, "", false, null))
     }
-
-    @foreach (var comment in Model.Comments)
-    {
-        @await Html.PartialAsync("_CommentInfo", comment);
-
-        <div style="margin-left:65px;">
-            @foreach (var answer in comment.Answers)
-            {
-                @await Html.PartialAsync("_CommentInfo", answer);
-            }
-
-            <div id="@comment.Id-asnwer-comment-box" class="asnwer-comment-box">
-                @await Html.PartialAsync("_CommentForm", new Tuple<string, string>(Model.Id, comment.Id))
-            </div>
-        </div>
-    }
-
-    @if (!User.Identity.IsAuthenticated)
+    else
     {
         <p>
             <h5>
@@ -41,99 +24,23 @@
             </h5>
         </p>
     }
-    else
-    {
-        @await Html.PartialAsync("_CommentForm", new Tuple<string, string>(Model.Id, ""))
-    }
 
+    @if (Model.Comments.Count == 0)
+    {
+        <h3>Оставьте комментарий первым!</h3>
+    }
+    <p></p>
+    @foreach (var comment in Model.Comments)
+    {
+        @await Html.PartialAsync("_CommentInfo", comment);
+
+        @*<div style="margin-left:65px;">
+            @foreach (var answer in comment.Answers)
+            {
+                @await Html.PartialAsync("_CommentInfo", answer);
+            }
+        </div>*@
+    }
 </div>
 
-
 <script src="~/js/comments.js"></script>
-
-
-
-@*<div class="single-comment-wrapper" id="@answer.Id-comment-wrapper">
-        <div class="user-ava"><img src="@answer.UserPhoto" /></div>
-        <div>
-            <div class="username">@answer.UserName <span class="comment-created">@answer.Created</span></div>
-            <div class="comment-text">@answer.Text</div>
-            <span>
-                <span class="comment-likes">@answer.Likes</span>
-                <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', true) }">Like </a>
-                <span class="comment-dislikes">@answer.Dislikes</span>
-                <a href="#" data-bind="click: function() { setReaction('@comment.Id', '@answer.Id', false) }">Dislike </a>
-                <a href="#" data-bind="click: function() { displayAnswerCommentBox('@answer.Id', true) }"> <b>Ответить</b></a>
-            </span>
-        </div>
-    </div>*@
-
-
-<!-- ko foreach: comments -->
-@*<div class="single-comment-wrapper">
-        <div>
-            <img width="50" src="https://storage.googleapis.com/youit/users/nophoto.jpg" style="border-radius:3px;" />
-        </div>
-        <div>
-            <span class="username" data-bind="text: name"></span>&nbsp;
-            <span class="comment-created" data-bind="text: created"></span><br />
-            <div class="comment-text" data-bind="text: text"></div>
-            <span data-bind="text: likes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>&nbsp;
-            <span data-bind="text: dislikes"></span> <a href="#"><i class="fas fa-thumbs-up"></i> </a>
-        </div>
-    </div>*@
-
-<!-- /ko -->
-@*class ReactionResult {
-        constructor(like, dislike) {
-            this.like;
-            this.dislike;
-        }
-    }
-
-
-    class Context {
-        constructor(state) {
-            this.state = state;
-        }
-    }
-
-
-    class ReactionState {
-        do = (action) => { }
-    }
-
-    class NoneReactionState extends ReactionState {
-        do = (action) => {
-            if (action === 'like') {
-                return new ReactionResult(1, 0);
-            }
-            else if (action === 'dislike') {
-                return new ReactionResult(0, 1);
-            }
-        }
-    }
-
-    class LikedReactionState extends ReactionState {
-        do = (action) => {
-            if (action === 'like') {
-                return new ReactionResult(-1, 0);
-            }
-            else if (action === 'dislike') {
-                return new ReactionResult(-1, 1);
-            }
-        }
-    }
-
-    class DislikedReactionState extends ReactionState {
-        do = (action) => {
-            if (action === 'like') {
-                return new ReactionResult(1, -1);
-            }
-            else if (action === 'dislike') {
-                 return new ReactionResult(0, -1);
-            }
-        }
-    }
-
-    let context = new CurrentState();*@

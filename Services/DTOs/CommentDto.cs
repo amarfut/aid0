@@ -37,6 +37,7 @@ namespace Services.DTOs
             WhoLiked = comment.WhoLiked;
             WhoDisliked = comment.WhoDisliked;
             UserPhoto = userPhotoMap[comment.UserId];
+            PostId = comment.PostId;
         }
 
         public CommentDto(Answer answer, Dictionary<string, string> userPhotoMap)
@@ -51,12 +52,15 @@ namespace Services.DTOs
             WhoLiked = answer.WhoLiked;
             WhoDisliked = answer.WhoDisliked;
             UserPhoto = userPhotoMap[answer.UserId];
+            PostId = answer.PostId;
         }
 
 
         public string Id { get; set; }
         public string ParentCommentId { get; set; }
         public string Text { get; set; }
+
+        public string PostId { get; set; }
 
         public string UserName { get; set; }
 

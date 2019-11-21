@@ -26,6 +26,7 @@ namespace Services.QueryHandlers
             var comments = await
                 _db.Comments.AsQueryable()
                 .Where(c => c.PostId == post.Id)
+                .OrderByDescending(c => c.Created)
                 .ToListAsync();
 
             var parentCommentIds = comments.Select(c => c.Id).ToList();
@@ -35,7 +36,7 @@ namespace Services.QueryHandlers
 
             foreach (var comment in comments)
             {
-                comment.Answers = answers.Where(a => a.ParentCommentId == comment.Id).ToArray();
+                comment.Answers = answers.Where(a => a.ParentCommentId == comment.Id).OrderByDescending(c => c.Created).ToArray();
             }
 
             var userIds = comments.Select(c => ObjectId.Parse(c.UserId)).ToList();

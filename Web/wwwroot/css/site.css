@@ -112,7 +112,7 @@ body {
     margin: auto;
     font-size: 15px;
     font-family: Verdana;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
 }
 
     .single-comment-wrapper .username {
@@ -143,7 +143,7 @@ body {
 
 .asnwer-comment-box {
     display: none;
-    margin-bottom: 20px;
+  
 }
 
 .noReaction {
@@ -234,7 +234,7 @@ body {
 }
 
 .user-ava  {
-    width:60px;
+    width:50px;
     margin-right:5px;
 }
 

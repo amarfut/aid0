@@ -1,22 +1,31 @@
 ﻿@using Web.Utils
-@model Tuple<string, string>
-        <!-- postId, commentId? -->
+@model Tuple<string, string, bool, string>
+        <!-- postId, commentId?, isAnswer, parentCommentId -->
 
-<div style="display:grid; grid-template-columns: 1fr 10fr;">
-    @{string url = Helper.GetUserPhotoUrl(User); }
-    <div class="user-ava"><img src="@url" /></div>
-    <div>
-        <form class="pure-form">
-            <textarea id="@Model.Item2-comment-box" class="pure-input-1" placeholder="Комментировать..."></textarea>
-            <div class="comment-button" data-bind="click: function() { addComment('@Model.Item1', '@Model.Item2') }" style="float:left; margin-right:15px;">
-                Комментировать
-            </div>
+@{ 
+    string commentId = string.IsNullOrEmpty(Model.Item4) ? Model.Item2 : Model.Item4;
+    string commentBoxClass = Model.Item3 ? "asnwer-comment-box" : "root-comment-box";
+}
 
-            @if (!string.IsNullOrEmpty(Model.Item2))
-            {
-                <div style="font-size:11px; margin-top:9px; font-weight:bold; cursor:pointer;" 
-                     data-bind="click: function(){displayAnswerCommentBox('@Model.Item2','@Model.Item2', false, '')  }">Не комментировать</div>
-            }
-        </form>
+<div id="@Model.Item2-comment-box" class="@commentBoxClass">
+
+    <div style="display:grid; grid-template-columns: 1fr 10fr;">
+        @{string url = Helper.GetUserPhotoUrl(User); }
+        <div class="user-ava"><img src="@url" /></div>
+        <div>
+            <form class="pure-form">
+                <textarea class="pure-input-1" placeholder="Комментировать..."></textarea>
+                <div class="comment-button" data-bind="click: function() { addComment('@Model.Item1', '@Model.Item3') }" style="float:left; margin-right:15px;">
+                    Комментировать
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Item2))
+                {
+                    <div style="font-size:11px; margin-top:9px; font-weight:bold; cursor:pointer;"
+                         data-bind="click: closeAllAnswerCommentBox">Не комментировать</div>
+                }
+            </form>
+        </div>
     </div>
+
 </div>
