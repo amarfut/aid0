@@ -36,7 +36,7 @@ namespace Services.QueryHandlers
 
             foreach (var comment in comments)
             {
-                comment.Answers = answers.Where(a => a.ParentCommentId == comment.Id).OrderByDescending(c => c.Created).ToArray();
+                comment.Answers = answers.Where(a => a.ParentCommentId == comment.Id).OrderBy(c => c.Created).ToArray();
             }
 
             var userIds = comments.Select(c => ObjectId.Parse(c.UserId)).ToList();

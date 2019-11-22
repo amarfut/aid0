@@ -9,12 +9,37 @@
         opacity: 0.9;
     }
 
-body {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0;
-    font-family: Verdana;
-    font-weight: normal;
+
+
+#comment-box-root {
+    margin-bottom:30px;
+}
+div[id$='comment-box'] {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.comment-answers {
+    margin-left:65px;
+}
+
+    .comment-answers .user-ava {
+        opacity:0.8;
+    }
+
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 0;
+        font-family: Verdana;
+        font-weight: normal;
+    }
+
+.answer-comment-action {
+    color: #296673;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left:5px;
 }
 
 #post-statistic {
@@ -112,7 +137,7 @@ body {
     margin: auto;
     font-size: 15px;
     font-family: Verdana;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
 }
 
     .single-comment-wrapper .username {
@@ -141,10 +166,6 @@ body {
     font-style:italic;
 }
 
-.asnwer-comment-box {
-    display: none;
-  
-}
 
 .noReaction {
     color:#747474;
@@ -252,6 +273,7 @@ body {
     color: #fafafa;
     padding: 5px;
     font-size: 13px;
+    float:left; margin-right:15px;
 }
 
 .full-post {

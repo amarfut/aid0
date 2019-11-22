@@ -14,7 +14,13 @@ function AppCommentModel() {
     self.answerBoxVisibe = ko.observable(false);
 
     self.addComment = function (postId, parentCommentId = null) {
-        const text = $(`#${parentCommentId}-comment-box textarea`).val();
+        //const text = parentCommentId ?
+        //    $(`#${parentCommentId}-comment-box textarea`).val() :
+        //    $('#comment-box-root textarea').val();
+
+        const text = parentCommentId ?
+            $(`.comment-answers textarea:visible`).val() :
+            $('#comment-box-root textarea').val();
 
         $.ajax({
             url: '/comment/addcomment',
@@ -35,13 +41,14 @@ function AppCommentModel() {
     };
 
     self.closeAllAnswerCommentBox = function () {
-        $('.asnwer-comment-box textarea').val('');
-        $('.asnwer-comment-box').hide('');
+        $('div[id$="comment-box"] textarea').val('');
+        $('div[id$="comment-box"]').hide('fast');
     };
 
-    self.displayAnswerCommentBox = function (commentId) {
+    self.displayAnswerCommentBox = function (commentId, userName) {
         self.closeAllAnswerCommentBox();
-        $(`#${commentId}-comment-box`).show();
+        if (userName) $(`#${commentId}-comment-box textarea`).val('@' + userName + ', ');
+        $(`#${commentId}-comment-box`).show('fast');
     };
 
     self.setReaction = function (commentId, parentCommentId, currentReaction) {

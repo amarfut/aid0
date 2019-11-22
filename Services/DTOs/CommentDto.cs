@@ -15,6 +15,11 @@ namespace Services.DTOs
 
     public class CommentDto
     {
+        public CommentDto()
+        {
+
+        }
+
         public CommentDto(Comment comment, Dictionary<string, string> userPhotoMap)
         {
             InitProperties(comment, userPhotoMap);

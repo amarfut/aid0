@@ -132,7 +132,6 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Auth
 C:\Users\omarf\Desktop\site\Web\bin\Debug\netcoreapp2.1\Common.dll
 C:\Users\omarf\Desktop\site\Web\bin\Debug\netcoreapp2.1\Common.pdb
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CommentForm.g.cshtml.cs
-C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CommentInfo.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Footer.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\About.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Contacts.g.cshtml.cs
@@ -140,3 +139,5 @@ C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Cookies
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\Privacy.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Info\TermsAndConditions.g.cshtml.cs
 C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CommentDetails.g.cshtml.cs
+C:\Users\omarf\Desktop\site\Web\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_AuthorizeButtons.g.cshtml.cs

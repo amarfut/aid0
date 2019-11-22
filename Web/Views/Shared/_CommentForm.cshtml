@@ -1,31 +1,26 @@
 ﻿@using Web.Utils
-@model Tuple<string, string, bool, string>
-        <!-- postId, commentId?, isAnswer, parentCommentId -->
+@using Web.Views.Shared;
+@model CommentFormViewModel
 
-@{ 
-    string commentId = string.IsNullOrEmpty(Model.Item4) ? Model.Item2 : Model.Item4;
-    string commentBoxClass = Model.Item3 ? "asnwer-comment-box" : "root-comment-box";
-}
+<div style="display:grid; grid-template-columns: 1fr 10fr;">
+    @{string url = Helper.GetUserPhotoUrl(User); }
 
-<div id="@Model.Item2-comment-box" class="@commentBoxClass">
+    <div class="user-ava"><img src="@url" /></div>
+    <div>
+        <form class="pure-form">
+            <textarea class="pure-input-1" placeholder="Комментировать..."></textarea>
+            <div class="comment-button" data-bind="click: function() { addComment('@Model.PostId', '@Model.ParentCommentId') }">
+                Комментировать
+            </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 10fr;">
-        @{string url = Helper.GetUserPhotoUrl(User); }
-        <div class="user-ava"><img src="@url" /></div>
-        <div>
-            <form class="pure-form">
-                <textarea class="pure-input-1" placeholder="Комментировать..."></textarea>
-                <div class="comment-button" data-bind="click: function() { addComment('@Model.Item1', '@Model.Item3') }" style="float:left; margin-right:15px;">
-                    Комментировать
+            @if (!string.IsNullOrEmpty(Model.ParentCommentId))
+            {
+                <div style="font-size:11px; margin-top:9px; font-weight:bold; cursor:pointer;"
+                     data-bind="click: closeAllAnswerCommentBox">
+                    Не комментировать
                 </div>
+            }
 
-                @if (!string.IsNullOrEmpty(Model.Item2))
-                {
-                    <div style="font-size:11px; margin-top:9px; font-weight:bold; cursor:pointer;"
-                         data-bind="click: closeAllAnswerCommentBox">Не комментировать</div>
-                }
-            </form>
-        </div>
+        </form>
     </div>
-
 </div>

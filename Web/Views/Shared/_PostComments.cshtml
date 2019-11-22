@@ -1,5 +1,6 @@
 ﻿@model Services.DTOs.PostDto
-@using Web.Utils
+@using Web.Views.Shared;
+@using Web.Utils;
 
 @{
     int totalCommentsCount = @Model.Comments.Count + @Model.Comments.SelectMany(c => c.Answers).Count();
@@ -8,44 +9,53 @@
 <a id="begin-comments"></a>
 
 <div id="post-comments-form" class="comments-wrapper">
-
-
-    @if (!User.Identity.IsAuthenticated)
-    {
-        <p>
-            <h5>
-                <a href="#" data-bind="click: function() { $('#authorizeModal').modal('show') }">
-                    <span style="color:#0026ff; font-size:20px; text-decoration:underline;">Авторизируйтесь</span>
-                </a> для участия в дискуссии
-            </h5>
-        </p>
-    }
-
     <h4>Комментарии (@totalCommentsCount)</h4>
 
-    @if (Model.Comments.Count == 0 && User.Identity.IsAuthenticated)
-    {
-        <h3>Оставьте комментарий первым!</h3>
-    }
-    <p></p>
     @if (User.Identity.IsAuthenticated)
     {
-        @await Html.PartialAsync("_CommentForm", new Tuple<string, string, bool, string>(Model.Id, "", false, null))
+        <div id="comment-box-root">
+            @await Html.PartialAsync("_CommentForm", new CommentFormViewModel(Model.Id, ""))
+        </div>
     }
+    else
+    {
+        <div style="margin-bottom:20px;">
+            <p style="font-size:10px; color:#ca0606; font-weight:bold;">Авторизируйтесь для участия в дискуссии:</p>
+            <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Google" title="Google">
+                <img src="@Helper.GetImageUrl("google.png")" alt="Google" />
+            </a>
 
+            <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="Facebook" title="Facebook">
+                <img src="@Helper.GetImageUrl("facebook.png")" alt="Facebook" />
+            </a>
 
+            <a asp-controller="Account" asp-action="SignInExternal" asp-route-externalProvider="VKontakte" title="Vkontakte">
+                <img src="@Helper.GetImageUrl("vk.png")" alt="ВКонтакте" />
+            </a>
+        </div>
+    }
 
 
     @foreach (var comment in Model.Comments)
     {
-        @await Html.PartialAsync("_CommentInfo", comment);
+        @await Html.PartialAsync("_CommentDetails", new CommentDetailsViewModel(comment));
 
-        @*<div style="margin-left:65px;">
-                @foreach (var answer in comment.Answers)
-                {
-                    @await Html.PartialAsync("_CommentInfo", answer);
-                }
-            </div>*@
+        <div class="comment-answers">
+
+            <div id="@comment.Id-comment-box">
+                @await Html.PartialAsync("_CommentForm", new CommentFormViewModel(Model.Id, comment.Id))
+            </div>
+
+            @foreach (var answerComment in comment.Answers)
+            {
+                @await Html.PartialAsync("_CommentDetails", new CommentDetailsViewModel(answerComment, displayUserName: true));
+
+                <div id="@answerComment.Id-comment-box" style="margin-left:65px;">
+                    @await Html.PartialAsync("_CommentForm", new CommentFormViewModel(Model.Id, comment.Id))
+                </div>
+            }
+
+        </div>
     }
 </div>
 
