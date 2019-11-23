@@ -11,11 +11,11 @@
         string c3 = Model.Action == "likedposts" ? "bold" : "";
         string c4 = Model.Action == "editprofile" ? "bold" : "";
 
-    <div class="account-menu-wrapper">
-        <a asp-controller="Account" asp-action="Profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
-        <a asp-controller="Account" asp-action="Profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
-        <a asp-controller="Account" asp-action="Profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
-    </div>
+        <div class="account-menu-wrapper">
+            <a asp-controller="account" asp-action="profile" asp-route-param="editprofile"><div class="@c4">Профиль</div></a>
+            <a asp-controller="account" asp-action="profile" asp-route-param="comments"><div class="@c1">Комментарии</div></a>
+            <a asp-controller="account" asp-action="profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
+        </div>
 
         <div style="margin-top:20px;">
 
@@ -25,7 +25,7 @@
                     <!-- ko foreach: comments -->
                     <div style="margin-bottom:50px;">
                         <a data-bind="attr: { href: $parent.getPostUrl(postUrl, commentId) }">
-                            <div><h3 data-bind="text: postTitle"></h3></div>
+                            <h3 data-bind="text: postTitle"></h3>
                         </a>
                         <p style="font-size:13px; color:#808080;">Добавлено <span data-bind="text: createdTimeRelative"></span> </p>
                         <p data-bind="text: text"></p>
@@ -40,7 +40,7 @@
                 foreach (var post in Model.Posts)
                 {
                     string imagePath = $"https://storage.googleapis.com/youit/{post.Url}/mini.png";
-                    string postUrl = "/home/post?=" + post.Url;
+                    string postUrl = "/post/" + post.Url;
 
                     <a href="@postUrl">
                         <img src="@imagePath" style="float:left; margin-right:15px; margin-bottom:40px;" />
@@ -70,7 +70,6 @@
                     </div>
                 </div>
             }
-
 
             <script src="~/js/profile.js" async></script>
         </div>

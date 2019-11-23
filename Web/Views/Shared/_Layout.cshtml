@@ -44,8 +44,8 @@
                     <div class="login">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a asp-controller="Account" asp-action="Profile">@User.Identity.Name</a>
-                            <a asp-controller="Account" asp-action="SignOut"><i class="fas fa-sign-out-alt"></i></a>
+                            <a asp-controller="account" asp-action="profile">@User.Identity.Name</a>
+                            <a asp-controller="account" asp-action="signOut"><i class="fas fa-sign-out-alt"></i></a>
                         }
                         else
                         {

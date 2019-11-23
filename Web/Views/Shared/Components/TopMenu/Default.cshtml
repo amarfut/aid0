@@ -43,14 +43,13 @@
         <ul>
             @foreach (var juniorPost in Model.JuniorPosts)
             {
-            <li>
-                @{string imagePath = $"https://storage.googleapis.com/youit/{juniorPost.Url}/mini.png"; }
-                <img src="@imagePath" />
-                <a asp-controller="Home" asp-action="Post" asp-route-url="@juniorPost.Url">@juniorPost.Title</a>
-                <div style="clear: left;"></div>
-            </li>
+                <li>
+                    @{string imagePath = $"https://storage.googleapis.com/youit/{juniorPost.Url}/mini.png"; }
+                    <img src="@imagePath" />
+                    <a asp-controller="Home" asp-action="Post" asp-route-url="@juniorPost.Url">@juniorPost.Title</a>
+                    <div style="clear: left;"></div>
+                </li>
             }
         </ul>
     </li>
-
 </ul>

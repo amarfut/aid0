@@ -53,7 +53,6 @@ namespace Services.AppServices
         public async Task<PostDto> GetPost(string url)
         {
             var post = await _getPostQueryHandler.HandleAsync(new GetPostQuery(url));
-            new IncrementPostViewCount().HandleAsync(post.Id);
             return post;
         }
 

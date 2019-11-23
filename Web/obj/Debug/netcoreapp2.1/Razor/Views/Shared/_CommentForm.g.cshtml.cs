@@ -83,7 +83,7 @@ WriteAttributeValue("", 227, url, 227, 4, false);
             WriteLiteral(" /></div>\r\n    <div>\r\n        ");
             EndContext();
             BeginContext(262, 635, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd013d7155df4069a42bc1a5e72218c1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d60d0679d03544408c4f8f3360093049", async() => {
                 BeginContext(286, 173, true);
                 WriteLiteral("\r\n            <textarea class=\"pure-input-1\" placeholder=\"Комментировать...\"></textarea>\r\n            <div class=\"comment-button\" data-bind=\"click: function() { addComment(\'");
                 EndContext();

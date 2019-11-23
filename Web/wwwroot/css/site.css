@@ -11,8 +11,13 @@
 
 
 
+
+.top-link ul {
+    z-index: 999;
+}
+
 #comment-box-root {
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 div[id$='comment-box'] {
     display: none;

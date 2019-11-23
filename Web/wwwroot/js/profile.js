@@ -3,8 +3,8 @@ function ProfileCommentsViewModel() {
     self.comments = ko.observableArray([]);
 
     self.getPostUrl = function (postUrl, commentId) {
-        return `/home/post?url=${postUrl}#${commentId}`;
-    }
+        return `/post/${postUrl}#${commentId}`;
+    };
 
     self.load = function () {
         $.ajax({
@@ -49,4 +49,8 @@ function ProfileCommentsViewModel() {
     self.load();
 }
 
-ko.applyBindings(new ProfileCommentsViewModel(), document.getElementById("profile-comments"));
+
+const profileComments = document.getElementById("profile-comments");
+if (profileComments) {
+    ko.applyBindings(new ProfileCommentsViewModel(), document.getElementById("profile-comments"));
+}

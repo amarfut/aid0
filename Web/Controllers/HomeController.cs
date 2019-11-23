@@ -7,10 +7,12 @@ using Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.AppServices;
 using Services.DTOs;
+using Services.InternalCommandHandlers;
 using Services.Utils;
 using Web.Models;
 
@@ -40,6 +42,25 @@ namespace Web.Controllers
         {
             var service = new PostService();
             var post = await service.GetPost(url);
+
+            var postViewCookie = HttpContext.Request.Cookies["uId"];
+
+            List<string> viewedPostIds =
+                string.IsNullOrEmpty(postViewCookie) ?
+                new List<string>() :
+                postViewCookie.Split(",").ToList();
+
+            if (!viewedPostIds.Contains(post.Id))
+            {
+                viewedPostIds.Add(post.Id);
+                HttpContext.Response.Cookies.Delete("uId");
+                HttpContext.Response.Cookies.Append("uId", string.Join(',', viewedPostIds), new CookieOptions()
+                {
+                    IsEssential = true,
+                    HttpOnly = true
+                });
+                new IncrementPostViewCount().HandleAsync(post.Id);
+            }
 
             //TODO: introduce UI services layer and move it to there and refactor
 
