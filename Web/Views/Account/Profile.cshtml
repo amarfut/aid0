@@ -58,22 +58,21 @@
             else if (Model.Action == "editprofile")
             {
                 <div id="profile-view" style="position:relative;">
-                    <form class="pure-form" action="save-profile">
-                        <fieldset>
-                            <legend>Ваши данные</legend>
-                            <p>
-                                <input type="text" name="userName" placeholder="@User.Identity.Name" />
-                            </p>
-
-                            <p>
-                                <button type="submit" class="pure-button pure-button-active">Сохранить</button>
-                            </p>
-                        </fieldset>
+                    <p>Ваши данные:</p>
+                    <form class="pure-form">
+                        <input type="text" id="userNameInput" placeholder="@User.Identity.Name" />
                     </form>
+                    <p>
+                        <button class="pure-button pure-button-active" onclick="save()">Сохранить</button>
+                    </p>
+
+
                     <div id="photoBox">
                         <img id="userPhoto" src="@Model.UserPhoto" />
                     </div>
                 </div>
+
+                <script src="~/js/user-profile-info.js" async></script>
             }
         </div>
     }

@@ -404,7 +404,7 @@ body {
 .search {
     text-align: right;
     margin-top: -5px;
-    width: 200px;
+    width: 150px;
     float: left;
 }
 
@@ -552,7 +552,7 @@ div.menu ul ul li {
 
 #photoBox {
     position: absolute;
-    top: 50px;
+    top: 0;
     right: 0;
 }
 

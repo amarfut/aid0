@@ -83,29 +83,35 @@ namespace Web.Controllers
             return Redirect(returnUrl);
         }
 
-        [Authorize]
-        [HttpPost("save-profile")]
-        public async Task<IActionResult> Edit(string userName)
+
+        public class UserProfile
         {
-            if (string.IsNullOrEmpty(userName))
+            public string userName { get; set; }
+        }
+
+        [Authorize]
+        [Route("/save-profile")]
+        public async Task<IActionResult> Edit([FromBody]UserProfile profile)
+        {
+            if (string.IsNullOrEmpty(profile.userName))
             {
-                userName = UserName;
+                profile.userName = UserName;
             }
 
             var userService = new UserService();
-            Result result = await userService.UpdateProfileAsync(userName, UserId);
+            Result result = await userService.UpdateProfileAsync(profile.userName, UserId);
             if (result.Success)
             {
                 var claims = new ClaimsIdentity(HttpContext.User.Identity.AuthenticationType);
                 claims.AddClaims(HttpContext.User.Claims.Where(c => c.Type != ClaimTypes.Name));
-                claims.AddClaim(new Claim(ClaimTypes.Name, userName));
+                claims.AddClaim(new Claim(ClaimTypes.Name, profile.userName));
                 await HttpContext.SignInAsync("Cookies", new ClaimsPrincipal(claims));
             }
 
-            return Redirect("/account/profile");
+            return Redirect("/profile");
         }
 
-        [HttpGet("profile/{param?}/", Name = "Profile")]
+        [HttpGet("/profile/{param?}/", Name = "Profile")]
         [Authorize]
         public async Task<IActionResult> Profile(string param = "editprofile")
         {

@@ -121,7 +121,7 @@ using Web.Utils;
             WriteLiteral("        <div style=\"margin-bottom:20px;\">\r\n            <p style=\"font-size:10px; color:#ca0606; font-weight:bold;\">Авторизируйтесь для участия в дискуссии:</p>\r\n            ");
             EndContext();
             BeginContext(721, 203, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b422d14ed594ad1886771858d847cc7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3291b52cf277409aa9006de6e5ceb6a7", async() => {
                 BeginContext(828, 22, true);
                 WriteLiteral("\r\n                <img");
                 EndContext();
@@ -162,7 +162,7 @@ WriteAttributeValue("", 856, Helper.GetImageUrl("google.png"), 856, 33, false);
             WriteLiteral("\r\n\r\n            ");
             EndContext();
             BeginContext(940, 211, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4918f2745519417da404783aefd3eb0f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d83a1e8878e4f39b87ca9fb2a025050", async() => {
                 BeginContext(1051, 22, true);
                 WriteLiteral("\r\n                <img");
                 EndContext();
@@ -203,7 +203,7 @@ WriteAttributeValue("", 1079, Helper.GetImageUrl("facebook.png"), 1079, 35, fals
             WriteLiteral("\r\n\r\n            ");
             EndContext();
             BeginContext(1167, 208, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5acf9ff85ef4ac0a1225b793f6121d6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7684e5c4c5744621ab9a2860671396e9", async() => {
                 BeginContext(1280, 22, true);
                 WriteLiteral("\r\n                <img");
                 EndContext();
@@ -356,7 +356,7 @@ WriteAttributeValue("", 2000, answerComment.Id, 2000, 17, false);
             WriteLiteral("</div>\r\n\r\n");
             EndContext();
             BeginContext(2242, 40, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fb9704df18f643ef8b26dc8213c386dc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "93580c99321b4bfcbc77eac6ad419c08", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

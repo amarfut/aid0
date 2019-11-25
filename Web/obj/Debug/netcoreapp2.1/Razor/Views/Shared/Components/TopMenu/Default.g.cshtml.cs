@@ -82,7 +82,7 @@ WriteAttributeValue("", 498, imagePath, 498, 10, false);
             WriteLiteral(" />\r\n                    ");
             EndContext();
             BeginContext(534, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "964e5d39703443dc823091f96e548c99", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7762c908af56492e8a09092be6c7bc40", async() => {
                 BeginContext(606, 12, false);
 #line 15 "C:\Users\omarf\Desktop\site\Web\Views\Shared\Components\TopMenu\Default.cshtml"
                                                                                       Write(career.Title);
@@ -158,7 +158,7 @@ WriteAttributeValue("", 1196, imagePath, 1196, 10, false);
             WriteLiteral(" />\r\n                    ");
             EndContext();
             BeginContext(1232, 106, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c8ee12e4c82410288a7331cb5377437", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4987d16c81e84b23b45fadc58128c49c", async() => {
                 BeginContext(1313, 21, false);
 #line 32 "C:\Users\omarf\Desktop\site\Web\Views\Shared\Components\TopMenu\Default.cshtml"
                                                                                                Write(programmingPost.Title);
@@ -234,7 +234,7 @@ WriteAttributeValue("", 1885, imagePath, 1885, 10, false);
             WriteLiteral(" />\r\n                    ");
             EndContext();
             BeginContext(1921, 96, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5863ff4a21e54508952c41f36278c63b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4e31a817b33442689fadf52003f27337", async() => {
                 BeginContext(1997, 16, false);
 #line 49 "C:\Users\omarf\Desktop\site\Web\Views\Shared\Components\TopMenu\Default.cshtml"
                                                                                           Write(juniorPost.Title);

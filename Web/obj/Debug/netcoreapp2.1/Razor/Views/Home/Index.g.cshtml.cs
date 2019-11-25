@@ -74,7 +74,7 @@ using Web.Models;
             WriteLiteral("е постов</u>\r\n    </span>\r\n    <h4 data-bind=\"visible: endPostsTextVisible\">Извините, посты закончились</h4>\r\n</div>\r\n\r\n");
             EndContext();
             BeginContext(1144, 42, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "460312f5508b4a1aa2f3b96adebd3e4b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b8cd718d8b5a4b1a9453af8e1c9fd4f3", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
