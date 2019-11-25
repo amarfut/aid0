@@ -17,23 +17,28 @@
             <a asp-controller="account" asp-action="profile" asp-route-param="likedposts"><div class="@c3">Понравившееся</div></a>
         </div>
 
-        <div style="margin-top:20px;">
+        <p>&nbsp;</p>
 
+        <div>
             @if (Model.Action == "comments")
             {
                 <div id="profile-comments">
                     <!-- ko foreach: comments -->
-                    <div style="margin-bottom:50px;">
+                    <div>
                         <a data-bind="attr: { href: $parent.getPostUrl(postUrl, commentId) }">
-                            <h3 data-bind="text: postTitle"></h3>
+                            <b data-bind="text: postTitle"></b>
                         </a>
-                        <p style="font-size:13px; color:#808080;">Добавлено <span data-bind="text: createdTimeRelative"></span> </p>
+                        <p>Добавлено <span data-bind="text: createdTimeRelative"></span> </p>
                         <p data-bind="text: text"></p>
 
-                        <button class="button-error pure-button" data-bind="click: $parent.delete">Удалить комментарий</button>
+                        <button class="button-error pure-button" data-bind="click: $parent.delete">
+                            Удалить комментарий
+                        </button>
                     </div>
                     <!-- /ko -->
                 </div>
+
+                <script src="~/js/profile.js" async></script>
             }
             else if (Model.Action == "likedposts")
             {
@@ -43,8 +48,8 @@
                     string postUrl = "/post/" + post.Url;
 
                     <a href="@postUrl">
-                        <img src="@imagePath" style="float:left; margin-right:15px; margin-bottom:40px;" />
-                        <span style="font-size:22px;">@post.Title</span><br />
+                        <img src="@imagePath" class="liked-posts-preview" />
+                        <b>@post.Title</b><br />
                         @Html.Raw(post.TextPreview)
                     </a>
                     <div style="clear:both;"></div>
@@ -53,7 +58,7 @@
             else if (Model.Action == "editprofile")
             {
                 <div id="profile-view" style="position:relative;">
-                    <form class="pure-form" asp-controller="Account" asp-action="Edit">
+                    <form class="pure-form" action="save-profile">
                         <fieldset>
                             <legend>Ваши данные</legend>
                             <p>
@@ -65,14 +70,11 @@
                             </p>
                         </fieldset>
                     </form>
-                    <div id="photoBox" style="position:absolute; top:50px; right:0;">
+                    <div id="photoBox">
                         <img id="userPhoto" src="@Model.UserPhoto" />
                     </div>
                 </div>
             }
-
-            <script src="~/js/profile.js" async></script>
         </div>
     }
-
 </div>

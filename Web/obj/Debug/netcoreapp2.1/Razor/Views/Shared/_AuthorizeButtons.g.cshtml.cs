@@ -66,7 +66,7 @@ using Web.Utils;
             WriteLiteral("\r\n<div class=\"social-links-auth-wrapper\">\r\n    <div>\r\n        ");
             EndContext();
             BeginContext(80, 195, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c1e156f8f2e4a15871c8996ec9fdd86", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53b0dd79b74d40b29db66fc16345b0fd", async() => {
                 BeginContext(187, 18, true);
                 WriteLiteral("\r\n            <img");
                 EndContext();
@@ -107,7 +107,7 @@ WriteAttributeValue("", 211, Helper.GetImageUrl("google.png"), 211, 33, false);
             WriteLiteral("\r\n    </div>\r\n\r\n    <div>\r\n        ");
             EndContext();
             BeginContext(310, 203, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36da2fea883d4d00ab4ecf844fd78c4e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bcca1757f2a48179d5086b15bbc5ab7", async() => {
                 BeginContext(421, 18, true);
                 WriteLiteral("\r\n            <img");
                 EndContext();
@@ -148,7 +148,7 @@ WriteAttributeValue("", 445, Helper.GetImageUrl("facebook.png"), 445, 35, false)
             WriteLiteral("\r\n    </div>\r\n\r\n    <div>\r\n        ");
             EndContext();
             BeginContext(548, 200, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6cd1f8a7a064b229ad270f721de8506", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3dd39fc3a51a45fd8f2fdb63d2fd2786", async() => {
                 BeginContext(661, 18, true);
                 WriteLiteral("\r\n            <img");
                 EndContext();

@@ -50,7 +50,7 @@
             {
                 @await Html.PartialAsync("_CommentDetails", new CommentDetailsViewModel(answerComment, displayUserName: true));
 
-                <div id="@answerComment.Id-comment-box" style="margin-left:65px;">
+                <div id="@answerComment.Id-comment-box"  class="comment-answers">
                     @await Html.PartialAsync("_CommentForm", new CommentFormViewModel(Model.Id, comment.Id))
                 </div>
             }

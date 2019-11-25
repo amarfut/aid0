@@ -90,6 +90,12 @@ namespace Web.Controllers
             return View(post);
         }
 
+        [HttpGet("error/")]
+        public IActionResult Error()
+        {
+            return View();
+        }
+
         public RedirectResult Search(string term)
         {
             string sitesearch = "martinfowler.com";

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace DataAccess
 
         public DatabaseContext()
         {
+
             var client = new MongoClient("mongodb://maindbadmin:81Osuzov@localhost:27017/maindb");
             if (client != null)
                 _database = client.GetDatabase("maindb");

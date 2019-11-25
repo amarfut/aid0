@@ -62,7 +62,7 @@ using Web.Models;
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(118, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b996e561545048c4b84de19d72b3de86", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ae999c4832144fd19486c9e5390a27e7", async() => {
                 BeginContext(162, 15, true);
                 WriteLiteral("О проекте youIT");
                 EndContext();
@@ -86,7 +86,7 @@ using Web.Models;
             WriteLiteral("\r\n    <span>|</span>\r\n    ");
             EndContext();
             BeginContext(207, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fd9e16f05fe4641a1b23039a586b427", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0b62914bbd5d43fea8057047cb41bcd7", async() => {
                 BeginContext(254, 8, true);
                 WriteLiteral("Контакты");
                 EndContext();
@@ -110,7 +110,7 @@ using Web.Models;
             WriteLiteral("\r\n    <span>|</span>\r\n    ");
             EndContext();
             BeginContext(292, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d955245959841bd9dfdea222fb039e1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "766d592dc84a40bbbcdee839eccaf4c0", async() => {
                 BeginContext(338, 7, true);
                 WriteLiteral("Cookies");
                 EndContext();
@@ -134,7 +134,7 @@ using Web.Models;
             WriteLiteral("\r\n    <span>|</span>\r\n    ");
             EndContext();
             BeginContext(375, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1668936dce6b4ab586322e82c929d597", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d58911c681cc4d959309459fe40b88e5", async() => {
                 BeginContext(421, 18, true);
                 WriteLiteral("Конфиденциальность");
                 EndContext();
@@ -158,7 +158,7 @@ using Web.Models;
             WriteLiteral("\r\n    <span>|</span>\r\n    ");
             EndContext();
             BeginContext(469, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0de4176190e0409f92e7b6dcbfe2ddb5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc11067493094c4a9080666a03269bb2", async() => {
                 BeginContext(526, 21, true);
                 WriteLiteral("Условия использования");
                 EndContext();

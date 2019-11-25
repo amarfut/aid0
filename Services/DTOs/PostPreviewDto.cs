@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Services.DTOs
 {
@@ -12,7 +13,10 @@ namespace Services.DTOs
             Id = post.Id;
             Title = post.Title;
             Url = post.Url;
-            TextPreview = post.Text.Length > 100 ? post.Text.Substring(0, 100).Remove(0, 3) + "..." : post.Text; //0, 3 - remove <p>
+
+            string textPreview = Regex.Replace(post.Text, "<.*?>", string.Empty);
+            TextPreview = textPreview.Length > 100 ? textPreview.Substring(0, 100) + "..." : textPreview; 
+
             ViewsCount = post.Views;
             CommentsCount = post.CommentsCount;
             LikesCount = post.WhoLiked.Length;

@@ -29,8 +29,6 @@ namespace Services.AppServices
 
         public async Task<Result> AddCommentAsync(AddCommentDto dto, string userId, string userName, string userPhotoUrl)
         {
-            //todo: validate command
-
             if (string.IsNullOrEmpty(dto.Text))
             {
                 return Result.Fail("Comment is empty.");
@@ -70,12 +68,6 @@ namespace Services.AppServices
         public async Task<List<CommentPreviewDto>> GetUserCommentsAsync(string userId)
         {
             return await _getUserCommentsQueryHandler.HandleAsync(new GetUserCommentsQuery(userId));
-        }
-
-        public async Task<Result> DeleteCommentAsync()
-        {
-            //TODO: decrement Post.CommentsCount prop
-            throw new NotImplementedException();
         }
     }
 }

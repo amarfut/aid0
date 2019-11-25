@@ -10,41 +10,36 @@
     }
 
 
-
-
-.top-link ul {
-    z-index: 999;
-}
-
 #comment-box-root {
     margin-bottom: 30px;
 }
+
 div[id$='comment-box'] {
     display: none;
     margin-bottom: 20px;
 }
 
 .comment-answers {
-    margin-left:65px;
+    margin-left: 60px;
 }
 
     .comment-answers .user-ava {
-        opacity:0.8;
+        opacity: 0.8;
     }
 
-    body {
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-bottom: 0;
-        font-family: Verdana;
-        font-weight: normal;
-    }
+body {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0;
+    font-family: Verdana;
+    font-weight: normal;
+}
 
 .answer-comment-action {
     color: #296673;
     font-size: 11px;
     cursor: pointer;
-    margin-left:5px;
+    margin-left: 5px;
 }
 
 #post-statistic {
@@ -55,16 +50,16 @@ div[id$='comment-box'] {
 }
 
 .login {
-    float:right;
+    float: right;
 }
 
-    #post-statistic a {
-        color: #9b9b9b;
-    }
+#post-statistic a {
+    color: #9b9b9b;
+}
 
-    #post-statistic div {
-        padding: 10px 10px 0px 10px;
-    }
+#post-statistic div {
+    padding: 10px 10px 0px 10px;
+}
 
 .button-xsmall {
     width: 50%;
@@ -154,7 +149,7 @@ div[id$='comment-box'] {
     .single-comment-wrapper .comment-created {
         color: #949494;
         font-size: 13px;
-        font-weight:normal;
+        font-weight: normal;
     }
 
     .single-comment-wrapper a {
@@ -167,14 +162,14 @@ div[id$='comment-box'] {
     }
 
 .deleted-comment-text {
-    color:#747474;
-    font-style:italic;
+    color: #747474;
+    font-style: italic;
 }
 
 
 .noReaction {
-    color:#747474;
-    cursor:pointer;
+    color: #747474;
+    cursor: pointer;
 }
 
 .liked {
@@ -213,7 +208,7 @@ div[id$='comment-box'] {
 }
 
 .bold {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .li,
@@ -231,19 +226,20 @@ div[id$='comment-box'] {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    margin:auto;
+    margin: auto;
 }
+
     .social-links-auth-wrapper div {
         text-align: center;
         font-size: 66px;
     }
 
-    .post-button-wrapper {
-        grid-gap: 6px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        justify-content: center;
-    }
+.post-button-wrapper {
+    grid-gap: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}
 
     .post-button-wrapper div {
         font-size: 14px;
@@ -259,15 +255,15 @@ div[id$='comment-box'] {
     margin-top: 11px;
 }
 
-.user-ava  {
-    width:50px;
-    margin-right:5px;
+.user-ava {
+    width: 50px;
+    margin-right: 5px;
 }
 
-.user-ava img {
-    width: 100%;
-    border-radius: 3px;
-}
+    .user-ava img {
+        width: 100%;
+        border-radius: 3px;
+    }
 
 .comment-button {
     margin-top: 3px;
@@ -278,7 +274,8 @@ div[id$='comment-box'] {
     color: #fafafa;
     padding: 5px;
     font-size: 13px;
-    float:left; margin-right:15px;
+    float: left;
+    margin-right: 15px;
 }
 
 .full-post {
@@ -294,7 +291,7 @@ div[id$='comment-box'] {
     grid-column: 3 / 4;
     grid-row: 2 / 4;
     max-height: 700px;
-    overflow:auto;
+    overflow: auto;
     border: 1px solid #fbfaf7;
     border-radius: 5px;
     background-color: #FFF;
@@ -318,7 +315,7 @@ div[id$='comment-box'] {
     .scrollbar::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         border-radius: 10px;
-        background-color:#FFF;
+        background-color: #FFF;
     }
 
     .scrollbar::-webkit-scrollbar {
@@ -347,9 +344,9 @@ div[id$='comment-box'] {
     font-weight: bold;
 }
 
-.more-posts-button span {
-    cursor: pointer;
-}
+    .more-posts-button span {
+        cursor: pointer;
+    }
 
 .footer {
     grid-column: 1 / 4;
@@ -455,52 +452,56 @@ div.menu {
         position: relative;
     }
 
-    div.menu img {
-        float: left;
-        border-radius: 4px;
-        margin-right: 10px;
+ul.menu ul {
+    z-index: 1;
+}
+
+div.menu img {
+    float: left;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+div.menu ul li {
+    margin: 0px;
+    display: inline-block;
+    float: left;
+    background-color: #FFF;
+}
+
+div.menu a {
+    display: block;
+    padding-right: 10px;
+    text-decoration: none;
+}
+
+    div.menu a.top-link:after {
+        content: "\25BC";
+        font-size: 10px;
+        opacity: 0.3;
+        padding-left: 2px;
     }
 
-    div.menu ul li {
-        margin: 0px;
-        display: inline-block;
-        float: left;
-        background-color: #FFF;
-    }
 
-    div.menu a {
-        display: block;
-        padding-right: 10px;
-        text-decoration: none;
-    }
+div.menu ul ul {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    background-color: #FFF;
+    box-shadow: 1px 1px 1px 1px #fbf6db;
+}
 
-        div.menu a.top-link:after {
-            content: "\25BC";
-            font-size: 10px;
-            opacity: 0.3;
-            padding-left: 2px;
-        }
+div.menu ul li:hover > ul {
+    display: inherit;
+}
 
-
-    div.menu ul ul {
-        display: none;
-        position: absolute;
-        padding: 10px;
-        background-color: #FFF;
-        box-shadow: 1px 1px 1px 1px #fbf6db;
-    }
-
-    div.menu ul li:hover > ul {
-        display: inherit;
-    }
-
-    div.menu ul ul li {
-        width: 320px;
-        float: none;
-        display: list-item;
-        position: relative;
-        margin: 5px;
-    }
+div.menu ul ul li {
+    width: 320px;
+    float: none;
+    display: list-item;
+    position: relative;
+    margin: 5px;
+}
 
 
 @media all and (max-width : 600px) {
@@ -529,3 +530,30 @@ div.menu {
 #authorizeModal {
     font-size: 13px;
 }
+
+
+
+/*user-profile*/
+#profile-comments div {
+    padding: 10px;
+}
+
+    #profile-comments div:nth-child(odd) {
+        background-color: #f6f6f6;
+        border-radius: 5px;
+    }
+
+.liked-posts-preview {
+    float: left;
+    margin-right: 15px;
+    border-radius: 3px;
+    margin-bottom: 40px;
+}
+
+#photoBox {
+    position: absolute;
+    top: 50px;
+    right: 0;
+}
+
+/**/

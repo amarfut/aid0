@@ -5,7 +5,7 @@
     </a>
     <div class="post-button-wrapper">
         <div><i class="far fa-eye"></i> <span data-bind="text: viewsCount"></span></div>
-        <a data-bind="click: $parent.showComments"> <div><i class="far fa-comment"></i> <span data-bind="text: commentsCount"></span></div></a>
+        <a data-bind="attr: { href: postUrl + '#begin-comments' }"> <div><i class="far fa-comment"></i> <span data-bind="text: commentsCount"></span></div></a>
         <a data-bind="click: $parent.like"><div><i class="far fa-thumbs-up"></i> <span data-bind="text: likesCount"></span></div></a>
         <a data-bind="click: $parent.dislike"><div><i class="far fa-thumbs-down"></i> <span data-bind="text: dislikesCount"></span></div></a>
     </div>

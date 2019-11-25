@@ -84,6 +84,7 @@ namespace Web.Controllers
         }
 
         [Authorize]
+        [HttpPost("save-profile")]
         public async Task<IActionResult> Edit(string userName)
         {
             if (string.IsNullOrEmpty(userName))
@@ -104,6 +105,7 @@ namespace Web.Controllers
             return Redirect("/account/profile");
         }
 
+        [HttpGet("profile/{param?}/", Name = "Profile")]
         [Authorize]
         public async Task<IActionResult> Profile(string param = "editprofile")
         {
@@ -112,9 +114,6 @@ namespace Web.Controllers
                 Action = param, UserPhoto = base.UserPhotoUrl
             };
 
-            //if (param == "comments")
-            //    model.Comments = await new CommentService().GetUserCommentsAsync(UserId);
-            //else 
             if (param == "archive")
                 model.Bookmarks = await new PostService().GetUserBookmarksAsync(UserId);
             else if (param == "likedposts")

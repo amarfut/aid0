@@ -26,7 +26,9 @@ function AppViewModel() {
     };
 
     self.showComments = function (post) {
-        window.location.replace(post.postUrl + '#begin-comments');
+        return post.postUrl + '#begin-comments';
+        console.log(post);
+       // window.location.replace(post.postUrl + '#begin-comments');
     };
 
     self.setReaction = function (postId, liked) {
