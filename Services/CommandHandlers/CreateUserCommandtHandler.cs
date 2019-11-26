@@ -35,7 +35,7 @@ namespace Services.CommandHandlers
                     PhotoUrl = command.PhotoUrl,
                     InternalId = userObjectId
                 });
-                return Result.Ok(new UserDto() { Id = userObjectId.ToString(), Name = user.Name });
+                return Result.Ok(new UserDto() { Id = userObjectId.ToString(), Name = command.Name });
             }
         }
     }
