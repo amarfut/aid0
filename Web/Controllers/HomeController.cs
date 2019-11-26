@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Services;
 using Services.AppServices;
 using Services.DTOs;
@@ -18,6 +19,14 @@ using Web.Models;
 
 namespace Web.Controllers
 {
+    public class UserCookieData
+    {
+        public List<string> ViewedPostIds { get; set; } = new List<string>();
+
+        public DateTime LastAccessed { get; set; } = DateTime.UtcNow;
+    }
+
+
     public class HomeController : BaseController
     {
         private PostService _postService = new PostService();
@@ -44,17 +53,14 @@ namespace Web.Controllers
             var post = await service.GetPost(url);
 
             var postViewCookie = HttpContext.Request.Cookies["uId"];
+            UserCookieData data = Deserialize(postViewCookie);
+            if ((DateTime.UtcNow - data.LastAccessed).TotalHours > 12) data = new UserCookieData();
 
-            List<string> viewedPostIds =
-                string.IsNullOrEmpty(postViewCookie) ?
-                new List<string>() :
-                postViewCookie.Split(",").ToList();
-
-            if (!viewedPostIds.Contains(post.Id))
+            if (!data.ViewedPostIds.Contains(post.Id))
             {
-                viewedPostIds.Add(post.Id);
+                data.ViewedPostIds.Add(post.Id);
                 HttpContext.Response.Cookies.Delete("uId");
-                HttpContext.Response.Cookies.Append("uId", string.Join(',', viewedPostIds), new CookieOptions()
+                HttpContext.Response.Cookies.Append("uId", GetJson(data.ViewedPostIds), new CookieOptions()
                 {
                     IsEssential = true,
                     HttpOnly = true
@@ -88,6 +94,26 @@ namespace Web.Controllers
             //}
 
             return View(post);
+        }
+
+        private UserCookieData Deserialize(string postViewCookie)
+        {
+            if (string.IsNullOrEmpty(postViewCookie))
+            {
+                return new UserCookieData();
+            }
+            return JsonConvert.DeserializeObject<UserCookieData>(postViewCookie);
+        }
+
+        private string GetJson(List<string> postIds)
+        {
+            var data = new UserCookieData
+            {
+                ViewedPostIds = postIds,
+                LastAccessed = DateTime.UtcNow
+            };
+
+            return JsonConvert.SerializeObject(data);
         }
 
         [HttpGet("error/")]
