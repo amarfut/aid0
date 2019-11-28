@@ -53,20 +53,23 @@ namespace Web.Controllers
             var post = await service.GetPost(url);
 
             var postViewCookie = HttpContext.Request.Cookies["uId"];
-            UserCookieData data = Deserialize(postViewCookie);
-            if ((DateTime.UtcNow - data.LastAccessed).TotalHours > 12) data = new UserCookieData();
-
-            if (!data.ViewedPostIds.Contains(post.Id))
+            if (!string.IsNullOrEmpty(postViewCookie))
             {
-                data.ViewedPostIds.Add(post.Id);
-                HttpContext.Response.Cookies.Delete("uId");
-                HttpContext.Response.Cookies.Append("uId", GetJson(data.ViewedPostIds), new CookieOptions()
+                UserCookieData data = Deserialize(postViewCookie);
+                if ((DateTime.UtcNow - data.LastAccessed).TotalHours > 12) data = new UserCookieData();
+
+                if (!data.ViewedPostIds.Contains(post.Id))
                 {
-                    IsEssential = true,
-                    HttpOnly = true
-                });
-                new IncrementPostViewCount().HandleAsync(post.Id);
+                    data.ViewedPostIds.Add(post.Id);
+                    HttpContext.Response.Cookies.Delete("uId");
+                    HttpContext.Response.Cookies.Append("uId", GetJson(data.ViewedPostIds), new CookieOptions()
+                    {
+                        HttpOnly = true
+                    });
+                    new IncrementPostViewCount().HandleAsync(post.Id);
+                }
             }
+           
 
             //TODO: introduce UI services layer and move it to there and refactor
 
@@ -124,7 +127,7 @@ namespace Web.Controllers
 
         public RedirectResult Search(string term)
         {
-            string sitesearch = "martinfowler.com";
+            string sitesearch = "youit.info";
             string url = $"https://www.google.com/search?q={term}&sitesearch={sitesearch}";
             return Redirect(new Uri(url).AbsoluteUri);
         }
