@@ -33,5 +33,7 @@ namespace DataAccess
         public IMongoCollection<Answer> Answers => _database.GetCollection<Answer>("answers");
 
         public IMongoCollection<CommentPreview> LatestComments => _database.GetCollection<CommentPreview>("latestComments");
+
+        public IMongoCollection<UserMessage> UserMessages => _database.GetCollection<UserMessage>("userMessages");
     }
 }

@@ -40,11 +40,11 @@
                         contentType: "application/json",
                         data: JSON.stringify({ Subject: subject, Name: name, Mail: email, Text: text }),
                         success: (data) => {
+                            $('#successModal').modal('show');
                             $('#name').val('');
                             $('#email').val('');
                             $('#subject').val('');
                             $('#text').val('');
-                            $('#successModal').modal('show');
                         },
                         error: (error) => { }
                     });

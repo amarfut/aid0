@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
 using Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -31,6 +32,10 @@ namespace Web.Controllers
     {
         private PostService _postService = new PostService();
 
+        private CryptoManager _crypto = new CryptoManager();
+
+        private const string userCookieId = "_yId";
+
         public IActionResult Index()
         {
             return View();
@@ -52,24 +57,24 @@ namespace Web.Controllers
             var service = new PostService();
             var post = await service.GetPost(url);
 
-            var postViewCookie = HttpContext.Request.Cookies["uId"];
-            if (!string.IsNullOrEmpty(postViewCookie))
-            {
-                UserCookieData data = Deserialize(postViewCookie);
-                if ((DateTime.UtcNow - data.LastAccessed).TotalHours > 12) data = new UserCookieData();
+            UserCookieData data = Deserialize(_crypto.Decrypt(HttpContext.Request.Cookies[userCookieId]));
+            if ((DateTime.UtcNow - data.LastAccessed).TotalHours > 12) data = new UserCookieData();
 
-                if (!data.ViewedPostIds.Contains(post.Id))
-                {
-                    data.ViewedPostIds.Add(post.Id);
-                    HttpContext.Response.Cookies.Delete("uId");
-                    HttpContext.Response.Cookies.Append("uId", GetJson(data.ViewedPostIds), new CookieOptions()
-                    {
-                        HttpOnly = true
-                    });
-                    new IncrementPostViewCount().HandleAsync(post.Id);
-                }
+            if (!data.ViewedPostIds.Contains(post.Id))
+            {
+                data.ViewedPostIds.Add(post.Id);
+
+                string encryptedCookie = _crypto.Encrypt(GetJson(data.ViewedPostIds));
+
+                HttpContext.Response.Cookies.Delete(userCookieId);
+                HttpContext.Response.Cookies.Append(userCookieId, encryptedCookie, new CookieOptions() {
+                    HttpOnly = true,
+                    IsEssential = true
+                });
+                new IncrementPostViewCount().HandleAsync(post.Id);
             }
-           
+
+
 
             //TODO: introduce UI services layer and move it to there and refactor
 

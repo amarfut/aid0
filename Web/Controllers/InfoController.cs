@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Common;
+using DataAccess;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
@@ -45,7 +46,7 @@ namespace Web.Controllers
         }
 
 
-        public IActionResult SendMessage([FromBody] Message message)
+        public async Task<IActionResult> SendMessage([FromBody] Message message)
         {
             var valid = message.IsValid();
             if (!valid)
@@ -53,7 +54,14 @@ namespace Web.Controllers
                 return FromResult(Result.Fail("Все поля обязательны для заполнения."));
             }
 
-            //
+            await new DatabaseContext().UserMessages.InsertOneAsync(new Domain.Entities.UserMessage()
+            {
+                Name = message.Name,
+                Mail = message.Mail,
+                Subject = message.Subject,
+                Text = message.Text,
+                Created = DateTime.UtcNow
+            });
 
             return FromResult(Result.Ok());
         }

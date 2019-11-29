@@ -25,7 +25,11 @@
         <div class="box top-menu">
             <div class="nav">
                 <div class="logo">
-                    <a href="/">youIT</a>
+                    <a href="/">
+
+                        <img src="@Helper.GetImageUrl("logo.png")" alt="YouIT" />
+
+                    </a>
                 </div>
                 <div class="menu">
                     @await Component.InvokeAsync("TopMenu")

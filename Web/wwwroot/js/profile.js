@@ -1,6 +1,7 @@
 function ProfileCommentsViewModel() {
     let self = this;
     self.comments = ko.observableArray([]);
+    self.noCommentsVisible = ko.observable(false);
 
     self.getPostUrl = function (postUrl, commentId) {
         return `/post/${postUrl}#${commentId}`;
@@ -10,9 +11,9 @@ function ProfileCommentsViewModel() {
         $.ajax({
             url: '/account/getprofilecomments',
             type: 'GET',
-            success: (comments) => {
-                console.log(comments);
-                for (let comment of comments) {
+            success: (responseComments) => {
+                self.noCommentsVisible(responseComments.length === 0);
+                for (let comment of responseComments) {
                     self.comments.push(comment);
                 }
             },
