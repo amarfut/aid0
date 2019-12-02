@@ -426,7 +426,9 @@ body {
     font-size: 15px;
 }
 
-
+.privacy a {
+    color:#466eb7;
+}
 /*Menu*/
 .nav {
     display: grid;

@@ -23,8 +23,6 @@
             @if (Model.Action == "comments")
             {
                 <div id="profile-comments">
-                    <div data-bind="visible: noCommentsVisible">Вы еще ничего не комментировали.</div>
-
                     <!-- ko foreach: comments -->
                     <div>
                         <a data-bind="attr: { href: $parent.getPostUrl(postUrl, commentId) }">
@@ -39,7 +37,6 @@
                     </div>
                     <!-- /ko -->
                 </div>
-
                 <script src="~/js/profile.js" async></script>
             }
             else if (Model.Action == "likedposts")

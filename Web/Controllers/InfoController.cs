@@ -20,26 +20,31 @@ namespace Web.Controllers
 {
     public class InfoController : BaseController
     {
+        [Route("/about")]
         public IActionResult About()
         {
             return View();
         }
 
+        [Route("/contacts")]
         public IActionResult Contacts()
         {
             return View();
         }
 
+        [Route("/cookies")]
         public IActionResult Cookies()
         {
             return View();
         }
 
+        [Route("/privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [Route("/termsandconditions")]
         public IActionResult TermsAndConditions()
         {
             return View();
