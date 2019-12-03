@@ -68,8 +68,7 @@ namespace Web.Controllers
 
                 HttpContext.Response.Cookies.Delete(userCookieId);
                 HttpContext.Response.Cookies.Append(userCookieId, encryptedCookie, new CookieOptions() {
-                    HttpOnly = true,
-                    IsEssential = true
+                    Expires = DateTimeOffset.Now.AddHours(24)
                 });
                 new IncrementPostViewCount().HandleAsync(post.Id);
             }
