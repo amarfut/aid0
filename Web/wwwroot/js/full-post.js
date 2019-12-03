@@ -45,7 +45,6 @@
 }
 
 let statisticsPostElem = document.getElementById("post-statistic");
-console.log(statisticsPostElem);
 ko.applyBindings(new StaticPostViewModel(), statisticsPostElem);
 
 
@@ -69,5 +68,4 @@ function MorePostsViewModel() {
 }
 
 let morePostsElem = document.getElementById("more-posts");
-console.log(morePostsElem);
 ko.applyBindings(new MorePostsViewModel(), morePostsElem);

@@ -2,16 +2,16 @@
 @using Microsoft.AspNetCore.Mvc;
 
 
-<span style="font-size:22px;">&nbsp; Что сейчас обсуждают?</span>
+<span style="font-size:22px;">Что сейчас обсуждают?</span>
 <p></p>
 @foreach (var comment in Model)
 {
     int last = comment.Text.Length > 120 ? 120 : comment.Text.Length;
     string url = $"/post/{comment.PostUrl}#{comment.CommentId}";
 
-    <div style="margin-top:30px;">
+    <div style="margin-top:30px; text-align:left;">
         <a href="@url">
-            <div class="user-ava" style="float:left;">
+            <div class="user-ava" style="float:left; margin-top:3px;">
 
                 @if (string.IsNullOrEmpty(comment.UserPhotoUrl))
                 {
@@ -19,12 +19,12 @@
                 }
                 else
                 {
-                    <img src="@comment.UserPhotoUrl" />
+                    <img src="@comment.UserPhotoUrl" alt="@comment.UserName" />
                 }
             </div>
             <span style="font-size:15px; ">
                 <span style="color:#2d66a3;">@comment.UserName</span> <br />
-                <span style="font-weight:bold; font-size:11px;">@comment.PostTitle</span>
+                <span style="font-weight:bold; font-size:13px;">@comment.PostTitle</span>
             </span>
             <div style="clear:both"></div>
 

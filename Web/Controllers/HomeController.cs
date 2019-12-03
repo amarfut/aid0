@@ -51,6 +51,21 @@ namespace Web.Controllers
             return await _postService.GetSimilarPosts(type);
         }
 
+        [Route("status/{code}")]
+        public IActionResult Status(int code)
+        {
+            if (code == 404)
+            {
+                return View("PageNotFound");
+            }
+            else if (code == 500)
+            {
+                return View("Error");
+            }
+
+            return View("Error");
+        }
+
         [HttpGet("post/{url}/", Name = "Post")]
         public async Task<IActionResult> Post(string url)
         {
@@ -67,7 +82,8 @@ namespace Web.Controllers
                 string encryptedCookie = _crypto.Encrypt(GetJson(data.ViewedPostIds));
 
                 HttpContext.Response.Cookies.Delete(userCookieId);
-                HttpContext.Response.Cookies.Append(userCookieId, encryptedCookie, new CookieOptions() {
+                HttpContext.Response.Cookies.Append(userCookieId, encryptedCookie, new CookieOptions()
+                {
                     Expires = DateTimeOffset.Now.AddHours(24)
                 });
                 new IncrementPostViewCount().HandleAsync(post.Id);
@@ -131,7 +147,7 @@ namespace Web.Controllers
 
         public RedirectResult Search(string term)
         {
-            string sitesearch = "youit.info";
+            string sitesearch = "youit.pro";
             string url = $"https://www.google.com/search?q={term}&sitesearch={sitesearch}";
             return Redirect(new Uri(url).AbsoluteUri);
         }

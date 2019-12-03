@@ -5,7 +5,7 @@
 <div style="display:grid; grid-template-columns: 1fr 10fr;">
     @{string url = Helper.GetUserPhotoUrl(User); }
 
-    <div class="user-ava"><img src="@url" /></div>
+    <div class="user-ava"><img src="@url" alt="@User.Identity.Name" /></div>
     <div>
         <form class="pure-form">
             <textarea class="pure-input-1" placeholder="Комментировать..."></textarea>

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Common;
+using Domain.Entities;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -35,5 +36,8 @@ namespace DataAccess
         public IMongoCollection<CommentPreview> LatestComments => _database.GetCollection<CommentPreview>("latestComments");
 
         public IMongoCollection<UserMessage> UserMessages => _database.GetCollection<UserMessage>("userMessages");
+
+        public IMongoCollection<LogMessage> Logs => _database.GetCollection<LogMessage>("logs");
+
     }
 }

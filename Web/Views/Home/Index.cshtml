@@ -1,7 +1,7 @@
 ﻿<!-- ko foreach: posts -->
 <div class="box content">
     <a data-bind="attr: { href: postUrl }">
-        <img style="max-width:100%" data-bind="attr: { src: imageUrl }" />
+        <img style="max-width:100%" data-bind="attr: { src: imageUrl, alt: title }" />
     </a>
     <div class="post-button-wrapper">
         <div><i class="far fa-eye"></i> <span data-bind="text: viewsCount"></span></div>
@@ -16,8 +16,8 @@
 <!-- /ko -->
 
 <div class="box more-posts-button">
-    <span data-bind="click: addPosts, visible: morePostsButtonVisible">
-        <u>загрузить больше постов</u>
+    <span data-bind="click: addPosts, visible: morePostsButtonVisible" style="padding:10px; background-color:#222222; color:#FFF;">
+        Загрузить больше постов
     </span>
     <h4 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h4>
 </div>

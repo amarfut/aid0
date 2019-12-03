@@ -1,14 +1,16 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
-<!DOCTYPE html>
+@using Web.Utils
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    Произошла ошибка. Попробуйте обновить страницу.
-</body>
-</html>
+<div style="margin:auto; width:50%; padding-top:50px; text-align:center; font-family:Verdana;">
+
+    <img src="@Helper.GetImageUrl("logo.png")" alt="You IT" />
+
+    <h1>Произошла ошибка сервера.</h1>
+    <h1>
+        Мы начнем работать над ней в кратчайшие сроки.</h1>
+    <h1>Попробуйте обновить страницу.
+    </h1>
+
+</div>

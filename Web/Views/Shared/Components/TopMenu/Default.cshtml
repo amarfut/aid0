@@ -11,7 +11,7 @@
             {
                 <li>
                     @{string imagePath = $"https://storage.googleapis.com/youit/{career.Url}/mini.png"; }
-                    <img src="@imagePath" />
+                    <img src="@imagePath" alt="@career.Title" />
                     <a asp-controller="Home" asp-action="Post" asp-route-url="@career.Url">@career.Title</a>
                     <div style="clear: left;"></div>
                 </li>
@@ -28,7 +28,7 @@
             {
                 <li>
                     @{string imagePath = $"https://storage.googleapis.com/youit/{programmingPost.Url}/mini.png"; }
-                    <img src="@imagePath" />
+                    <img src="@imagePath" alt="@programmingPost.Title" />
                     <a asp-controller="Home" asp-action="Post" asp-route-url="@programmingPost.Url">@programmingPost.Title</a>
                     <div style="clear: left;"></div>
                 </li>
@@ -45,7 +45,7 @@
             {
                 <li>
                     @{string imagePath = $"https://storage.googleapis.com/youit/{juniorPost.Url}/mini.png"; }
-                    <img src="@imagePath" />
+                    <img src="@imagePath" alt="@juniorPost.Title"/>
                     <a asp-controller="Home" asp-action="Post" asp-route-url="@juniorPost.Url">@juniorPost.Title</a>
                     <div style="clear: left;"></div>
                 </li>

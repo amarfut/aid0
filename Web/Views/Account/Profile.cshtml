@@ -47,7 +47,7 @@
                     string postUrl = "/post/" + post.Url;
 
                     <a href="@postUrl">
-                        <img src="@imagePath" class="liked-posts-preview" />
+                        <img src="@imagePath" class="liked-posts-preview" alt="@post.Title" />
                         <b>@post.Title</b><br />
                         @Html.Raw(post.TextPreview)
                     </a>
@@ -56,7 +56,10 @@
             }
             else if (Model.Action == "editprofile")
             {
-                <div id="profile-view" style="position:relative;">
+                <div id="profile-view">
+                    <div id="photoBox">
+                        <img id="userPhoto" src="@Model.UserPhoto" alt="Аватар" />
+                    </div>
                     <p>Ваши данные:</p>
                     <form class="pure-form">
                         <input type="text" id="userNameInput" placeholder="@User.Identity.Name" />
@@ -65,10 +68,10 @@
                         <button class="pure-button pure-button-active" onclick="save()">Сохранить</button>
                     </p>
 
-
-                    <div id="photoBox">
-                        <img id="userPhoto" src="@Model.UserPhoto" />
-                    </div>
+                    <p style="font-size:13px; font-style:italic;">
+                        Если Вы желаете удалить свою учетную запись, напишите нам письмо на наш электронный адрес
+                        <a href="#">admin@youit.pro</a>. В письме обязательно укажите уникальный идентификатор вашей учетной записи: <b>@Model.UserId</b>
+                    </p>
                 </div>
 
                 <script src="~/js/user-profile-info.js" async></script>

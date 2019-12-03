@@ -5,7 +5,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>youIT - программирование и карьера в IT</title>
+    <title>You IT - программирование и карьера в IT</title>
+
+    <meta name="description" content="Сайт You IT лаконично и регулярно отвечает людям на наиболее важные вопросы о программировании и карьере в сфере информационных технологий." />
+    <meta name="keywords" content="Программирование, IT, код, собеседование, тестирование, ООП, Junior, Senior, Аутсорсинг, Алгоритмы, Веб-сервер" />
+
     <link rel="stylesheet" href="~/css/site.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,6 +22,12 @@
 
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
 
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://storage.googleapis.com/youit/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://storage.googleapis.com/youit/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/youit/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/youit/favicon/favicon.ico">
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99938281-2"></script>
     <script>
@@ -25,7 +35,8 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'UA-99938281-2');
-    </script>
+
+/**/</script>
 
 </head>
 <body>
@@ -37,7 +48,7 @@
                 <div class="logo">
                     <a href="/">
 
-                        <img src="@Helper.GetImageUrl("logo.png")" alt="YouIT" />
+                        <img src="@Helper.GetImageUrl("logo.png")" alt="You IT" />
 
                     </a>
                 </div>
@@ -71,10 +82,22 @@
                 </div>
             </div>
         </div>
-        <div class="box sidebar scrollbar">
-            @await Component.InvokeAsync("RealTimeComments")
+
+        <div class="box sidebar">
+            <div class="topCommentsBar">
+                @await Component.InvokeAsync("RealTimeComments")
+            </div>
+
+            <div class="subscribeBar">
+                <div style="float:right; margin-left:5px;">
+                    <a href="#"><img src="https://storage.googleapis.com/youit/site/telegram.jpg" style="width:55px;" alt="Telegram" /></a>
+                </div>
+                <span style="font-size:22px;">Подписаться на нас в Telegram</span>
+            </div>
         </div>
+
         @RenderBody()
+
         @await Html.PartialAsync("_Footer")
         <script>
             searchClick = () => {
@@ -89,6 +112,6 @@
     </div>
     @await Html.PartialAsync("_Authorize")
 
-   @await Html.PartialAsync("_CookieConsentPartial")
+    @await Html.PartialAsync("_CookieConsentPartial")
 </body>
 </html>

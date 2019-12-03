@@ -117,7 +117,7 @@ body {
 
 .wrapper {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     max-width: 1000px;
@@ -242,7 +242,7 @@ body {
 }
 
     .post-button-wrapper div {
-        font-size: 14px;
+        font-size: 16px;
         border-radius: 3px;
         text-align: center;
         color: #9b9b9b;
@@ -290,11 +290,29 @@ body {
 .sidebar {
     grid-column: 3 / 4;
     grid-row: 2 / 4;
-    max-height: 700px;
-    overflow: auto;
+    overflow:hidden;
+}
+
+.subscribeBar {
     border: 1px solid #fbfaf7;
     border-radius: 5px;
-    background-color: #FFF;
+    background-color: #FBFBFB;
+    -moz-box-shadow: inset 0 0 3px #C0C0C0;
+    -webkit-box-shadow: inset 0 0 3px#C0C0C0;
+    box-shadow: inner 0 0 3px #C0C0C0;
+    margin-top: -1px;
+    padding: 15px 10px 15px 10px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.topCommentsBar {
+    text-align: center;
+    min-height: 450px;
+    overflow: hidden;
+    border: 1px solid #fbfaf7;
+    border-radius: 5px;
+    background-color: #FBFBFB;
     -moz-box-shadow: inset 0 0 3px #C0C0C0;
     -webkit-box-shadow: inset 0 0 3px#C0C0C0;
     box-shadow: inner 0 0 3px #C0C0C0;
@@ -383,8 +401,9 @@ body {
 }
 
     .content h3 {
+        margin-top:-1px;
         color: #3d3d3d;
-        font-size: 26px;
+        font-size: 28px;
         font-weight: normal;
     }
 
@@ -417,6 +436,7 @@ body {
 
 .logo {
     font-size: 22px;
+    margin-top:-7px;
 }
 
 .login-bar {
@@ -424,6 +444,10 @@ body {
     padding-top: 5px;
     color: #868686;
     font-size: 15px;
+}
+
+.cookies td {
+    padding: 10px;
 }
 
 .privacy a {
@@ -551,11 +575,3 @@ div.menu ul ul li {
     border-radius: 3px;
     margin-bottom: 40px;
 }
-
-#photoBox {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-/**/

@@ -27,6 +27,8 @@ namespace Web.Controllers
         public string Action { get; set; }
 
         public string UserPhoto { get; set; }
+
+        public string UserId { get; set; }
     }
 
     public class AccountController : BaseController
@@ -117,7 +119,7 @@ namespace Web.Controllers
         {
             var model = new ProfileViewModel()
             {
-                Action = param, UserPhoto = base.UserPhotoUrl
+                Action = param, UserPhoto = base.UserPhotoUrl, UserId =base.UserId
             };
 
             if (param == "archive")
