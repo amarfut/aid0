@@ -23,30 +23,35 @@ namespace Web.Controllers
         [Route("/about")]
         public IActionResult About()
         {
+            ViewBag.Title = "О проекте YouIT - You IT";
             return View();
         }
 
         [Route("/contacts")]
         public IActionResult Contacts()
         {
+            ViewBag.Title = "Контакты - You IT";
             return View();
         }
 
         [Route("/cookies")]
         public IActionResult Cookies()
         {
+            ViewBag.Title = "Cookies - You IT";
             return View();
         }
 
         [Route("/privacy")]
         public IActionResult Privacy()
         {
+            ViewBag.Title = "Конфиденциальность - You IT";
             return View();
         }
 
         [Route("/termsandconditions")]
         public IActionResult TermsAndConditions()
         {
+            ViewBag.Title = "Пользовательское соглашение - You IT";
             return View();
         }
 

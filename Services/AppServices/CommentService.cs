@@ -62,7 +62,7 @@ namespace Services.AppServices
 
         public async Task<List<CommentPreviewDto>> GetTopCommentPreviews()
         {
-            return await _getTopCommentsQueryHandler.HandleAsync(new GetTopCommentsQuery(7));
+            return await _getTopCommentsQueryHandler.HandleAsync(new GetTopCommentsQuery(4));
         }
 
         public async Task<List<CommentPreviewDto>> GetUserCommentsAsync(string userId)

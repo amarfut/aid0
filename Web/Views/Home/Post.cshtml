@@ -19,6 +19,7 @@
         }
     }
 }
+
 <div class="box full-post">
 
     <h1>@Model.Title</h1>
@@ -46,18 +47,22 @@
         </a>
 
     </div>
-    <div id="post-statistic">
-        <div><i class="far fa-eye"></i> @Model.ViewsFormatted</div>
-        <div><a href="#begin-comments"><i class="far fa-comment"></i> @Model.CommentsCount</a> </div>
+    <div class="post-text">
+        <div id="post-statistic">
+            <div><i class="far fa-eye"></i> @Model.ViewsFormatted</div>
+            <div><a href="#begin-comments"><i class="far fa-comment"></i> @Model.CommentsCount</a> </div>
 
-        <div id="post-likes" class="@thumbUpClass" data-bind="click: function() { setLike('@Model.Id') }" style="cursor:pointer;">
-            <i class="far fa-thumbs-up"></i> <span>@Model.Likes</span>
+            <div id="post-likes" class="@thumbUpClass" data-bind="click: function() { setLike('@Model.Id') }" style="cursor:pointer;">
+                <i class="far fa-thumbs-up"></i> <span>@Model.Likes</span>
+            </div>
+            <div id="post-dislikes" class="@thumbDownClass" data-bind="click: function() { setDislike('@Model.Id') }" style="cursor:pointer;">
+                <i class="far fa-thumbs-down"></i> <span>@Model.Dislikes</span>
+            </div>
         </div>
-        <div id="post-dislikes" class="@thumbDownClass" data-bind="click: function() { setDislike('@Model.Id') }" style="cursor:pointer;">
-            <i class="far fa-thumbs-down"></i> <span>@Model.Dislikes</span>
-        </div>
+
+        @Html.Raw(Model.Text)
     </div>
-    @Html.Raw(Model.Text)
+   
 
     @await Html.PartialAsync("_PostComments", Model)
 
@@ -68,10 +73,10 @@
         <div style="margin-bottom:30px;">
             <a data-bind="attr: { href: url }">
                 <img style="max-width:100%; border-radius:3px;" data-bind="attr: { src: image, alt: title }" />
-                <h3  data-bind="text: title"></h3>
+                <h4 data-bind="text: title" style="margin-top:0px;"></h4>
             </a>
         </div>
         <!-- /ko -->
     </div>
 </div>
-<script src="~/js/full-post.js"></script>
+<script src="~/js/full-post.js" async></script>

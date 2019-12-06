@@ -1,55 +1,84 @@
 ﻿@using Web.Utils;
+@using Microsoft.AspNetCore.Http.Features
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var cookieString = consentFeature?.CreateConsentCookie();
 
+    string metaDescription = string.IsNullOrEmpty(ViewBag.MetaDescription) ?
+        "Сайт You IT лаконично и регулярно отвечает людям на наиболее важные вопросы о программировании и карьере в сфере информационных технологий." :
+        ViewBag.MetaDescription;
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>You IT - программирование и карьера в IT</title>
-
-    <meta name="description" content="Сайт You IT лаконично и регулярно отвечает людям на наиболее важные вопросы о программировании и карьере в сфере информационных технологий." />
+    <title>@ViewBag.Title</title>
+    <meta name="yandex-verification" content="d5228bc7b1b19655" />
+    <meta name="description" content="@metaDescription" />
     <meta name="keywords" content="Программирование, IT, код, собеседование, тестирование, ООП, Junior, Senior, Аутсорсинг, Алгоритмы, Веб-сервер" />
 
     <link rel="stylesheet" href="~/css/site.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" async></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <script src="https://kit.fontawesome.com/70be1b95e9.js" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://kit.fontawesome.com/70be1b95e9.js" crossorigin="anonymous" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
-
-
     <link rel="apple-touch-icon" sizes="180x180" href="https://storage.googleapis.com/youit/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://storage.googleapis.com/youit/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/youit/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/youit/favicon/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99938281-2"></script>
-    <script>
+    <script class="_iub_cs_activate" type="text/plain" async suppressedsrc="https://www.googletagmanager.com/gtag/js?id=UA-99938281-2">
+    </script>
+    <script class="_iub_cs_activate-inline" type="text/plain">
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'UA-99938281-2');
+    </script>
 
-/**/</script>
+    <script class="_iub_cs_activate" type="text/plain" data-ad-client="ca-pub-4128223586304442" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+    </script>
+
+    <script type="text/javascript">
+            var _iub = _iub || [];
+            _iub.csConfiguration = {
+                "lang": "ru",
+                "siteId": 1742269,
+                "cookiePolicyId": 11210594,
+                "consentOnContinuedBrowsing": false,
+                "cookiePolicyUrl": "https://youit.pro/privacy",
+                "banner": {
+                    "acceptButtonDisplay": true,
+                    "position": "bottom"
+                },
+                callback: {
+                    onConsentRead: function () {
+                        document.cookie = '@cookieString';
+                    }
+                }
+            };
+    </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/stable/iubenda_cs.js" charset="UTF-8" async></script>
 
 </head>
 <body>
 
-    <div class="header"> </div>
+    <div class="header">
+
+
+    </div>
     <div class="wrapper">
         <div class="box top-menu">
             <div class="nav">
                 <div class="logo">
                     <a href="/">
-
                         <img src="@Helper.GetImageUrl("logo.png")" alt="You IT" />
-
                     </a>
                 </div>
                 <div class="menu">
@@ -88,11 +117,19 @@
                 @await Component.InvokeAsync("RealTimeComments")
             </div>
 
-            <div class="subscribeBar">
-                <div style="float:right; margin-left:5px;">
-                    <a href="#"><img src="https://storage.googleapis.com/youit/site/telegram.jpg" style="width:55px;" alt="Telegram" /></a>
+            <div class="subscribeBar" style="text-align:center">
+                <span style="font-size:18px;">Подписаться на обновления</span>
+
+                <div>
+                    <a href="https://t.me/youitpro" target="_blank" style="font-size:50px;">
+                        <i class="fab fa-telegram" style="color:#0088cc"></i>
+                    </a>
+                    <a href="https://vk.com/youit_pro" target="_blank" style="font-size:60px;">
+                        <i class="fab fa-vk" style="color:#4c75a3;"></i>
+                    </a>
                 </div>
-                <span style="font-size:22px;">Подписаться на нас в Telegram</span>
+                <span style="font-size:13px;">Подписавшись, Вы никогда не<br /> пропустите появление нового контента</span>
+
             </div>
         </div>
 
@@ -111,7 +148,5 @@
         </script>
     </div>
     @await Html.PartialAsync("_Authorize")
-
-    @await Html.PartialAsync("_CookieConsentPartial")
 </body>
 </html>

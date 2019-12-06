@@ -15,11 +15,13 @@
 </div>
 <!-- /ko -->
 
+
 <div class="box more-posts-button">
-    <span data-bind="click: addPosts, visible: morePostsButtonVisible" style="padding:10px; background-color:#222222; color:#FFF;">
+    <p class="loader" style="margin:auto" data-bind="visible: !morePostsButtonVisible() && !endPostsTextVisible()"></p>
+    <span data-bind="click: addPosts, visible: morePostsButtonVisible" style="padding:10px; color:#FFF;">
         Загрузить больше постов
     </span>
     <h4 data-bind="visible: endPostsTextVisible">Извините, посты закончились</h4>
 </div>
 
-<script src="~/js/start-page.js"></script>
+<script src="~/js/start-page.js" async></script>

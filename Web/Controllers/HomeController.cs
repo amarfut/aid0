@@ -38,6 +38,7 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Title = "You IT - программирование и карьера в IT";
             return View();
         }
 
@@ -89,7 +90,11 @@ namespace Web.Controllers
                 new IncrementPostViewCount().HandleAsync(post.Id);
             }
 
-
+            ViewBag.Title = post.Title + " - You IT";
+            if (post.Text.Length > 135)
+            {
+                ViewBag.MetaDescription = post.Text.Substring(0, 135).Replace("<p>", "").Replace("</p>", "") + "...";
+            }
 
             //TODO: introduce UI services layer and move it to there and refactor
 

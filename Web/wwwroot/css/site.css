@@ -45,7 +45,7 @@ body {
 #post-statistic {
     float: right;
     width: 100px;
-    margin: 10px -10px 10px 15px; /*top right bottom left*/
+    margin: -10px -10px 10px 15px; /*top right bottom left*/
     color: #9b9b9b;
 }
 
@@ -71,6 +71,8 @@ body {
 
 .header {
     height: 80px;
+    text-align:center;
+    padding:20px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -123,13 +125,6 @@ body {
     max-width: 1000px;
     margin: auto;
 }
-
-
-#similar-posts {
-    ;
-}
-
-
 
 .single-comment-wrapper {
     display: grid;
@@ -255,6 +250,11 @@ body {
     margin-top: 11px;
 }
 
+.post-text h3 {
+    font-size: 16px;
+    color: #2e58a6;
+}
+
 .user-ava {
     width: 50px;
     margin-right: 5px;
@@ -308,7 +308,7 @@ body {
 
 .topCommentsBar {
     text-align: center;
-    min-height: 450px;
+    min-height: 400px;
     overflow: hidden;
     border: 1px solid #fbfaf7;
     border-radius: 5px;
@@ -318,6 +318,20 @@ body {
     box-shadow: inner 0 0 3px #C0C0C0;
     margin-top: -1px;
     padding: 5px 5px 5px 10px;
+}
+
+.loader {
+  border: 12px solid #dedede; /* Light grey */
+  border-top: 12px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 
@@ -359,11 +373,16 @@ body {
     grid-column: 1 / 4;
     text-align: center;
     padding: 15px;
-    font-weight: bold;
 }
 
     .more-posts-button span {
         cursor: pointer;
+        padding: 10px;
+        background-color: #647e97;
+        color: #FFF;
+        border-radius: 3px;
+        font-size: 17px;
+        font-weight: normal;
     }
 
 .footer {

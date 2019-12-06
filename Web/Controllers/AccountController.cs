@@ -126,7 +126,8 @@ namespace Web.Controllers
                 model.Bookmarks = await new PostService().GetUserBookmarksAsync(UserId);
             else if (param == "likedposts")
                 model.Posts = await new UserService().GetLikedPosts(UserId);
-          
+
+            ViewBag.Title = "Аккаунт - You IT";
             return View(model);
         }
 
