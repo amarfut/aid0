@@ -5,7 +5,7 @@
     var cookieString = consentFeature?.CreateConsentCookie();
 
     string metaDescription = string.IsNullOrEmpty(ViewBag.MetaDescription) ?
-        "Сайт You IT лаконично и регулярно отвечает людям на наиболее важные вопросы о программировании и карьере в сфере информационных технологий." :
+        "Сайт YouIT лаконично и регулярно отвечает людям на наиболее важные вопросы о программировании и карьере в сфере информационных технологий." :
         ViewBag.MetaDescription;
 }
 <!DOCTYPE html>
@@ -19,11 +19,10 @@
     <meta name="keywords" content="Программирование, IT, код, собеседование, тестирование, ООП, Junior, Senior, Аутсорсинг, Алгоритмы, Веб-сервер" />
 
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/all.min.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" async></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
-    <script src="https://kit.fontawesome.com/70be1b95e9.js" crossorigin="anonymous" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
@@ -78,7 +77,7 @@
             <div class="nav">
                 <div class="logo">
                     <a href="/">
-                        <img src="@Helper.GetImageUrl("logo.png")" alt="You IT" />
+                        <img src="@Helper.GetImageUrl("logo.png")" alt="YouIT" />
                     </a>
                 </div>
                 <div class="menu">
@@ -104,7 +103,7 @@
                         else
                         {
                             <span onclick="loadAuthorizeModal()" class="login-link">
-                                <img src="@Helper.GetImageUrl("login.png")" alt="Искать" />
+                                <i class="fas fa-sign-in-alt"></i> Войти
                             </span>
                         }
                     </div>
@@ -118,7 +117,7 @@
             </div>
 
             <div class="subscribeBar" style="text-align:center">
-                <span style="font-size:18px;">Подписаться на обновления</span>
+                <span>Подписаться на обновления</span>
 
                 <div>
                     <a href="https://t.me/youitpro" target="_blank" style="font-size:50px;">
@@ -128,7 +127,7 @@
                         <i class="fab fa-vk" style="color:#4c75a3;"></i>
                     </a>
                 </div>
-                <span style="font-size:13px;">Подписавшись, Вы никогда не<br /> пропустите появление нового контента</span>
+                <span style="font-size:16px;">Подписавшись, Вы никогда не<br /> пропустите появление нового контента</span>
 
             </div>
         </div>
@@ -136,7 +135,7 @@
         @RenderBody()
 
         @await Html.PartialAsync("_Footer")
-        <script>
+        <script async>
             searchClick = () => {
                 if (!$('#searchBox').val()) return;
                 document.getElementById('searchForm').submit();

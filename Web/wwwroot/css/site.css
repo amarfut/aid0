@@ -1,14 +1,29 @@
-﻿a {
+﻿@font-face {
+    font-family: 'ProximaNovaRegular';
+    src: url('../fonts/ProximaNovaRegular/proximanovaregular.eot'); 
+    src: url('../fonts/ProximaNovaRegular/proximanovaregular.woff') format('woff'),
+         url('../fonts/ProximaNovaRegular/proximanovaregular.woff2') format('woff2'),
+         url('../fonts/ProximaNovaRegular/proximanovaregular.ttf') format('truetype')
+}
+
+body {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0;
+    font-weight: normal;
+    font-family: ProximaNovaRegular, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+a {
     text-decoration: none;
     color: #000;
     font-weight: 100;
-    font-family: Verdana, Arial, sans-serif
 }
 
     a:hover {
         opacity: 0.9;
     }
-
 
 #comment-box-root {
     margin-bottom: 30px;
@@ -27,12 +42,9 @@ div[id$='comment-box'] {
         opacity: 0.8;
     }
 
-body {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 0;
-    font-family: Verdana;
-    font-weight: normal;
+
+.social-share-button {
+    color:#FFF;
 }
 
 .answer-comment-action {
@@ -43,9 +55,6 @@ body {
 }
 
 #post-statistic {
-    float: right;
-    width: 100px;
-    margin: -10px -10px 10px 15px; /*top right bottom left*/
     color: #9b9b9b;
 }
 
@@ -53,12 +62,10 @@ body {
     float: right;
 }
 
-#post-statistic a {
-    color: #9b9b9b;
-}
-
-#post-statistic div {
-    padding: 10px 10px 0px 10px;
+.more-posts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
 }
 
 .button-xsmall {
@@ -75,9 +82,13 @@ body {
     padding:20px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .wrapper {
         grid-template-columns: 1fr !important;
+    }
+
+    .more-posts-section {
+        grid-template-columns: 1fr;
     }
 
     .sidebar,
@@ -130,20 +141,16 @@ body {
     display: grid;
     grid-template-columns: 1fr 10fr;
     margin: auto;
-    font-size: 15px;
-    font-family: Verdana;
     padding-bottom: 25px;
 }
 
     .single-comment-wrapper .username {
         font-weight: bold;
         color: #466eb7;
-        font-size: 13px;
     }
 
     .single-comment-wrapper .comment-created {
         color: #949494;
-        font-size: 13px;
         font-weight: normal;
     }
 
@@ -190,7 +197,6 @@ body {
         background-color: #faf1de;
         padding: 5px;
         border-radius: 3px;
-        font-size: 14px;
     }
 
 .social-links-wrapper {
@@ -237,7 +243,6 @@ body {
 }
 
     .post-button-wrapper div {
-        font-size: 16px;
         border-radius: 3px;
         text-align: center;
         color: #9b9b9b;
@@ -246,12 +251,14 @@ body {
         cursor: pointer;
     }
 
-.content h3 {
-    margin-top: 11px;
+h3 {
+    margin-top: 5px;
+    margin-bottom:5px;
+    font-size: 27px;
+    font-weight: normal;
 }
 
 .post-text h3 {
-    font-size: 16px;
     color: #2e58a6;
 }
 
@@ -266,6 +273,7 @@ body {
     }
 
 .comment-button {
+    font-size:15px;
     margin-top: 3px;
     cursor: pointer;
     background-color: #9a9a9a;
@@ -273,7 +281,6 @@ body {
     border-radius: 3px;
     color: #fafafa;
     padding: 5px;
-    font-size: 13px;
     float: left;
     margin-right: 15px;
 }
@@ -289,8 +296,8 @@ body {
 
 .sidebar {
     grid-column: 3 / 4;
-    grid-row: 2 / 4;
-    overflow:hidden;
+    grid-row: span 3 / 5;
+    overflow: hidden;
 }
 
 .subscribeBar {
@@ -303,7 +310,6 @@ body {
     margin-top: -1px;
     padding: 15px 10px 15px 10px;
     margin-top: 20px;
-    font-size: 14px;
 }
 
 .topCommentsBar {
@@ -381,7 +387,6 @@ body {
         background-color: #647e97;
         color: #FFF;
         border-radius: 3px;
-        font-size: 17px;
         font-weight: normal;
     }
 
@@ -422,7 +427,6 @@ body {
     .content h3 {
         margin-top:-1px;
         color: #3d3d3d;
-        font-size: 28px;
         font-weight: normal;
     }
 
@@ -435,6 +439,7 @@ body {
 .login-link {
     color: #adadad;
     cursor: pointer;
+    font-size:17px;
     font-weight: 100;
 }
 
@@ -454,7 +459,6 @@ body {
     }
 
 .logo {
-    font-size: 22px;
     margin-top:-7px;
 }
 
@@ -462,7 +466,6 @@ body {
     /*text-align: right;*/
     padding-top: 5px;
     color: #868686;
-    font-size: 15px;
 }
 
 .cookies td {
@@ -485,7 +488,6 @@ body {
 
 
 div.menu {
-    font-size: 17px;
     font-weight: 100;
     padding-top: 4px;
 }
@@ -522,7 +524,6 @@ div.menu a {
 
     div.menu a.top-link:after {
         content: "\25BC";
-        font-size: 10px;
         opacity: 0.3;
         padding-left: 2px;
     }
@@ -573,7 +574,6 @@ div.menu ul ul li {
 }
 
 #authorizeModal {
-    font-size: 13px;
 }
 
 

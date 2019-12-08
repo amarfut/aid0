@@ -1,5 +1,97 @@
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap>
-<loc>https://storage.cloud.google.com/youit/sitemap-main.xml</loc>
-</sitemap>
-</sitemapindex>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://youit.pro/</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/v-chem-raznitsa-mezhdu-junior-middle-i-senior-programmistami</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/sleng-programmistov-v-it</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/kakoy-tip-it-kompanii-vybrat-programmistu</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/kak-popast-v-it-kompaniyu-ne-programmistom</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/kak-programmistu-bez-opyta-nayti-rabotu</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/ne-dayetsya-obucheniye-programmirovaniyu</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/prichiny-poyavleniya-spagetti-koda</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/pishut-li-programmisty-kod</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/junior-csharp-ne-idi-na-sobesedovaniye-esli-ne-znayesh-otvetov-na-takiye-voprosy</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/junior-developer-povishayem-tvoi-shansy-na-prokhozhdeniye-sobesedovaniya</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/post/nuzhny-li-programmistu-sertifikaty</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/about</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/contacts</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/privacy</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/cookies</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://youit.pro/termsandconditions</loc>
+  <lastmod>2019-12-08T14:26:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>

@@ -38,7 +38,7 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Title = "You IT - программирование и карьера в IT";
+            ViewBag.Title = "YouIT - программирование и карьера в IT";
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace Web.Controllers
                 new IncrementPostViewCount().HandleAsync(post.Id);
             }
 
-            ViewBag.Title = post.Title + " - You IT";
+            ViewBag.Title = post.Title + " - YouIT";
             if (post.Text.Length > 135)
             {
                 ViewBag.MetaDescription = post.Text.Substring(0, 135).Replace("<p>", "").Replace("</p>", "") + "...";

@@ -127,7 +127,7 @@ namespace Web.Controllers
             else if (param == "likedposts")
                 model.Posts = await new UserService().GetLikedPosts(UserId);
 
-            ViewBag.Title = "Аккаунт - You IT";
+            ViewBag.Title = "Аккаунт - YouIT";
             return View(model);
         }
 

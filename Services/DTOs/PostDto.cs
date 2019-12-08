@@ -22,6 +22,7 @@ namespace Services.DTOs
             Type = (PostType)post.Type;
             WhoLiked = post.WhoLiked;
             WhoDisliked = post.WhoDisliked;
+            Created = post.Created;
 
             foreach (var comment in comments)
             {
@@ -40,6 +41,8 @@ namespace Services.DTOs
 
         public string[] WhoLiked { get; set; }
         public string[] WhoDisliked { get; set; }
+
+        public DateTime Created { get; set; }
 
         public string ViewsFormatted
         {
